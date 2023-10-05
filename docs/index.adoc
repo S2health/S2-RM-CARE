@@ -17,7 +17,7 @@ image::{s2_logo}["S2 logo",align="center"]
 //image::openehr_block_diagram.svg["openEHR components",align="center",width="60%"]
 
 :numbered!:
-= S2 Reference Model - {rm_release}
+= S2 CARE Model - {rm_release}
 
 // Use the following version for 'latest'
 ifeval::["{rm_release}" == "latest"]
@@ -40,15 +40,12 @@ endif::[]
 |===
 h|Specification h|Description
 
-//|link:/releases/RM/{rm_release}/ehr.html[EHR IM]
+//|link:/releases/CARE/{rm_release}/ehr.html[EHR IM]
 |link:ehr.html[EHR^]
 |The information model of the S2 EHR.
 
 |link:entry.html[Entry^]
 |Information model of clinical statements (Entries).
-
-|link:integration.html[Integration^]
-|Information model of generic entry for integration use.
 
 |===
 
@@ -58,7 +55,7 @@ h|Specification h|Description
 |===
 |Resource |Description
 
-|link:/UML/S2_UML-RM.mdzip[S2_UML-RM.mdzip]
+|link:/UML/S2_UML-CARE.mdzip[S2_UML-CARE.mdzip]
 |UML file for MagicDraw 19 for RM model. Contains UML 2.5 standard XMI file.
 
 |===
