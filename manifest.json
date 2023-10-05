@@ -1,0 +1,73 @@
+{
+    "id": "S2",
+    "title": "CARE Model",
+    "description": "S2 CARE Model Component",
+    "keywords": "reference model, S2, EHR",
+    "specifications": [
+        {
+            "id": "ehr",
+            "title": "EHR Model",
+            "title_short": "EHR",
+            "description": "S2 EHR Information Model specification",
+            "micro_summary": "Top-level health record model",
+            "summary": "The information model of the S2 EHR.",
+            "classes": [
+                "Ehr",
+                "Composition",
+                "Section"
+            ],
+            "copyright_year": "2023",
+            "spec_status": "STABLE",
+            "keywords": "EHR, EMR, reference model, S2"
+        },
+        {
+            "id": "entry",
+            "title": "Entry Model",
+            "title_short": "Entry",
+            "description": "S2 Entry Model",
+            "micro_summary": "Model of clinical statements",
+            "summary": "The information model of clinical statements in the S2 Canonical Model.",
+            "classes": [
+                "Entry",
+                "Direct_observation",
+                "Assessment",
+                "Order",
+                "Action",
+                "Admin_entry"
+            ],
+            "copyright_year": "2023",
+            "spec_status": "TRIAL",
+            "keywords": "EHR, EMR, reference model, S2"
+        }
+    ],
+    "expressions": [
+        {
+            "id": "S2_UML-CARE.mdzip",
+            "type": "uml",
+            "title": "S2 UML",
+            "description": "UML file for MagicDraw 19 for RM CARE component. Contains UML 2.5 standard XMI file."
+        },
+        {
+            "id": "S2_UML-BASE.mdzip",
+            "dependency": {
+                "component": "BASE",
+                "release": "latest"
+            }
+        }
+    ],
+    "jira": {
+        "open_issues": "11103",
+        "roadmap": "SPECRM"
+    },
+    "releases": [
+        {
+            "id": "0.0.6",
+            "date": "2023-09-29",
+            "jira": {
+                "crs": "SPECRM/versions/12516",
+                "prs": "SPECPR/versions/10061"
+            }
+        }
+    ]
+}
+

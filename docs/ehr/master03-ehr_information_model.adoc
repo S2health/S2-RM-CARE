@@ -1,0 +1,23 @@
+= The Clinical Information Model
+
+== Overview
+
+The figure below illustrates the package structure of the S2 Clinical part of the Reference Model.
+
+[.text-center]
+.EHR Packages
+image::{uml_diagrams_uri}/CARE-0-packages.svg[id=ehr_packages, align="center"]
+
+The packages are as follows:
+
+* `ehr`: this package contains the top level structure, the EHR, which consists of an `Ehr_access` object, an `Ehr_status` object, versioned data containers in the form of `Versioned_Compositions`, optionally indexed by one or more hierarchical `FOLDER` structures. A collection of `CONTRIBUTIONs` which document the changes to the EHR over time is also included.
+* `composition`: the Composition is the EHR’s top level "data container", and is described by the `Composition` class.
+* `content`: this package contains the Navigation and Entry packages, whose classes describe the structure and semantics of the contents of Compositions in the health record, including the following classes:
+** the `Section` class provides a navigational structure to the record, similar to "headings" in the paper record. `Entries` and other `SECTIONs` can appear under `SECTIONs`.
+** generic structures for recording clinical statements. Entry types include `Admin_entry`, `Observation` (for all observed phenomena, including mechanically or manually measured, and responses in interview), `Assertion` (for assessments, diagnoses, plans), `Order` (actionable statements such as medication orders, recalls, monitoring, reviews), and `ACTION` (information recorded as a result of performing Instructions).
+
+The figure below illustrates an overview of the class structure of an EHR, along with the main concepts on which they rely, namely Data Types, Data Structures, Archetyped, and Identification.
+
+[.text-center]
+.EHR Information Model Overview
+image::{uml_diagrams_uri}/CARE-1-overview.svg[id=ehr_im_overview, align="center", width=80%]

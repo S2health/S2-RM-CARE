@@ -1,0 +1,117 @@
+= Observations
+
+== Overview
+
+A number of types are used to record observations of any phenomenon or state of interest to do with the patient, including lab results, vital signs, family history, patient responses during a physical examination, and questionnaire response.
+
+The following UML diagram illustrates the classes representing various kinds of Observation.
+
+[.text-center]
+.Observation
+image::{uml_diagrams_uri}/CARE-entry-observation.svg[id=entry_observation, align="center"]
+
+Observations are formally modelled by the `Observation` class and its descendants. The `Observation` class provides the following properties common to all varieties of Observation:
+
+* `_data_`: the focal data being recorded;
+* `_state_`: any particular information about the state of the subject necessary to correctly interpret the data, which is not already known in the health record (i.e. facts such as the patient being female, pregnant, or currently undergoing chemotherapy). For example, exertion level (resting, post-marathon...), position (lying, standing), post-glucose challenge, and so on.
+
+Both the `_data_` and `_state_` properties are of type `List<Item>`.
+
+Observations are further differentiated on _modality_ of interaction with the subject used to obtain the intended data. The detailed semantics of Observation data are described in the following subsections.
+
+== Direct Observations
+
+Direct observations, represented by the `Direct_observation` class, are those for which the focal datum is directly provided by the observational activity. Examples include manual physical examination, e.g. palpation, auscultation, evaluation of skin color etc; machine observations such as heart-rate, oxygen and blood pressure. Note that some machines do not directly measure the reported data but compute it instead from related measurables. For example mean arterial pressure is usually machine-calculated from measured diastolic and systolic blood pressures. Such devices are treated for practical purposes as if they directly measure the target datum.
+
+== Indirect Observations
+
+Indirect observations are those obtained by some process that produces an artefact that can subsequently be analyzed to provide the focal data item. Examples include lab test results, imaging and genetic testing. In general, the analysis process takes some time. They are represented by the `Indirect_observation` class, which includes the property `_result_time_`, used to capture the time the result became available. The clinically relevant time is corresponds to the time of sampling, imaging etc, and is captured in the inherited `_time_` property.
+
+== Scores
+
+Scores are a kind of Observation
+
+== Questionnaire Response
+
+Another common kind of observational information is the response to a _questionnaire_, which is assumed to be a controlled document published by some provider authority or jurisdiction. This is represented by the `Questionnaire_response` class. This class does not attempt to represent any conditional or other logic relating fields together, or any other computational logic of the original questionnaire, which typically takes the form of an interactive UI form - it only represents the responses.
+
+The interior structure of a `Questionnaire_response` consists of `Clusters` and `Elements`, where the former are assumed to be named according to 'sections' in the original questionnaire.
+
+=== Class Descriptions
+
+include::{uml_export_dir}/classes/{pkg}observation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}direct_observation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}indirect_observation.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}imaging.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}lab_result.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}score.adoc[leveloffset=+1]
+
+include::{uml_export_dir}/classes/{pkg}questionnaire_response.adoc[leveloffset=+1]
+
+== Time-series Data
+
+=== Basic semantics
+
+Multi-sample observational data is modeled by the `Observation_series` class, which represents samples in historical time using the History/Event structure defined in the `data_structures` package. This package defines a `History` class with an `_origin_` attribute, and a series of `Event` instances each containing a `_time_` attribute. Instantaneous and interval events are represented via the `Event` subtypes `Point_event` and `Interval_event`.
+
+One of the aims of the model of `Observation_series` class is to represent in the same way single sample and multi-sample time-based data for which measurement method is invariant. It is not intended for long-running series of measurements taken by different people, different instruments, or with any other difference in data-gathering technique. In these cases, separate, histories are used, usually occurring in distinct container objects (e.g. distinct Compositions, in the EHR).
+
+Accordingly, in the general practice setting, the use of `History` will correspond to measurement series which occur during the clinical session (i.e. during a patient contact). In a hospital setting, nurses' observations might occur in 4-hourly intervals, and there is no well-defined clinical session - simply a series of `Entries` during the time of the episode. Two approaches are possible here.
+
+* If each Observation is to be committed to the EHR as soon as it is made, the result will be distinct `Compositions` in time, each with its `_event_context_` corresponding to the period of the nurse's presence. Each Composition will contain one or more Observation_series, each containing in their data a History of one sample of the measured vital sign.
+* If observations are not committed to the EHR immediately, but are stored elsewhere and only committed (say) at the end of each day, then the result will be a single Composition whose `_event_context_` corresponds to the total data gathering period, and which contains Observation_series whose data are multi-event Histories representing the multiple measurements made over the day.
+
+Whether time-based data remain outside the record until a series of desired length is gathered, or entered as it occurs is up to the design of applications and systems; the approach taken should be based on the desired availability of the data in the system in question. If for example, it must be visible in the EHR as soon as the appropriate Compositions are written, then it should be represented as Histories in each relevant Composition; if it need only be available at some much later point in time (e.g. because it is known that no-one but the treating clinician is interested in it), then it can be stored in another system until sufficient items have been gathered for committal to the EHR.
+
+=== Two ways of Recording State
+
+State information is optional, and is not needed if the data are meaningful on their own. If it is recorded, it can either be as a History of its own (i.e. using the `Observation_series._state_` attribute described above), or else as state values within the `EVENT` instances in the `Observation_series._data_` History structure. Both methods are useful in different circumstances. A separate state history is more likely to be used in a correlation study such as a sports medicine study on heart-rate with respect to specific types of exercise. In this method, the state information is a History of Events whose times and widths need not match those of the History in the data attribute. The state data under this approach generally express the condition of the subject in absolute terms, i.e. they are standalone statements about the subject's state at certain points in time, such as "walking on treadmill 10km/h, 10^o^ incline".
+
+The other method will be used in most general medicine, e.g. for recording fasting and post glucose challenge states of a patient undergoing a glucose tolerance test. (See the Data Structures Information Model for more details). State values stored within the `_data_` History represent the situation in the subject at the time of the Event within the History and usually in relation to it, for example "post 8 hour fast". Recording the latter example in an independent state History would require an Event of 8 hours' duration called 'fast'. The latter would be technically still correct, but would be very unnatural to most clinicians. The figure below illustrates the two methods of recording state.
+
+[.text-center]
+.Alternative ways of recording state
+image::{diagrams_uri}/recording_state.png[id=recording_state, align="center", width=65%]
+
+
+== Instance Examples
+
+The following subsections illustrate typical Entry instance structures. For guidance on how to best model particular clinical statements, see the archetype part of the {openehr_CKM}[openEHR Clinical Knowledge Manager repository^].
+
+=== Heart-rate Measurement Series
+
+The following figure illustrates three heart-rate measurements over 10 minutes.
+
+[.text-center]
+.Periodic series instance structure
+image::{diagrams_uri}/periodic_series.png[id=periodic_series, align="center", width=80%]
+
+=== Blood Pressure with Protocol
+
+The following figure illustrates a blood pressure observation with method.
+
+[.text-center]
+.Blood Pressure Measurement Observation
+image::{diagrams_uri}/BP_measurement.png[id=BP_measurement, align="center", width=70%]
+
+=== Glucose Tolerance Test
+
+An oral glucose tolerance test takes the following form, although the number and timing of the blood sugar levels may be slightly different in practice:
+
+* challenge: no calories fasting from 12pm to 8am
+* datum: BSL - 8am
+* challenge: 75 g glucose orally - 8:01 am
+* datum: BSL - 9 am
+* datum: BSL - 10 am
+
+OGTT is treated as a single clinical concept, and thus requires only one archetype. A typical instance structure is shown in the figure below. In this example, the three blood sugars are represented by `Events`, with the fasting and glucose challenges being expressed as states on the relevant events.
+
+[.text-center]
+.OGTT instance structure
+image::{diagrams_uri}/OGTT_structure.png[id=OGTT_structure, align="center", width=80%]
+

@@ -1,0 +1,37 @@
+=== Virtual_content Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Virtual_content<L>*
+
+h|*Description*
+2+a|
+
+h|*Constants*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*resolved*: `L`
+a|Resolved form.
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*commit_context*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[Locatable_ref^]`
+a|Reference to target's commit context - a Version.
+
+h|*1..1*
+|*event_context*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[Locatable_ref^]`
+a|Reference to target's event context object - normally a Composition.
+
+h|*0..1*
+|*entry_context*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[Locatable_ref^]`
+a|Reference to target's clinical statement context object - normally an Entry subtype.
+
+h|*0..1*
+|*entry_content_item*: `link:/releases/BASE/{base_release}/base_types.html#_locatable_ref_class[Locatable_ref^]`
+a|Reference to original object.
+|===

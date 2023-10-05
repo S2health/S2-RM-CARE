@@ -1,0 +1,31 @@
+=== Care_entry Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*__Care_entry (abstract)__*
+
+h|*Description*
+2+a|The abstract parent of all clinical `Entry` subtypes. A `Care_entry` defines protocol and guideline attributes for all clinical Entry subtypes.
+
+h|*Inherit*
+2+|`<<_entry_class,Entry>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*qualifiers*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+a|Description of qualifying details that do not change the interpretation of the focal data. These typically include:
+
+* the general method (i.e. how) the information in this entry was arrived at. For Observations, this is a description of the method. For Assertion, how the evaluation was arrived at. For Orders, how to execute;
+* device used for measurement;
+*
+
+h|*0..1*
+|*guideline_ids*: `List<link:/releases/BASE/{base_release}/foundation_types.html#_uri_class[Uri^]>`
+a|Optional external identifier of guideline creating this Entry if relevant.
+
+TODO: probably should be a Uri
+|===

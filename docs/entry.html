@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="description" content="S2 Entry Model">
+<meta name="keywords" content="EHR, EMR, reference model, S2">
+<title>Entry Model</title>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_entry_model">Entry Model</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_editor">Editor</a></li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_support">Support</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose">1.1. Purpose</a></li>
+<li><a href="#_related_documents">1.2. Related Documents</a></li>
+<li><a href="#_status">1.3. Status</a></li>
+<li><a href="#_feedback">1.4. Feedback</a></li>
+<li><a href="#_conformance">1.5. Conformance</a></li>
+</ul>
+</li>
+<li><a href="#_overview">2. Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_the_entry_class">2.1. The Entry class</a></li>
+<li><a href="#_admin_entry">2.2. Admin_entry</a></li>
+<li><a href="#_care_entry">2.3. Care_entry</a></li>
+<li><a href="#_care_act_entry">2.4. Care_act_entry</a></li>
+<li><a href="#_class_descriptions">2.5. Class Descriptions</a>
+<ul class="sectlevel3">
+<li><a href="#_entry_class">2.5.1. Entry Class</a></li>
+<li><a href="#_entry_lifecycle_states_enumeration">2.5.2. Entry_lifecycle_states Enumeration</a></li>
+<li><a href="#_care_entry_class">2.5.3. Care_entry Class</a></li>
+<li><a href="#_care_act_entry_class">2.5.4. Care_act_entry Class</a></li>
+<li><a href="#_order_tracking_class">2.5.5. Order_tracking Class</a></li>
+<li><a href="#_admin_entry_class">2.5.6. Admin_entry Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_observations">3. Observations</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_2">3.1. Overview</a></li>
+<li><a href="#_direct_observations">3.2. Direct Observations</a></li>
+<li><a href="#_indirect_observations">3.3. Indirect Observations</a></li>
+<li><a href="#_scores">3.4. Scores</a></li>
+<li><a href="#_questionnaire_response">3.5. Questionnaire Response</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_2">3.5.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_observation_class">3.5.1.1. Observation Class</a></li>
+<li><a href="#_direct_observation_class">3.5.1.2. Direct_observation Class</a></li>
+<li><a href="#_indirect_observation_class">3.5.1.3. Indirect_observation Class</a></li>
+<li><a href="#_imaging_class">3.5.1.4. Imaging Class</a></li>
+<li><a href="#_lab_result_class">3.5.1.5. Lab_result Class</a></li>
+<li><a href="#_score_class">3.5.1.6. Score Class</a></li>
+<li><a href="#_questionnaire_response_class">3.5.1.7. Questionnaire_response Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_time_series_data">3.6. Time-series Data</a>
+<ul class="sectlevel3">
+<li><a href="#_basic_semantics">3.6.1. Basic semantics</a></li>
+<li><a href="#_two_ways_of_recording_state">3.6.2. Two ways of Recording State</a></li>
+</ul>
+</li>
+<li><a href="#_instance_examples">3.7. Instance Examples</a>
+<ul class="sectlevel3">
+<li><a href="#_heart_rate_measurement_series">3.7.1. Heart-rate Measurement Series</a></li>
+<li><a href="#_blood_pressure_with_protocol">3.7.2. Blood Pressure with Protocol</a></li>
+<li><a href="#_glucose_tolerance_test">3.7.3. Glucose Tolerance Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_assertion">4. Assertion</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_3">4.1. Overview</a></li>
+<li><a href="#_semantics">4.2. Semantics</a></li>
+<li><a href="#_class_descriptions_3">4.3. Class Descriptions</a>
+<ul class="sectlevel3">
+<li><a href="#_assessment_class">4.3.1. Assessment Class</a></li>
+</ul>
+</li>
+<li><a href="#_instance_examples_2">4.4. Instance Examples</a>
+<ul class="sectlevel3">
+<li><a href="#_partial_asthma_management_plan">4.4.1. Partial Asthma Management Plan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_orders_and_actions">5. Orders and Actions</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_4">5.1. Overview</a></li>
+<li><a href="#_design_concept">5.2. Design Concept</a></li>
+<li><a href="#_model_overview">5.3. Model Overview</a></li>
+<li><a href="#_the_standard_order_state_machine_ism">5.4. The Standard Order State Machine (ISM)</a></li>
+<li><a href="#_order_aggregate_state">5.5. Order Aggregate State</a></li>
+<li><a href="#_careflow_process_to_state_machine_mapping">5.6. Careflow Process to State Machine Mapping</a></li>
+<li><a href="#_relationship_to_archetypes">5.7. Relationship to Archetypes</a></li>
+<li><a href="#_class_descriptions_4">5.8. Class Descriptions</a>
+<ul class="sectlevel3">
+<li><a href="#_order_class">5.8.1. Order Class</a></li>
+<li><a href="#_activity_class">5.8.2. Activity Class</a></li>
+<li><a href="#_action_class">5.8.3. Action Class</a></li>
+<li><a href="#_state_transition_class">5.8.4. State_transition Class</a></li>
+<li><a href="#_order_execution_state_enumeration">5.8.5. Order_execution_state Enumeration</a></li>
+<li><a href="#_order_execution_transition_enumeration">5.8.6. Order_execution_transition Enumeration</a></li>
+</ul>
+</li>
+<li><a href="#_instance_examples_3">5.9. Instance Examples</a>
+<ul class="sectlevel3">
+<li><a href="#_chained_medication_order">5.9.1. Chained Medication Order</a></li>
+<li><a href="#_multi_drug_therapy">5.9.2. Multi-drug Therapy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="http://s2health.io/logo.png" alt="S2 logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_entry_model" class="sect0"><a class="anchor" href="#_entry_model"></a>Entry Model</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all fit-content spread">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="http://s2health.io" target="_blank" rel="noopener">S2 Foundation</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: CARE latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: TRIAL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, EMR, reference model, S2</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2023 S2 Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://s2health.io" target="_blank" rel="noopener">S2 Foundation</a> is an independent, non-profit foundation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.s2health.io/components/CARE/open_issues" target="_blank" rel="noopener">Report an Issue</a><br>
+ Web: <a href="https://specifications.s2health.io" target="_blank" rel="noopener">specifications.S2.io</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial Writing: based on openEHR EHR Information Model</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Apr 2023</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_editor"><a class="anchor" href="#_editor"></a>Editor</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Graphite Informatics group.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
+<div class="paragraph">
+<p>This specification benefited from input from the wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>xxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support"><a class="anchor" href="#_support"></a>Support</h3>
+<div class="paragraph">
+<p>The work reported in this paper has been funded in part by the following organisations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>xxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks"><a class="anchor" href="#_trademarks"></a>Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'openEHR' is a trademark of the openEHR Foundation</p>
+</li>
+<li>
+<p>'Java' is a registered trademark of Oracle Corporation</p>
+</li>
+<li>
+<p>'Microsoft' and '.Net' are trademarks of the Microsoft Corporation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
+<div class="paragraph">
+<p>This document describes the S2 Entry Model, part of the S2 Canonical Model.</p>
+</div>
+<div class="paragraph">
+<p>The intended audience includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The open source healthcare community;</p>
+</li>
+<li>
+<p>Solution vendors;</p>
+</li>
+<li>
+<p>Medical informaticians and clinicians interested in health information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_related_documents"><a class="anchor" href="#_related_documents"></a>1.2. Related Documents</h3>
+<div class="paragraph">
+<p>Prerequisite documents for reading this document include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html" target="_blank" rel="noopener">openEHR Architecture Overview</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Related documents include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/base_types.html" target="_blank" rel="noopener">S2 Base Types Information Model</a>;</p>
+</li>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/data_types.html" target="_blank" rel="noopener">S2 Data Types Information Model</a>;</p>
+</li>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/patterns.html" target="_blank" rel="noopener">S2 Patterns Information Model</a>;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
+<div class="paragraph">
+<p>This specification is in the TRIAL state. The development version of this document can be found at <a href="https://specifications.s2health.io/releases/CARE/latest/entry.html" target="_blank" rel="noopener">https://specifications.s2health.io/releases/CARE/latest/entry.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
+<div class="paragraph">
+<p>Feedback may be provided on the <a href="http://S2.io" target="_blank" rel="noopener">S2 specifications forum</a>.</p>
+</div>
+<div class="paragraph">
+<p>Issues may be raised on the <a href="https://specifications.s2health.io/components/CARE/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To see changes made due to previously reported issues, see the <a href="https://specifications.s2health.io/components/CARE/history" target="_blank" rel="noopener">CARE component Change Request tracker</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.5. Conformance</h3>
+<div class="paragraph">
+<p>Conformance of a data or software artifact to a S2 specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>2. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Entry model is defined by the <code>gcm.entry</code> package, shown in the UML diagram below. The concept of 'Entry' corresponds to an entry in a longitudinal record of care, and may also be understood as a 'statement'.</p>
+</div>
+<div id="entry_taxonomy" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-2-entry-taxonomy.svg" alt="CARE 2 entry taxonomy">
+</div>
+<div class="title">Figure 1. gcm.entry package</div>
+</div>
+<div class="paragraph">
+<p>The descendants of <code>Entry</code> are based on the taxonomy described in (<a href="#Beale_Heard2007">Beale &amp; Heard&#44; 2007</a>), and are described in the section below.</p>
+</div>
+<div class="sect2">
+<h3 id="_the_entry_class"><a class="anchor" href="#_the_entry_class"></a>2.1. The Entry class</h3>
+<div class="paragraph">
+<p>All Entries have a number of properties in common. The optional <code><em>language</em></code> attribute indicates how all text data within the Entry are to be interpreted linguistically if different from the enclosing Composition.</p>
+</div>
+<div class="paragraph">
+<p>The other properties defined in Entry are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>subject</em></code>: records the subject of the Entry as an instance of a subtype of <code>Party_proxy</code>. When this is the record subject, (i.e. the patient), the value is an instance of <code>Party_self</code>. Otherwise it is typically a fetus (of a pregnant subject), a family member, sexual partner, or organ donor. The latter is expressed in the form of a <code>Party_identified</code> or <code>Related_party</code> instance, which describes the kind of relationship, and optionally, identifies the demographic entity.</p>
+</li>
+<li>
+<p><code><em>reporter</em></code>: the agent who provided the information. This is usually the patient or the clinician, but may be the subject, a family member or an autonomous software application or device. If participation details of the reporter (e.g. mode of communication) need to be recorded, the details should be recorded once in the <code>Event_context.<em>participations</em></code>. The reporter attribute is optional, since it is often implicit in the information that was recorded.</p>
+</li>
+<li>
+<p><code><em>authorization_actions</em></code>: authorizations for this Entry.</p>
+</li>
+<li>
+<p><code><em>other_participations</em></code>: other participations for this Entry, e.g. a nurse who administered a drug recorded in an Action.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the <code><em>composer</em></code> and <code><em>other_participations</em></code> of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the information reporter is specifically accountable for the Entry data (it is their opinion, their decision, they carried out the test etc.) - they might also need to attest it;</p>
+</li>
+<li>
+<p>the information reporter is an authoritative source, or has provided information from a unique perspective (e.g. the view of a spouse/ carer on the patient&#8217;s functional health status or mental state);</p>
+</li>
+<li>
+<p>the information reporter&#8217;s view might not reflect the consensus (e.g. a patient opinion not held by the composer, a difference between father and mother on a description of a child&#8217;s sleeping pattern);</p>
+</li>
+<li>
+<p>the information reporter is not one of the Composition-level participants (e.g. an outside information reporter such as someone telephoned during the encounter to provide a lab result, or an automated measurement device, or a decision support software component).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code><em>authorization_actions</em></code> attribute is used to record any authorization action, generally signing or counter-signing. Each such action is assumed to advance the Entry through a lifecycle, recorded in the Entry attribute <code><em>lifecycle_state</em></code>, and defined by the Entry State Machine, which is illustrated below.</p>
+</div>
+<div id="Entry_state_machine" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-Entry_state_machine.svg" alt="CARE Entry state machine">
+</div>
+<div class="title">Figure 2. Entry state machine</div>
+</div>
+<div class="paragraph">
+<p>The following sections describe Entry sub-types.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_admin_entry"><a class="anchor" href="#_admin_entry"></a>2.2. Admin_entry</h3>
+<div class="paragraph">
+<p>The <code>Admin_entry</code> class defines the structure of administrative statements made in the record. Administrative information has the following characteristics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>it is created by non-clinical staff, or clinical staff acting in an administrative capacity (e.g. a nurse or doctor who has to fill out an admission form in A&amp;E);</p>
+</li>
+<li>
+<p>it expresses details to do with coordinating the clinical process, by recording e.g. admission information (enables clinical staff to know who is in the hospital and where they can be found), appointments (ensuring patient and physician get together at an agreed time and place), discharge/dismissal (allowing clinical staff to know that a patient has been sent home healthy, or transferred to another institution), billing and insurance information (where such information is required in the EHR; it may well be in its own system);</p>
+</li>
+<li>
+<p>removing administrative information from the EHR would not compromise its clinical integrity, it would simply mean that carers and patients would no longer know when and where they were supposed to meet, or when the patient has entered or left a health care facility.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The data of Admin_entry is a single Cluster and is structured by archetyping.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_care_entry"><a class="anchor" href="#_care_entry"></a>2.3. Care_entry</h3>
+<div class="paragraph">
+<p>The <code>Care_entry</code> class is an abstract precursor of classes that express information of any clinical activity in the patient care process. It includes two attributes particular to all clinical entries, namely <code><em>qualifiers</em></code> and <code><em>guideline_ids</em></code>. These attributes enable the 'how' and 'why' aspects of any clinical recording to be expressed. The <code><em>qualifiers</em></code> property is used to record <em>method_</em> recorded for Observations, e.g. staining method in microscopy, and Instructions, e.g. Bruce protocol for ECG test.</p>
+</div>
+<div class="paragraph">
+<p>TODO: review guideline_ids</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_care_act_entry"><a class="anchor" href="#_care_act_entry"></a>2.4. Care_act_entry</h3>
+<div class="paragraph">
+<p>The <code>Care_act_entry</code> class represents the category of <em>concrete</em> acts undertaken in the course of care of the subject. These are usually costed and billable and often relate to an order. Accordingly, the <code><em>order_tracking</em></code> attribute enables both order-related identifiers, and more complex (archetyped) order-related information to be represented.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>2.5. Class Descriptions</h3>
+<div class="sect3">
+<h4 id="_entry_class"><a class="anchor" href="#_entry_class"></a>2.5.1. Entry Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Entry (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>The abstract parent of all <code>Entry</code> subtypes. An <code>Entry</code> is the root of a logical item of  hard  clinical information created in the  clinical statement  context, within a clinical session. There can be numerous such contexts in a clinical session. Observations and other Entry types only ever document information captured/created in the event documented by the enclosing Composition.</p>
+</div>
+<div class="paragraph">
+<p>An <code>Entry</code> is also the minimal unit of information any query should return, since a whole <code>Entry</code> (including subparts) records spatial structure, timing information, and contextual information, as well as the subject and generator of the information.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/CARE/{care_release}/ehr.html#_content_item_class" target="_blank" rel="noopener">Content_item</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time at which administrative action took place.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_participations</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Other participations at <code>Entry</code> level.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Mandatory indicator of the localised language in which this Entry is written. Coded from openEHR Code Set  languages .</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/patterns.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Id of human subject of this <code>Entry</code>, e.g.:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>organ donor</p>
+</li>
+<li>
+<p>foetus</p>
+</li>
+<li>
+<p>a family member</p>
+</li>
+<li>
+<p>another clinically relevant person.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reporter</strong>: <code><a href="/releases/BASE/latest/patterns.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional identification of reporter of the information in this <code>Entry</code>, which might be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the patient</p>
+</li>
+<li>
+<p>a patient agent, e.g. parent, guardian</p>
+</li>
+<li>
+<p>the clinician</p>
+</li>
+<li>
+<p>a device or software</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Generally only used when the recorder needs to make it explicit. Otherwise, Composition composer and other participants are assumed.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>comment</strong>: <code><a href="/releases/BASE/latest/data_types.html#_text_class" target="_blank" rel="noopener">Text</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>TODO: consider if needed to take comment field from CEM StatementBase</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>authorization_actions</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>TODO: the openEHR approach treats authorization as being performed on committed data item/document, which is probably more correct.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>lifecycle_state</strong>: <code><a href="#_entry_lifecycle_states_enumeration">Entry_lifecycle_states</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>State within Entry lifecycle, if applicable. States defined by the Entry state machine.</p>
+</div>
+<div class="paragraph">
+<p>Void indicates that no lifcycle is required for this Entry, and that it is regarded as 'completed' when created.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>workflow_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of externally held workflow engine data for this workflow execution, for this subject of care.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject_is_self</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code><br>
+<br>
+<em>Post_condition</em>: <code>Result implies subject.generating_type = “PARTY_SELF”</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns True if this Entry is about the subject of the EHR, in which case the subject attribute is of type PARTY_SELF.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Language_valid</em>: <code>code_set (Code_set_id_languages).has_code (language)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Encoding_valid</em>: <code>code_set (Code_set_id_character_sets).has_code (encoding)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Subject_validity</em>: <code>subject_is_self implies subject.generating_type = “PARTY_SELF”</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Other_participations_valid</em>: <code>other_participations /= Void implies not other_participations.is_empty</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Is_archetype_root</em>: <code>is_archetype_root</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_entry_lifecycle_states_enumeration"><a class="anchor" href="#_entry_lifecycle_states_enumeration"></a>2.5.2. Entry_lifecycle_states Enumeration</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Entry_lifecycle_states</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>States in Entry lifecycle. Values from Entry State Machine.</p>
+</div>
+<div class="paragraph">
+<p>TODO: define properly.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">draft</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">awaiting_signing</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">signed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_care_entry_class"><a class="anchor" href="#_care_entry_class"></a>2.5.3. Care_entry Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Care_entry (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>The abstract parent of all clinical <code>Entry</code> subtypes. A <code>Care_entry</code> defines protocol and guideline attributes for all clinical Entry subtypes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_entry_class">Entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>qualifiers</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Description of qualifying details that do not change the interpretation of the focal data. These typically include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the general method (i.e. how) the information in this entry was arrived at. For Observations, this is a description of the method. For Assertion, how the evaluation was arrived at. For Orders, how to execute;</p>
+</li>
+<li>
+<p>device used for measurement;
+*</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>guideline_ids</strong>: <code>List&lt;<a href="/releases/BASE/latest/foundation_types.html#_uri_class" target="_blank" rel="noopener">Uri</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional external identifier of guideline creating this Entry if relevant.</p>
+</div>
+<div class="paragraph">
+<p>TODO: probably should be a Uri</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_care_act_entry_class"><a class="anchor" href="#_care_act_entry_class"></a>2.5.4. Care_act_entry Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Care_act_entry (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Abstract parent of types representing concrete acts undertaken in the course of care of the subject. Characterised by an <code><em>effective_time</em></code> which is defined in descendants.</p>
+</div>
+<div class="paragraph">
+<p>Care acts are usually costed and billable, and may be to do with the creation or execution of an order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_care_entry_class">Care_entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>order_tracking</strong>: <code><a href="#_order_tracking_class">Order_tracking</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Order tracking data.</p>
+</div>
+<div class="paragraph">
+<p>TODO: possibly hard-model requestor and filler ids.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(abstract)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Moment in subject&#8217;s timeline for which the observation or result (which may only be completed later) is asserted. Defined in descendants.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_order_tracking_class"><a class="anchor" href="#_order_tracking_class"></a>2.5.5. Order_tracking Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Order_tracking</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Order-related tracking data.</p>
+</div>
+<div class="paragraph">
+<p>TODO: exact names, any refs needed to actual demographic entities?</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>requestor_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Requestor identifier for the order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>requestor_order_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Platform identifier for the order.</p>
+</div>
+<div class="paragraph">
+<p>TODO - probably a GUID; do initial matching on requestor / filler ids.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>filler_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>FIller identifier for the order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>filler_order_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Order id generated by the filler organization.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_admin_entry_class"><a class="anchor" href="#_admin_entry_class"></a>2.5.6. Admin_entry Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Admin_entry</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Entry subtype for administrative information, i.e. information about setting up the clinical process, but not itself clinically relevant. Archetypes will define contained information.</p>
+</div>
+<div class="paragraph">
+<p>Used for administrative details of admission, episode, ward location, discharge, appointment (if not stored in a practice management or appointments system).</p>
+</div>
+<div class="paragraph">
+<p>The inherited <code><em>time</em></code> field records the time at which administrative action took place.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_entry_class">Entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Content of the Admin Entry.
+The data of the Entry; modelled in archetypes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reult = <code><em>time</em></code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_observations"><a class="anchor" href="#_observations"></a>3. Observations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>3.1. Overview</h3>
+<div class="paragraph">
+<p>A number of types are used to record observations of any phenomenon or state of interest to do with the patient, including lab results, vital signs, family history, patient responses during a physical examination, and questionnaire response.</p>
+</div>
+<div class="paragraph">
+<p>The following UML diagram illustrates the classes representing various kinds of Observation.</p>
+</div>
+<div id="entry_observation" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-entry-observation.svg" alt="CARE entry observation">
+</div>
+<div class="title">Figure 3. Observation</div>
+</div>
+<div class="paragraph">
+<p>Observations are formally modelled by the <code>Observation</code> class and its descendants. The <code>Observation</code> class provides the following properties common to all varieties of Observation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>data</em></code>: the focal data being recorded;</p>
+</li>
+<li>
+<p><code><em>state</em></code>: any particular information about the state of the subject necessary to correctly interpret the data, which is not already known in the health record (i.e. facts such as the patient being female, pregnant, or currently undergoing chemotherapy). For example, exertion level (resting, post-marathon&#8230;&#8203;), position (lying, standing), post-glucose challenge, and so on.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both the <code><em>data</em></code> and <code><em>state</em></code> properties are of type <code>List&lt;Item&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Observations are further differentiated on <em>modality</em> of interaction with the subject used to obtain the intended data. The detailed semantics of Observation data are described in the following subsections.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_direct_observations"><a class="anchor" href="#_direct_observations"></a>3.2. Direct Observations</h3>
+<div class="paragraph">
+<p>Direct observations, represented by the <code>Direct_observation</code> class, are those for which the focal datum is directly provided by the observational activity. Examples include manual physical examination, e.g. palpation, auscultation, evaluation of skin color etc; machine observations such as heart-rate, oxygen and blood pressure. Note that some machines do not directly measure the reported data but compute it instead from related measurables. For example mean arterial pressure is usually machine-calculated from measured diastolic and systolic blood pressures. Such devices are treated for practical purposes as if they directly measure the target datum.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_indirect_observations"><a class="anchor" href="#_indirect_observations"></a>3.3. Indirect Observations</h3>
+<div class="paragraph">
+<p>Indirect observations are those obtained by some process that produces an artefact that can subsequently be analyzed to provide the focal data item. Examples include lab test results, imaging and genetic testing. In general, the analysis process takes some time. They are represented by the <code>Indirect_observation</code> class, which includes the property <code><em>result_time</em></code>, used to capture the time the result became available. The clinically relevant time is corresponds to the time of sampling, imaging etc, and is captured in the inherited <code><em>time</em></code> property.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scores"><a class="anchor" href="#_scores"></a>3.4. Scores</h3>
+<div class="paragraph">
+<p>Scores are a kind of Observation</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_questionnaire_response"><a class="anchor" href="#_questionnaire_response"></a>3.5. Questionnaire Response</h3>
+<div class="paragraph">
+<p>Another common kind of observational information is the response to a <em>questionnaire</em>, which is assumed to be a controlled document published by some provider authority or jurisdiction. This is represented by the <code>Questionnaire_response</code> class. This class does not attempt to represent any conditional or other logic relating fields together, or any other computational logic of the original questionnaire, which typically takes the form of an interactive UI form - it only represents the responses.</p>
+</div>
+<div class="paragraph">
+<p>The interior structure of a <code>Questionnaire_response</code> consists of <code>Clusters</code> and <code>Elements</code>, where the former are assumed to be named according to 'sections' in the original questionnaire.</p>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>3.5.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_observation_class"><a class="anchor" href="#_observation_class"></a>3.5.1.1. Observation Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Observation (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Observation consisting of one time-point, and optional patient state.</p>
+</div>
+<div class="paragraph">
+<p>The inherited <code><em>time</em></code> property records the time of original observation. For observations based on specimens  (tissue, excreta etc) or images taken from the patient, this is the time at which the specimen or image was taken.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_care_act_entry_class">Care_act_entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Patient state at effective (clinically relevant) time.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_direct_observation_class"><a class="anchor" href="#_direct_observation_class"></a>3.5.1.2. Direct_observation Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Direct_observation</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>An observation made directly on the subject, by manual or instrumental means, such that phenomenon of interest is being directly measured. Results are consequently available in real time.</p>
+</div>
+<div class="paragraph">
+<p>Typical examples: vital signs, physical examinations, signs and symptoms.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_observation_class">Observation</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_series</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_event_class" target="_blank" rel="noopener">Event</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional recording of the state of subject of this observation during the observation process, in the form of a separate history of values which may be of any complexity. State may also be recorded within the History of the data attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data_series</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_event_class" target="_blank" rel="noopener">Event</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The data of this observation, in the form of a history of values which may be of any complexity.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>total_duration</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_duration_class" target="_blank" rel="noopener">Duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Duration of the entire History; either corresponds to the duration of all the events, and/or the duration represented by the summary, if it exists.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>trend</strong>: <code><a href="/releases/BASE/latest/base_types.html#_trend_kind_enumeration" target="_blank" rel="noopener">Trend_kind</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional indicator of this value with respect to previous, in a series.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_indirect_observation_class"><a class="anchor" href="#_indirect_observation_class"></a>3.5.1.3. Indirect_observation Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Indirect_observation (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Any kind of observation made by indirect means, i.e. determined from raw data or samples of the subject by some process.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>result_time</em></code> property records when the result was available, while the inherited <code><em>time</em></code> property records the sample time,</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_observation_class">Observation</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>result_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time at which result was generated. For most observations other than laboratory, the result time is the same as the observation time, for instruments and manual processes where that are effectively instant.</p>
+</div>
+<div class="paragraph">
+<p>If not populated, value is assumed to be the same as <code><em>observation_time</em></code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_imaging_class"><a class="anchor" href="#_imaging_class"></a>3.5.1.4. Imaging Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Imaging</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Category of observation in which results are determined by an interpretation of raw imaging or EKG data.</p>
+</div>
+<div class="paragraph">
+<p>The interpretation may be carried out by human, rule-based, generative AI or other means. The intial data capture is considered the 'observation time', i.e. <code>Observation_single.<em>time</em></code>.</p>
+</div>
+<div class="paragraph">
+<p>Generally there is a time lag between capture and interpretation, although this may be reduced by technical means.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_indirect_observation_class">Indirect_observation</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_lab_result_class"><a class="anchor" href="#_lab_result_class"></a>3.5.1.5. Lab_result Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Lab_result</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Category of observation in which results are determined from a specimen taken from the subject, generally of tissue, excreta or other bodily material, and analyzed by a laboratory.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>result_time</em></code> property records when the result was available, while the <code><em>time</em></code> property records the sample time,</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_indirect_observation_class">Indirect_observation</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_score_class"><a class="anchor" href="#_score_class"></a>3.5.1.6. Score Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Score</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A category of Observation that represents a Score, generally consisting of a set of Ordinals and a Total result value that is used to categorize the patient into a particular channel of care, e.g. no risk, medium risk, high risk.</p>
+</div>
+<div class="paragraph">
+<p>Typical examples: Apgar, Barthel.</p>
+</div>
+<div class="paragraph">
+<p>TODO: how do we want to represent series of Apgar for one birth? Special links?</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_observation_class">Observation</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_questionnaire_response_class"><a class="anchor" href="#_questionnaire_response_class"></a>3.5.1.7. Questionnaire_response Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Questionnaire_response</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A structured response to a Questionnaire, The inherited attribute <code><em>result_time</em></code> is understood as the most recent modification time. If <code><em>completion_status</em></code> is <code>completed</code>, it is understood as completion time.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_observation_class">Observation</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>questionnaire_identifier</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Formal identifier of the original questionnaire, if available.o</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>questionnaire_version</strong>: <code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Version of the questionnaire.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>questionnaire_title</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_term_class" target="_blank" rel="noopener">Terminology_term</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Title of the questionnaire.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>completion_status</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>TODO see <a href="https://build.fhir.org/valueset-questionnaire-answers-status.html" class="bare">https://build.fhir.org/valueset-questionnaire-answers-status.html</a></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result = <code><em>last_update_time</em></code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_time_series_data"><a class="anchor" href="#_time_series_data"></a>3.6. Time-series Data</h3>
+<div class="sect3">
+<h4 id="_basic_semantics"><a class="anchor" href="#_basic_semantics"></a>3.6.1. Basic semantics</h4>
+<div class="paragraph">
+<p>Multi-sample observational data is modeled by the <code>Observation_series</code> class, which represents samples in historical time using the History/Event structure defined in the <code>data_structures</code> package. This package defines a <code>History</code> class with an <code><em>origin</em></code> attribute, and a series of <code>Event</code> instances each containing a <code><em>time</em></code> attribute. Instantaneous and interval events are represented via the <code>Event</code> subtypes <code>Point_event</code> and <code>Interval_event</code>.</p>
+</div>
+<div class="paragraph">
+<p>One of the aims of the model of <code>Observation_series</code> class is to represent in the same way single sample and multi-sample time-based data for which measurement method is invariant. It is not intended for long-running series of measurements taken by different people, different instruments, or with any other difference in data-gathering technique. In these cases, separate, histories are used, usually occurring in distinct container objects (e.g. distinct Compositions, in the EHR).</p>
+</div>
+<div class="paragraph">
+<p>Accordingly, in the general practice setting, the use of <code>History</code> will correspond to measurement series which occur during the clinical session (i.e. during a patient contact). In a hospital setting, nurses' observations might occur in 4-hourly intervals, and there is no well-defined clinical session - simply a series of <code>Entries</code> during the time of the episode. Two approaches are possible here.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If each Observation is to be committed to the EHR as soon as it is made, the result will be distinct <code>Compositions</code> in time, each with its <code><em>event_context</em></code> corresponding to the period of the nurse&#8217;s presence. Each Composition will contain one or more Observation_series, each containing in their data a History of one sample of the measured vital sign.</p>
+</li>
+<li>
+<p>If observations are not committed to the EHR immediately, but are stored elsewhere and only committed (say) at the end of each day, then the result will be a single Composition whose <code><em>event_context</em></code> corresponds to the total data gathering period, and which contains Observation_series whose data are multi-event Histories representing the multiple measurements made over the day.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Whether time-based data remain outside the record until a series of desired length is gathered, or entered as it occurs is up to the design of applications and systems; the approach taken should be based on the desired availability of the data in the system in question. If for example, it must be visible in the EHR as soon as the appropriate Compositions are written, then it should be represented as Histories in each relevant Composition; if it need only be available at some much later point in time (e.g. because it is known that no-one but the treating clinician is interested in it), then it can be stored in another system until sufficient items have been gathered for committal to the EHR.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_two_ways_of_recording_state"><a class="anchor" href="#_two_ways_of_recording_state"></a>3.6.2. Two ways of Recording State</h4>
+<div class="paragraph">
+<p>State information is optional, and is not needed if the data are meaningful on their own. If it is recorded, it can either be as a History of its own (i.e. using the <code>Observation_series.<em>state</em></code> attribute described above), or else as state values within the <code>EVENT</code> instances in the <code>Observation_series.<em>data</em></code> History structure. Both methods are useful in different circumstances. A separate state history is more likely to be used in a correlation study such as a sports medicine study on heart-rate with respect to specific types of exercise. In this method, the state information is a History of Events whose times and widths need not match those of the History in the data attribute. The state data under this approach generally express the condition of the subject in absolute terms, i.e. they are standalone statements about the subject&#8217;s state at certain points in time, such as "walking on treadmill 10km/h, 10<sup>o</sup> incline".</p>
+</div>
+<div class="paragraph">
+<p>The other method will be used in most general medicine, e.g. for recording fasting and post glucose challenge states of a patient undergoing a glucose tolerance test. (See the Data Structures Information Model for more details). State values stored within the <code><em>data</em></code> History represent the situation in the subject at the time of the Event within the History and usually in relation to it, for example "post 8 hour fast". Recording the latter example in an independent state History would require an Event of 8 hours' duration called 'fast'. The latter would be technically still correct, but would be very unnatural to most clinicians. The figure below illustrates the two methods of recording state.</p>
+</div>
+<div id="recording_state" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/recording_state.png" alt="recording state" width="65%">
+</div>
+<div class="title">Figure 4. Alternative ways of recording state</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instance_examples"><a class="anchor" href="#_instance_examples"></a>3.7. Instance Examples</h3>
+<div class="paragraph">
+<p>The following subsections illustrate typical Entry instance structures. For guidance on how to best model particular clinical statements, see the archetype part of the <a href="https://www.openehr.org/ckm" target="_blank" rel="noopener">openEHR Clinical Knowledge Manager repository</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_heart_rate_measurement_series"><a class="anchor" href="#_heart_rate_measurement_series"></a>3.7.1. Heart-rate Measurement Series</h4>
+<div class="paragraph">
+<p>The following figure illustrates three heart-rate measurements over 10 minutes.</p>
+</div>
+<div id="periodic_series" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/periodic_series.png" alt="periodic series" width="80%">
+</div>
+<div class="title">Figure 5. Periodic series instance structure</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_blood_pressure_with_protocol"><a class="anchor" href="#_blood_pressure_with_protocol"></a>3.7.2. Blood Pressure with Protocol</h4>
+<div class="paragraph">
+<p>The following figure illustrates a blood pressure observation with method.</p>
+</div>
+<div id="BP_measurement" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/BP_measurement.png" alt="BP measurement" width="70%">
+</div>
+<div class="title">Figure 6. Blood Pressure Measurement Observation</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_glucose_tolerance_test"><a class="anchor" href="#_glucose_tolerance_test"></a>3.7.3. Glucose Tolerance Test</h4>
+<div class="paragraph">
+<p>An oral glucose tolerance test takes the following form, although the number and timing of the blood sugar levels may be slightly different in practice:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>challenge: no calories fasting from 12pm to 8am</p>
+</li>
+<li>
+<p>datum: BSL - 8am</p>
+</li>
+<li>
+<p>challenge: 75 g glucose orally - 8:01 am</p>
+</li>
+<li>
+<p>datum: BSL - 9 am</p>
+</li>
+<li>
+<p>datum: BSL - 10 am</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>OGTT is treated as a single clinical concept, and thus requires only one archetype. A typical instance structure is shown in the figure below. In this example, the three blood sugars are represented by <code>Events</code>, with the fasting and glucose challenges being expressed as states on the relevant events.</p>
+</div>
+<div id="OGTT_structure" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/OGTT_structure.png" alt="OGTT structure" width="80%">
+</div>
+<div class="title">Figure 7. OGTT instance structure</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_assertion"><a class="anchor" href="#_assertion"></a>4. Assertion</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>4.1. Overview</h3>
+<div class="paragraph">
+<p>The <code>Assertion</code> class is used to represent clinical assertions about the patient, beyond pure observable phenomena. Assertions incorporate professional opinion, and generally represent some kind of inference drawn from a comparison of evidence (i.e. prior observations) and knowledge.</p>
+</div>
+<div class="paragraph">
+<p>The following UML diagram shows the <code>Assertion</code> class and related sub-structure.</p>
+</div>
+<div id="entry_assessment" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-entry-assessment.svg" alt="CARE entry assessment">
+</div>
+<div class="title">Figure 8. Assertion</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_semantics"><a class="anchor" href="#_semantics"></a>4.2. Semantics</h3>
+<div class="paragraph">
+<p>Following the openEHR <code>EVALUATION</code> Reference Model class, the <code>Assertion</code> class is intended to cover a number of concrete types of clinical information, as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>problem/diagnosis</em>: the assignment of a known diagnosis or problem label to a set of observed signs and symptoms in the patient, for the purpose of determining and managing treatment. The physician will usually include a date of initial onset, date clinically recognised, date of last occurrence, date of resolution of last occurrence and possibly other timing information.</p>
+</li>
+<li>
+<p><em>risk assessment</em>: an evaluation of the likelihood and timing of a certain event occurring or condition appearing.</p>
+</li>
+<li>
+<p><em>scenario</em>: an opinion about the outcome if a certain intervention is proceeded with.</p>
+</li>
+<li>
+<p><em>goal</em>: statement of a target, and a time at which it should be reached.</p>
+</li>
+<li>
+<p><em>recommendation</em>: a description in general terms of a suggested care approach for the patient, based on diagnosis; includes various times or time-periods for activities, such as monitoring, taking of medications, and review.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The design of the <code>Assertion</code> class is very simple. In addition to the attributes inherited from <code>Entry</code> and <code>Care_entry</code>, it has only one attribute, <code><em>data</em>:Cluster</code> which may be archetyped so as to model the details of any particular clinical assertion. No timing attributes are included, since there is no time associated with creation or capturing of Evaluation information as such, only times included in the information. The only times of generic significance are (potentially) the time of a patient consultation during which the Assertion was created (recorded in <code>Composition.<em>event_context</em>.<em>start_time</em></code> and <code><em>end_time</em></code>) and the time of committal to the EHR system (recorded in <code>Version.<em>commit_audit</em></code> attribute).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>4.3. Class Descriptions</h3>
+<div class="sect3">
+<h4 id="_assessment_class"><a class="anchor" href="#_assessment_class"></a>4.3.1. Assessment Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Assessment</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Entry type for an assessment or conclusion about the patient. Used for diagnoses, differential diagnoses, hypotheses, risk assessments, goals and plans.</p>
+</div>
+<div class="paragraph">
+<p>The inherited <code><em>time</em></code> field carries the time at which assertion, e.g. diagnosis was made. This is usually 'now' but may report a historical diagnosis or other assessment.</p>
+</div>
+<div class="paragraph">
+<p>TODO: do we need other meta-data for historical assertions?</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_care_entry_class">Care_entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The data of this evaluation, in the form of a spatial data structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>certainty</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>TODO:</p>
+</div>
+<div class="paragraph">
+<p>need to handle differential Dx, evidence strength</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>probability</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_real_class" target="_blank" rel="noopener">Real</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Stated probability, reflecting professional opinion of provider.</p>
+</div>
+<div class="paragraph">
+<p>TODO: Potentially should be two attributes: stated_probability and statistical_probability, i.e. generated e.g. by evidence-based CDS calculation, statistical population analysis.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Result = <code><em>time</em></code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instance_examples_2"><a class="anchor" href="#_instance_examples_2"></a>4.4. Instance Examples</h3>
+<div class="sect3">
+<h4 id="_partial_asthma_management_plan"><a class="anchor" href="#_partial_asthma_management_plan"></a>4.4.1. Partial Asthma Management Plan</h4>
+<div class="paragraph">
+<p>The following figure illustrates a partial asthma management plan in which monitoring (peak flow) with dependent actions (review and admission to ER) and therapy (bronchodilator) are shown. In a complete plan, symptom monitoring and other medications might be shown. The parts of the plan are linked to the root <code>Assertion</code> node via the <code><em>links</em>:Set&lt;Link&gt;</code> attribute inherited from the <code>Locatable</code> class.</p>
+</div>
+<div id="partial_asthma_plan" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/partial_asthma_plan.png" alt="partial asthma plan" width="80%">
+</div>
+<div class="title">Figure 9. Partial Asthma Management Plan</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_orders_and_actions"><a class="anchor" href="#_orders_and_actions"></a>5. Orders and Actions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>5.1. Overview</h3>
+<div class="paragraph">
+<p>The <code>Order</code> class is used to represent any formal order, i.e. request to perform actions for the care of a subject. It specifies actions in sufficient detail such that a competent performer(s) may execute the order.</p>
+</div>
+<div class="paragraph">
+<p>Actions actually executed subsequent to an Order are represented by instances of the <code>Action</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The following UML diagram illustrates the <code>Order</code> and <code>Action</code> classes.</p>
+</div>
+<div id="entry_order" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-entry-order.svg" alt="CARE entry order">
+</div>
+<div class="title">Figure 10. Order and Action</div>
+</div>
+<div class="paragraph">
+<p>The following subsections describe Order and Action in some detail.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_design_concept"><a class="anchor" href="#_design_concept"></a>5.2. Design Concept</h3>
+<div class="paragraph">
+<p>The <code>Order</code> and <code>Action</code> classes are slightly adjusted from the openEHR <code>INSTRUCTION</code> and <code>ACTION</code> Reference Model classes, and support the same requirements and design principles described by the <a href="https://specifications.openehr.org/releases/RM/latest/ehr.html#_instruction_and_action" target="_blank" rel="noopener">openEHR model</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_model_overview"><a class="anchor" href="#_model_overview"></a>5.3. Model Overview</h3>
+<div class="paragraph">
+<p>An <code>Order</code> instance includes the narrative description of the order, and a list of <code>Activity</code> instances. It also includes all the attributes inherited from the <code>Care_entry</code> class, including subject, participations and so on.</p>
+</div>
+<div class="paragraph">
+<p>Most Orders will have only one Activity, describing a single kind of therapy or medication and its timing. Some will have more than one, usually variant forms of the original. Activity instances may be completely absent from an Order, in which case only the narrative will be present. This will typically occur with imported legacy data which itself has no structured representation of medications.</p>
+</div>
+<div class="paragraph">
+<p>The following figure illustrates the correspondence between Order and Activity structures, and Action objects that are created due to executing the Orders. Each Activity has a standard Order State Machine logically associated with it, indicated in blue. When any step in an Order Activity is executed within an ICT-supported environment, an <code>Action</code> instance describing what was done should be created and committed to the EHR. In some cases, ad hoc Actions are created even when there is no Order, such as by self-medicating patients and nurses reacting quickly to patient changes. For such Actions, there is always a notional Activity understood by the health professional.</p>
+</div>
+<div id="actions_and_orders" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/actions_and_orders.png" alt="actions and orders" width="70%">
+</div>
+<div class="title">Figure 11. Correspondence of Actions to Orders</div>
+</div>
+<div class="paragraph">
+<p>All <code>Actions</code> include the inherited <code>Care_entry</code> attributes, along with the time of being performed, a description of what was performed, and an <code>State_transition</code> object indicating the state of the Activity (whether explicit in an Order or not). The current state of an Activity is thus found not in the <code>Activity</code> instance but in the most recent <code>Action</code> instance for that Activity.</p>
+</div>
+<div class="paragraph">
+<p>If the Action did correspond to an Order, it will also include an <code>Order_tracking</code> instance, which indicates which Activity of which Order was executed, including workflow execution details if relevant.</p>
+</div>
+<div class="paragraph">
+<p>Under this scheme, the state of each intervention happening to the patient can be ascertained by querying, regardless of whether explicit Orders exist.</p>
+</div>
+<div class="paragraph">
+<p>Note particularly that Actions are often performed in a different provider location, or the home, rather than the provider organisation responsible for the Order. Action objects for a given Order can thus easily appear in multiple health record systems.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_standard_order_state_machine_ism"><a class="anchor" href="#_the_standard_order_state_machine_ism"></a>5.4. The Standard Order State Machine (ISM)</h3>
+<div class="paragraph">
+<p>When an intervention defined by an Activity is unfolding in a clinical context, EHR users want to know things such as the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>what is the current status of an Order for the patient?</p>
+</li>
+<li>
+<p>what is the current step in the Activity for the patient?</p>
+</li>
+<li>
+<p>for a given patient, what Activities are planned, active, suspended, completed?</p>
+</li>
+<li>
+<p>for the populations of patients, what is the state of a particular workflow, such as a recall, for each one?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The approach chosen here to support such functionality is to define a standard Order state machine whose state transitions can be mapped to the steps of a specific care pathway, enabling it to be used as a descriptive device for indicating the state of any Activity. The status of an Order is determined algorithmically from the states of the constituent Activities, as described below. The state machine is illustrated below.</p>
+</div>
+<div id="Order_state_machine" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-order_state_machine.svg" alt="CARE order state machine">
+</div>
+<div class="title">Figure 12. openEHR standard Order State Machine</div>
+</div>
+<div class="paragraph">
+<p>This state machine is the result of long term experience with clinical workflows and act management systems. The states are as follows.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+INITIAL
+</td>
+<td class="hdlist2">
+<p>initial state, prior to planning activity (default starting state for computable representation of state machine).</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+PLANNED
+</td>
+<td class="hdlist2">
+<p>the action has been described, but has not as yet been performed.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+POSTPONED
+</td>
+<td class="hdlist2">
+<p>the action has not been performed and will not without specific conditions being met. Specifically, events and conditions that would normally 'activate' the Order will be ignored, until a restore event occurs.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+SCHEDULED
+</td>
+<td class="hdlist2">
+<p>the action will be performed at some designated future time, and has been booked in a scheduling system.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+CANCELLED
+</td>
+<td class="hdlist2">
+<p>the action was defined, but was cancelled before being performed.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ACTIVE
+</td>
+<td class="hdlist2">
+<p>the action is being performed according to its definition. The entire course of medication or therapy corresponds to this state.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+SUSPENDED
+</td>
+<td class="hdlist2">
+<p>the action was begun, but has been stopped temporarily, and will not be restarted until explicitly resumed.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+ABORTED
+</td>
+<td class="hdlist2">
+<p>the action began but was permanently terminated before normal completion.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+COMPLETED
+</td>
+<td class="hdlist2">
+<p>the action began and was completed normally.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+EXPIRED
+</td>
+<td class="hdlist2">
+<p>the time during which the action could have been relevant has expired; the action may have completed, been cancelled, or never occurred.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>States <code>CANCELLED</code>, <code>ABORTED</code> and <code>COMPLETED</code> are all terminal states. The <code>EXPIRED</code> state is a pseudo-terminal state, from which transitions are allowed to proceed to any of the true terminal states, due to information being received after the fact (such as a patient reporting that they did indeed finish a course of antibiotics). However it is likely in the EHR that Orders for many simple medications will finish in the <code>EXPIRED</code> state and remain there.</p>
+</div>
+<div class="paragraph">
+<p>The transitions are self-explanatory for the most part, however a few deserve comment. The <code>start</code> and <code>finish</code> events correspond to situations when the administration is not instantaneous, as is the situation with most medications. The <code>do</code> event is equivalent to the <code>finish</code> event occurring immediately after the <code>start</code> event, corresponding to an instantaneous administration, completion of which puts the Activity in the completed state. A single shot vaccination or patient taking a single tablet are typical examples. The states <code>PLANNED</code>, <code>POSTPONED</code>, <code>ACTIVE</code>, <code>SUSPENDED</code>, each have a <code>xxx_step</code> transition which return the state machine to the same state. Workflow steps that cause no transition are mapped to these events and thus leave the Order in the same state. An example is a medication review, which will leave the medication in the <code>ACTIVE</code> state, if the physician chooses to continue.</p>
+</div>
+<div class="paragraph">
+<p>In the future, if delegation of an Order to another Order is required, nesting of a new Order state machine within the Active state of a previous one might need to be supported.</p>
+</div>
+<div class="paragraph">
+<p>The state machine states and transition names are defined in the openEHR terminology groups "Order states" and "Order transitions" respectively.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_order_aggregate_state"><a class="anchor" href="#_order_aggregate_state"></a>5.5. Order Aggregate State</h3>
+<div class="paragraph">
+<p>Each Activity within an Order constitutes a clinically identifiable medication or therapy of some kind, while the Order usually corresponds to a grouping or combination of therapies designed to treat an overall problem. Accordingly, the Order can be seen as having an aggregate state derived from the states of the Activities, as shown in the figure below. The rules for entering each aggregate state are indicated in terms of the states of the constituent Activities.</p>
+</div>
+<div id="aggregate_order_state" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/aggregate_order_state.png" alt="aggregate order state" width="70%">
+</div>
+<div class="title">Figure 13. Aggregate Order state</div>
+</div>
+<div class="paragraph">
+<p>This state machine is not formally modelled or coded in openEHR, although it may be useful to do so within an application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_careflow_process_to_state_machine_mapping"><a class="anchor" href="#_careflow_process_to_state_machine_mapping"></a>5.6. Careflow Process to State Machine Mapping</h3>
+<div class="paragraph">
+<p>From a health professional&#8217;s point of view, a healthcare workflow, or 'careflow', consists of steps and events designed to meet one or more goals. The steps are highly dependent on the particular kind of workflow, and will usually be named in terms familiar to the relevant kinds of clinical professionals, such as "prescribe", "book", "suspend" and so on (note that some of these names may be the same as ISM transitions, but may or may not indicate the same thing). However, the need of users of health information is to know what state the execution of an Order is in, regardless of which particular careflow step might have just been executed. This is achieved by defining the mapping between the steps of a particular careflow to the states of the ISM in an Action archetype. When each Action corresponding to a particular Order Activity is performed, it will be known both which careflow step it corresponds to and which ISM state the Activity is now in. The following table provides an example of the mapping for a UK GP medication order workflow.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 50%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">UK GP<br>
+ Workflow Step</th>
+<th class="tableblock halign-left valign-top">State machine transition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initiate (initial &#8594; planned)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prescribe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan_step (planned &#8594; planned)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dispense</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">start (planned &#8594; active)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active_step (active &#8594; active)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Renewal active_step (active &#8594; active)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Re-issue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active_step (active &#8594; active)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Review</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active_step (active &#8594; active)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finish</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">finish (active &#8594; completed)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cancel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">abort (active &#8594; aborted)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Mappings like this are specified in the <code>Action</code> archetypes for the Order. When an <code>Action</code> instance is committed to the EHR, the <code>State_transition</code> object records the step performed and the ISM state and transition. The careflow step must be one of the steps from the corresponding Order.</p>
+</div>
+<div class="paragraph">
+<p>An optional <code><em>reason</em></code> property (of type <code>List&lt;Dv_text&gt;</code>) is provided in the <code>State_transition</code> class in order to enable one or more specific reasons for the step having occurred to be recorded.</p>
+</div>
+<div class="paragraph">
+<p>The following section provides details of how archetypes are used to represent such mappings.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_relationship_to_archetypes"><a class="anchor" href="#_relationship_to_archetypes"></a>5.7. Relationship to Archetypes</h3>
+<div class="paragraph">
+<p>Much of the semantics of particular Orders and Actions derive from archetypes. Currently, archetypes are used to define two groups of Order semantics. The first is the descriptions of activities that are defined in Orders (<code>Activity.<em>description</em></code>) and executed in Actions (<code>Action.<em>description</em></code>). These descriptions are always of the same form for any given Order, and it is highly desirable to have the same archetype component for both. An example is where the description is of a medication, commonly consisting of a tree or list of ten or more elements describing the drug, its name, form, dose, route and so on. The same information structure is needed in the Order, where it defines what is to be administered, and in the Action, where it describes what has been administered. In any particular instance, there may be small differences in what was administered (e.g. dose or route are modified) even though the archetype model will be the same for both.</p>
+</div>
+<div class="paragraph">
+<p>In terms of archetypes therefore, definition of two <code>Activities</code> in an <code>Order</code> (see example illustrated below) will actually create separate archetypes of the Activity structures, each of which will be one of the subtypes of <code>Cluster</code> (since this is the type of <code>Activity.<em>description</em></code> and <code>Action.<em>description</em></code>). The archetypes will then be used by both the <code>Order</code> archetype and the <code>Action</code> archetype, via the archetype slot mechanism (i.e. the standard way of composing archetypes from other archetypes; see <code>use_archetype</code> statements in the figure below).</p>
+</div>
+<div id="Order_and_action_archetypes" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/order_and_action_archetypes.png" alt="order and action archetypes" width="70%">
+</div>
+<div class="title">Figure 14. Order and Action Archetypes</div>
+</div>
+<div class="paragraph">
+<p>The second category of archetypable semantics is the correspondence between steps in a healthcare business process and the standard Order state machine, as described above. This mapping is an archetype of the <code><em>ism_transition</em></code> attribute of an <code>Action</code> attribute, and therefore defines part of the <code>Action</code> archetype. <a href="#Order_and_action_archetypes">Figure 14</a> shows how logical archetype elements in the archetyped editor environment corresponds to the resulting archetypes.</p>
+</div>
+<div class="paragraph">
+<p>Consequently, the set of archetypes defining the clinical semantics of a specific kind of intervention will normally consists of archetypes of <code>Order</code>, <code>Action</code> and potentially component archetypes of the <code>Cluster</code> classes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions_4"><a class="anchor" href="#_class_descriptions_4"></a>5.8. Class Descriptions</h3>
+<div class="sect3">
+<h4 id="_order_class"><a class="anchor" href="#_order_class"></a>5.8.1. Order Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Order</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Used to specify actions to be performed in the future. Used for any actionable statement such as medication, therapeutic orders, monitoring, recall and review. Sufficient details must be provided for the specification to be directly executable by the intended performer.</p>
+</div>
+<div class="paragraph">
+<p>The inherited <code><em>time</em></code> field records the point in time at which the order was made (in the real world).</p>
+</div>
+<div class="paragraph">
+<p>Not to be used for planned activities which are only specified in general terms.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_care_act_entry_class">Care_act_entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>narrative</strong>: <code><a href="/releases/BASE/latest/data_types.html#_text_class" target="_blank" rel="noopener">Text</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Mandatory human-readable version of what the Instruction is about.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>expiry_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional expiry date/time to assist determination of when an Instruction can be assumed to have expired. This helps prevent false listing of Instructions as Active when they clearly must have been terminated in some way or other.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activities</strong>: <code>List&lt;<a href="#_activity_class">Activity</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of all activities in Instruction.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Activities_valid</em>: <code>activities /= Void implies not activities.is_empty</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_activity_class"><a class="anchor" href="#_activity_class"></a>5.8.2. Activity Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Activity</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Defines a single activity within an Instruction, such as a medication administration.</p>
+</div>
+<div class="paragraph">
+<p>TODO: probably remove possibility of multiple ACTIVITY</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>timing</strong>: <code><a href="/releases/BASE/latest/data_types.html#_timing_class" target="_blank" rel="noopener">Timing</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Timing of the activity, in the form of a parsable string. If used, the preferred syntax is ISO8601 'R' format, but other formats may be used including HL7 GTS.</p>
+</div>
+<div class="paragraph">
+<p>May be omitted if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>timing is represented structurally in the <code><em>description</em></code> attribute (e.g. via archetyped elements), or</p>
+</li>
+<li>
+<p>unavailable, e.g. imported legacy data; in such cases, the <code>INSTRUCTION.<em>narrative</em></code> should carry text that indicates the timing of its <code><em>activities</em></code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - review - current approach is via separate fields in CEMs.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Description of the activity, in the form of an archetyped structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Action_archetype_id_valid</em>: <code>not action_archetype_id.is_empty</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_action_class"><a class="anchor" href="#_action_class"></a>5.8.3. Action Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Action</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Used to record a clinical action that has been performed, which may have been ad hoc, or due to an Order.</p>
+</div>
+<div class="paragraph">
+<p>The inherited <code><em>time</em></code> field records the point in time at which this action completed, or the best estimate.</p>
+</div>
+<div class="paragraph">
+<p>An Action may be clinically fine-grained, e.g. 'clean wound' or summarize a whole procedure e.g. 'intubate patient'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_care_act_entry_class">Care_act_entry</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state_transition</strong>: <code><a href="#_state_transition_class">State_transition</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Details of transition in the Order state machine caused by this Action. A void transition means that the action doesn&#8217;t change the current order execution state.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>activity_id</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Identifier of Activity within Instruction, in the form of its archetype path.</p>
+</div>
+<div class="paragraph">
+<p>TODO: consider whether we want separate activities on the same order.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>duration</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_duration_class" target="_blank" rel="noopener">Duration</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Duration of the action.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>description</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Description of the action that has been performed, in the form of an archetyped structure.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(redefined)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Point in time at which this action completed, or best estimate.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1<br>
+(effected)</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>effective_time</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_interval_class">Interval<sup></a>&lt;<a href="/releases/BASE/latest/foundation_types.html#_date_time_class">Date_time</sup></a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Moment in subject&#8217;s timeline for which the observation or result (which may only be completed later) is asserted. Defined in descendants.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_state_transition_class"><a class="anchor" href="#_state_transition_class"></a>5.8.4. State_transition Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>State_transition</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Model of a transition in the Instruction State Machine, caused by a careflow step. The attributes document the careflow step as well as the ISM transition.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>transition</strong>: <code><a href="#_order_execution_transition_enumeration">Order_execution_transition</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The ISM transition which occurred to arrive in the current_state. Coded by openEHR terminology group  Instruction transitions.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>careflow_step</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_term_class" target="_blank" rel="noopener">Terminology_term</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The step in the careflow process which occurred as part of generating this action, e.g.  dispense ,  start_administration. This attribute represents the clinical  label for the activity, as  opposed to current_state which represents  the state machine (ISM)  computable form. Defined in archetype.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>current_state</strong>: <code><a href="#_order_execution_state_enumeration">Order_execution_state</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The ISM current state. Coded by openEHR terminology group Instruction states.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reason</strong>: <code>List&lt;<a href="/releases/BASE/latest/data_types.html#_text_class" target="_blank" rel="noopener">Text</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional possibility of adding one or more reasons for this careflow step having been taken. Multiple reasons may occur in medication management for example.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Current_state_valid</em>: <code>terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_instruction_states, current_state.defining_code)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Transition_valid</em>: <code>transition /= Void implies terminology (Terminology_id_openehr).
+has_code_for_group_id (Group_id_instruction_transitions, transition.defining_code)</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_order_execution_state_enumeration"><a class="anchor" href="#_order_execution_state_enumeration"></a>5.8.5. Order_execution_state Enumeration</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Order_execution_state</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>List of states in Order state machine.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">planned</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scheduled</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">postponed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancelled</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suspended</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aborted</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">completed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">expired</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_order_execution_transition_enumeration"><a class="anchor" href="#_order_execution_transition_enumeration"></a>5.8.6. Order_execution_transition Enumeration</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Enumeration</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Order_execution_transition</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initiate</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">start</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schedule</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan_step</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cancel</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">do</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resume</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suspend</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suspended_step</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">active_step</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scheduled_step</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">postponed_step</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">finish</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">abort</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">restore</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">postpone</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">time_out</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notify_completed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notify_cancelled</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notify_aborted</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instance_examples_3"><a class="anchor" href="#_instance_examples_3"></a>5.9. Instance Examples</h3>
+<div class="sect3">
+<h4 id="_chained_medication_order"><a class="anchor" href="#_chained_medication_order"></a>5.9.1. Chained Medication Order</h4>
+<div class="paragraph">
+<p>Often, a medication order for one drug consists of segments in which one or more of the administration details of route, form, frequency, dose etc. is changed. In hospitals, intravenous antibiotics and pain relief drugs may be followed by a tablet form of the same drug to be taken orally. Other examples are common in general practice, such as the following order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>trade name = Panafcortelone; generic name = Prednisolone; form = tablets; dose = 25mg; route = oral; freq = bd x 3 days; od x 2 days.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the instance structure for this Order. Note that the timing attribute of the <code>Activity</code> instance is shown in human-readable form; in reality it will be a GTS string or similar (see Timing Specification section of openEHR Data Types IM).</p>
+</div>
+<div id="chained_medication_order" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/chained_medication_order.png" alt="chained medication order" width="80%">
+</div>
+<div class="title">Figure 15. Chained medication order</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multi_drug_therapy"><a class="anchor" href="#_multi_drug_therapy"></a>5.9.2. Multi-drug Therapy</h4>
+<div class="paragraph">
+<p>A common regime for treating duodenal ulcer and related complaints is using Losec with other drugs, such as in the following combination:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Losec 40 mg od x 4w or until no symptoms</p>
+</li>
+<li>
+<p>amoxicillin 500 mg 3td x 7d</p>
+</li>
+<li>
+<p>metronidizole 400 mg 3td x 7d</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Order for this therapy is illustrated below.</p>
+</div>
+<div id="multi_drug_therapy_order" class="imageblock text-center text-center">
+<div class="content">
+<img src="entry/diagrams/multi_drug_therapy_order.png" alt="multi drug therapy order" width="80%">
+</div>
+<div class="title">Figure 16. Multi-drug therapy Order</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a id="Beale_Heard2007"></a>Beale, T., &amp; Heard, S. (2007). An Ontology-based Model of Clinical Information. In K. K. et al. (Ed.), <em>Proceedings MedInfo 2007</em> (pp. 760–764). IOS Publishing. Retrieved from <a href="http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf" class="bare">http://www.openehr.org/publications/health_ict/MedInfo2007-BealeHeard.pdf</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-10-04 21:17:27 -0600
+</div>
+</div>
+</body>
+</html>

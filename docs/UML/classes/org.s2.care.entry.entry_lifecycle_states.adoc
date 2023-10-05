@@ -1,0 +1,28 @@
+=== Entry_lifecycle_states Enumeration
+
+[cols="^1,3,5"]
+|===
+h|*Enumeration*
+2+^h|*Entry_lifecycle_states*
+
+h|*Description*
+2+a|States in Entry lifecycle. Values from Entry State Machine.
+
+TODO: define properly.
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|
+|draft
+a|
+
+h|
+|awaiting_signing
+a|
+
+h|
+|signed
+a|
+|===

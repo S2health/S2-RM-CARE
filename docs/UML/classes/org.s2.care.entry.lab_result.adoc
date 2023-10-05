@@ -1,0 +1,16 @@
+=== Lab_result Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Lab_result*
+
+h|*Description*
+2+a|Category of observation in which results are determined from a specimen taken from the subject, generally of tissue, excreta or other bodily material, and analyzed by a laboratory.
+
+The `_result_time_` property records when the result was available, while the `_time_` property records the sample time,
+
+h|*Inherit*
+2+|`<<_indirect_observation_class,Indirect_observation>>`
+
+|===

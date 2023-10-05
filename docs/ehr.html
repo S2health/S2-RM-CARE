@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="description" content="S2 EHR Information Model specification">
+<meta name="keywords" content="EHR, EMR, reference model, S2">
+<title>EHR Model</title>
+<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_ehr_model">EHR Model</a>
+<ul class="sectlevel1">
+<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_editor">Editor</a></li>
+<li><a href="#_contributors">Contributors</a></li>
+<li><a href="#_support">Support</a></li>
+<li><a href="#_trademarks">Trademarks</a></li>
+</ul>
+</li>
+<li><a href="#_preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#_purpose">1.1. Purpose</a></li>
+<li><a href="#_related_documents">1.2. Related Documents</a></li>
+<li><a href="#_status">1.3. Status</a></li>
+<li><a href="#_feedback">1.4. Feedback</a></li>
+<li><a href="#_conformance">1.5. Conformance</a></li>
+</ul>
+</li>
+<li><a href="#_background">2. Background</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">2.1. Requirements</a></li>
+</ul>
+</li>
+<li><a href="#_the_clinical_information_model">3. The Clinical Information Model</a>
+<ul class="sectlevel2">
+<li><a href="#_overview">3.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_ehr_package">4. EHR Package</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_2">4.1. Overview</a></li>
+<li><a href="#_the_parts_of_the_ehr">4.2. The Parts of the EHR</a>
+<ul class="sectlevel3">
+<li><a href="#_root_ehr_object">4.2.1. Root EHR Object</a></li>
+<li><a href="#_ehr_access">4.2.2. EHR Access</a></li>
+<li><a href="#_ehr_status">4.2.3. EHR Status</a></li>
+<li><a href="#_compositions">4.2.4. Compositions</a>
+<ul class="sectlevel4">
+<li><a href="#_persistent_compositions">4.2.4.1. Persistent Compositions</a></li>
+<li><a href="#_event_compositions">4.2.4.2. Event Compositions</a></li>
+<li><a href="#_episodic_compositions">4.2.4.3. Episodic Compositions</a></li>
+</ul>
+</li>
+<li><a href="#_folders">4.2.5. Folders</a></li>
+<li><a href="#tags">4.2.6. Tags</a></li>
+</ul>
+</li>
+<li><a href="#_change_control_in_the_ehr">4.3. Change Control in the EHR</a>
+<ul class="sectlevel3">
+<li><a href="#_versioning_of_compositions">4.3.1. Versioning of Compositions</a></li>
+<li><a href="#_versioning_scenarios">4.3.2. Versioning Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#_ehr_creation_semantics">4.4. EHR Creation Semantics</a>
+<ul class="sectlevel3">
+<li><a href="#_ehr_identifier_allocation">4.4.1. EHR Identifier Allocation</a></li>
+<li><a href="#_ehr_creation">4.4.2. EHR Creation</a></li>
+</ul>
+</li>
+<li><a href="#_ehr_active_status">4.5. EHR Active Status</a></li>
+<li><a href="#_time_in_the_ehr">4.6. Time in the EHR</a></li>
+<li><a href="#_historical_views_of_the_record">4.7. Historical Views of the Record</a></li>
+<li><a href="#_class_descriptions">4.8. Class Descriptions</a>
+<ul class="sectlevel3">
+<li><a href="#_ehr_class">4.8.1. Ehr Class</a></li>
+<li><a href="#_versioned_ehr_access_class">4.8.2. Versioned_ehr_access Class</a></li>
+<li><a href="#_ehr_access_class">4.8.3. Ehr_access Class</a></li>
+<li><a href="#_access_control_settings_class">4.8.4. Access_control_settings Class</a></li>
+<li><a href="#_versioned_ehr_status_class">4.8.5. Versioned_ehr_status Class</a></li>
+<li><a href="#_ehr_status_class">4.8.6. Ehr_status Class</a></li>
+<li><a href="#_versioned_composition_class">4.8.7. Versioned_composition Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_folders_2">5. Folders</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_3">5.1. Overview</a>
+<ul class="sectlevel3">
+<li><a href="#_paths">5.1.1. Paths</a></li>
+</ul>
+</li>
+<li><a href="#_class_descriptions_2">5.2. Class Descriptions</a>
+<ul class="sectlevel3">
+<li><a href="#_versioned_folder_class">5.2.1. Versioned_folder Class</a></li>
+<li><a href="#_folder_class">5.2.2. Folder Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_composition_package">6. Composition Package</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_4">6.1. Overview</a></li>
+<li><a href="#_composition_context">6.2. Composition Context</a>
+<ul class="sectlevel3">
+<li><a href="#_overview_5">6.2.1. Overview</a></li>
+<li><a href="#_composer">6.2.2. Composer</a></li>
+<li><a href="#_event_context">6.2.3. Event Context</a></li>
+<li><a href="#_occurrence_in_data">6.2.4. Occurrence in Data</a></li>
+<li><a href="#_time">6.2.5. Time</a></li>
+<li><a href="#_participations">6.2.6. Participations</a></li>
+<li><a href="#_healthcare_facility_location_and_setting">6.2.7. Healthcare Facility, Location and Setting</a></li>
+</ul>
+</li>
+<li><a href="#_composition_content">6.3. Composition Content</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_3">6.3.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_composition_class">6.3.1.1. Composition Class</a></li>
+<li><a href="#_event_context_class">6.3.1.2. Event_context Class</a></li>
+<li><a href="#_content_item_class">6.3.1.3. Content_item Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_sections">6.4. Sections</a>
+<ul class="sectlevel3">
+<li><a href="#_class_descriptions_4">6.4.1. Class Descriptions</a>
+<ul class="sectlevel4">
+<li><a href="#_section_class">6.4.1.1. Section Class</a></li>
+</ul>
+</li>
+<li><a href="#_instance_structures">6.4.2. Instance Structures</a>
+<ul class="sectlevel4">
+<li><a href="#_problemsoap_headings">6.4.2.1. Problem/SOAP Headings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="http://s2health.io/logo.png" alt="S2 logo">
+</div>
+</div>
+</div>
+</div>
+<h1 id="_ehr_model" class="sect0"><a class="anchor" href="#_ehr_model"></a>EHR Model</h1>
+<div class="openblock partintro">
+<div class="content">
+<table class="tableblock frame-all grid-all fit-content spread">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="http://s2health.io" target="_blank" rel="noopener">S2 Foundation</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: CARE latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: STABLE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, EMR, reference model, S2</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2023 S2 Foundation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://s2health.io" target="_blank" rel="noopener">S2 Foundation</a> is an independent, non-profit foundation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.s2health.io/components/CARE/open_issues" target="_blank" rel="noopener">Report an Issue</a><br>
+ Web: <a href="https://specifications.s2health.io" target="_blank" rel="noopener">specifications.S2.io</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 9.0909%;">
+<col style="width: 54.5454%;">
+<col style="width: 18.1818%;">
+<col style="width: 18.1819%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Issue</th>
+<th class="tableblock halign-left valign-top">Details</th>
+<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Completed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial Writing: based on openEHR EHR Information Model</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>10 Apr 2023</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_acknowledgements"><a class="anchor" href="#_acknowledgements"></a>Acknowledgements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_editor"><a class="anchor" href="#_editor"></a>Editor</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Graphite Informatics group.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h3>
+<div class="paragraph">
+<p>This specification benefited from input from the wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>xxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_support"><a class="anchor" href="#_support"></a>Support</h3>
+<div class="paragraph">
+<p>The work reported in this paper has been funded in part by the following organisations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>xxx</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trademarks"><a class="anchor" href="#_trademarks"></a>Trademarks</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>'openEHR' is a trademark of the openEHR Foundation</p>
+</li>
+<li>
+<p>'Java' is a registered trademark of Oracle Corporation</p>
+</li>
+<li>
+<p>'Microsoft' and '.Net' are trademarks of the Microsoft Corporation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
+<div class="paragraph">
+<p>This document describes the S2 Canonical Model, which is a model of an interoperable EHR in the ISO RM/ODP information viewpoint. This model defines a logical EHR information architecture rather than just an architecture for communication of EHR extracts or documents between EHR systems. The openEHR definition of the EHR Extract is given in the openEHR EHR_EXTRACT Information Model.</p>
+</div>
+<div class="paragraph">
+<p>The intended audience includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Standards bodies producing health informatics standards;</p>
+</li>
+<li>
+<p>Academic groups using openEHR;</p>
+</li>
+<li>
+<p>The open source healthcare community;</p>
+</li>
+<li>
+<p>Solution vendors;</p>
+</li>
+<li>
+<p>Medical informaticians and clinicians interested in health information.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_related_documents"><a class="anchor" href="#_related_documents"></a>1.2. Related Documents</h3>
+<div class="paragraph">
+<p>Prerequisite documents for reading this document include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/RM/latest/architecture_overview.html" target="_blank" rel="noopener">S2 Architecture Overview</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Related documents include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/base_types.html" target="_blank" rel="noopener">S2 Base Types Information Model</a>;</p>
+</li>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/data_types.html" target="_blank" rel="noopener">S2 Data Types Information Model</a>;</p>
+</li>
+<li>
+<p>The <a href="https://specifications.s2health.io/releases/BASE/latest/patterns.html" target="_blank" rel="noopener">S2 Patterns Information Model</a>;</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
+<div class="paragraph">
+<p>This specification is in the STABLE state. The development version of this document can be found at <a href="https://specifications.s2health.io/releases/CARE/latest/ehr.html" target="_blank" rel="noopener">https://specifications.s2health.io/releases/CARE/latest/ehr.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
+</div>
+<div class="paragraph tbd">
+<p><strong>TBD</strong>: (example To Be Determined paragraph)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
+<div class="paragraph">
+<p>Feedback may be provided on the <a href="http://S2.io" target="_blank" rel="noopener">S2 specifications forum</a>.</p>
+</div>
+<div class="paragraph">
+<p>Issues may be raised on the <a href="https://specifications.s2health.io/components/CARE/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p>To see changes made due to previously reported issues, see the <a href="https://specifications.s2health.io/components/CARE/history" target="_blank" rel="noopener">CARE component Change Request tracker</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.5. Conformance</h3>
+<div class="paragraph">
+<p>Conformance of a data or software artifact to a S2 specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_background"><a class="anchor" href="#_background"></a>2. Background</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes the inputs to the modelling process that created the openEHR Information Model.</p>
+</div>
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>2.1. Requirements</h3>
+<div class="paragraph">
+<p>Requirements informing this specification:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the life-long EHR;</p>
+</li>
+<li>
+<p>priority: Clinician / Patient interaction;</p>
+</li>
+<li>
+<p>medico-legal faithfulness, traceability, audit-trailing;</p>
+</li>
+<li>
+<p>technology &amp; data format independent;</p>
+</li>
+<li>
+<p>facilitate sharing of EHRs;</p>
+</li>
+<li>
+<p>suitable for both primary &amp; acute care;</p>
+</li>
+<li>
+<p>secondary uses: education, research, population medicine;</p>
+</li>
+<li>
+<p>open standard &amp; software deliverables;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_clinical_information_model"><a class="anchor" href="#_the_clinical_information_model"></a>3. The Clinical Information Model</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview"><a class="anchor" href="#_overview"></a>3.1. Overview</h3>
+<div class="paragraph">
+<p>The figure below illustrates the package structure of the S2 Clinical part of the Reference Model.</p>
+</div>
+<div id="ehr_packages" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-0-packages.svg" alt="CARE 0 packages">
+</div>
+<div class="title">Figure 1. EHR Packages</div>
+</div>
+<div class="paragraph">
+<p>The packages are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ehr</code>: this package contains the top level structure, the EHR, which consists of an <code>Ehr_access</code> object, an <code>Ehr_status</code> object, versioned data containers in the form of <code>Versioned_Compositions</code>, optionally indexed by one or more hierarchical <code>FOLDER</code> structures. A collection of <code>CONTRIBUTIONs</code> which document the changes to the EHR over time is also included.</p>
+</li>
+<li>
+<p><code>composition</code>: the Composition is the EHR’s top level "data container", and is described by the <code>Composition</code> class.</p>
+</li>
+<li>
+<p><code>content</code>: this package contains the Navigation and Entry packages, whose classes describe the structure and semantics of the contents of Compositions in the health record, including the following classes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>Section</code> class provides a navigational structure to the record, similar to "headings" in the paper record. <code>Entries</code> and other <code>SECTIONs</code> can appear under <code>SECTIONs</code>.</p>
+</li>
+<li>
+<p>generic structures for recording clinical statements. Entry types include <code>Admin_entry</code>, <code>Observation</code> (for all observed phenomena, including mechanically or manually measured, and responses in interview), <code>Assertion</code> (for assessments, diagnoses, plans), <code>Order</code> (actionable statements such as medication orders, recalls, monitoring, reviews), and <code>ACTION</code> (information recorded as a result of performing Instructions).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates an overview of the class structure of an EHR, along with the main concepts on which they rely, namely Data Types, Data Structures, Archetyped, and Identification.</p>
+</div>
+<div id="ehr_im_overview" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-1-overview.svg" alt="CARE 1 overview" width="80%">
+</div>
+<div class="title">Figure 2. EHR Information Model Overview</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ehr_package"><a class="anchor" href="#_ehr_package"></a>4. EHR Package</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2"><a class="anchor" href="#_overview_2"></a>4.1. Overview</h3>
+<div class="paragraph">
+<p>The openEHR EHR is structured according to a relatively simple model. A central EHR object identified by an EHR id specifies references to a number of types of structured, versioned information, plus a list of Contribution objects that act as audits of change-sets made to the EHR. The high-level structure of the openEHR EHR is shown in below.</p>
+</div>
+<div id="high_level_ehr_structure" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/high_level_ehr_structure.svg" alt="high level ehr structure">
+</div>
+<div class="title">Figure 3. High-level EHR structure</div>
+</div>
+<div class="paragraph">
+<p>In this figure, the parts of the EHR are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>EHR</em>: the root object, identified by a globally unique EHR identifier;</p>
+</li>
+<li>
+<p><em>EHR_access (versioned)</em>: an object containing access control settings for the record;</p>
+</li>
+<li>
+<p><em>EHR_status (versioned)</em>: an object containing various status and control information, optionally including the identifier of the subject (i.e. patient) currently associated with the record;</p>
+</li>
+<li>
+<p><em>Folders (versioned)</em>: optional hierarchical folder structures that can be used to logically index Compositions;</p>
+</li>
+<li>
+<p><em>Compositions (versioned)</em>: the containers of all clinical and administrative content of the record;</p>
+</li>
+<li>
+<p><em>Contributions</em>: the change-set records for every change made to the health record; each Contribution references a set of one or more Versions of any of the versioned items in the record that were committed or attested together by a user to an EHR system.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>ehr</code> package is illustrated in <a href="#care_ehr">Figure 4</a> below. The classes have a more or less one-to-one correspondence with the objects shown in <a href="#high_level_ehr_structure">Figure 3</a>. Each versioned object of type <code>X</code> is defined by a class <code>Versioned_X</code>, which is a binding of the type <code>X</code> to the generic type paremeter <code>T</code> in the generic type <code>Versioned_Composition</code> (while such bindings do not strictly require classes of their own, they facilitate implementation in languages lacking genericity).</p>
+</div>
+<div id="care_ehr" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-ehr.svg" alt="CARE ehr">
+</div>
+<div class="title">Figure 4. rm.ehr package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_parts_of_the_ehr"><a class="anchor" href="#_the_parts_of_the_ehr"></a>4.2. The Parts of the EHR</h3>
+<div class="sect3">
+<h4 id="_root_ehr_object"><a class="anchor" href="#_root_ehr_object"></a>4.2.1. Root EHR Object</h4>
+<div class="paragraph">
+<p>The root EHR object records three pieces of information that are immutable after creation: the identifier of the system in which the EHR was created, the identifier of the EHR (distinct from any identifier for the subject of care), and the time of creation of the EHR. Otherwise, it simply acts as an access point for the component parts of the EHR.</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>system_id</em></code> attribute is used to record the identifier of the logical EHR repository to which the data containing the audit are committed. What constitutes a 'system' in this context is described in more detail in the <a href="https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html#_the_ehr_system">Architecture Overview</a>.</p>
+</div>
+<div class="paragraph">
+<p>References rather than containment by value are used for the relationship between the EHR and <code>Versioned_X</code> objects, reflecting the vast majority of retrieval scenarios in which only selected (usually recent) items are needed. Containment by value would lead to systems which retrieved all <code>Versioned_X</code> objects every time the EHR object was accessed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ehr_access"><a class="anchor" href="#_ehr_access"></a>4.2.2. EHR Access</h4>
+<div class="paragraph">
+<p>Access control settings for the whole EHR are specified in the <code>Ehr_access</code> object. This includes default privacy policy, lists of identified accessors (individuals and groups) and exceptions to the default policies, each one identifying a particular Composition in the EHR. All changes to the EHR Access object are versioned via the normal mechanism, ensuring that the visible view of the EHR at any previous point in time is reconstructable.</p>
+</div>
+<div class="paragraph">
+<p>Because security models for health information are still in their infancy, the openEHR model adopts a completely flexible approach. Only two hard-wired attributes are defined in the <code>Ehr_access</code> class. The first is the name of the security scheme currently in use, while the second (settings attribute) is an object containing the access settings for the EHR according to that particular scheme. Each scheme is defined by an instance of a subclass of the abstract class <code>ACCESS_CONTROL_SETTINGS</code>, defined in the Security Information Model.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ehr_status"><a class="anchor" href="#_ehr_status"></a>4.2.3. EHR Status</h4>
+<div class="paragraph">
+<p>The <code>Ehr_status</code> object contains a small number of hard-wired attributes, and an archetyped <code><em>other_details</em></code> part. The former are used to indicate who is (currently understood to be) the subject of the record, and whether the EHR is actively in use, inactive, and whether it should be considered queryable. As for elsewhere in the openEHR EHR, the subject is represented by a <code>Party_self</code> object, enabling it to be made completely anonymous, or alternatively to include a patient identifier. The subject is included in the EHR Status object because it can change, due to errors being discovered in the allocation of records to patients. If the anonymous form is used, the change will be made elsewhere in a cross-reference table; otherwise the EHR Status object will be updated. Because it is versioned, all such changes are audit-trailed, and the change history can be reconstructed.</p>
+</div>
+<div class="paragraph">
+<p>Other EHR-wide meta-data may be recorded in the archetyped part of this object, including runtime environment settings, software application names and version ids, identification and versions of data resources such as terminologies and possibly even actual software tools, configuration files, keys and so on. Such information is commonly versioned in software configuration management systems, in order to enable the reconstruction of earlier versions of software with the correct tools. One reason to store such information at all is that it adds to medico-legal support when clinicians have to justify a seemingly bad decision: if it can be shown that the version of software in use at the time was faulty, they are protected, but to do this requires that such information be recorded in the first place.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_compositions"><a class="anchor" href="#_compositions"></a>4.2.4. Compositions</h4>
+<div class="paragraph">
+<p>The main data of the EHR is found in its Compositions, i.e. instances of the <code>Composition</code> class in the RM. Composition is based on the notion of a unit of information resulting from the interaction of a healthcare agent (subject or healthcare professional) with the EHR. It is designed to satisfy the following needs, which include the well-known ACID characteristics of transactions (<a href="#Gray_Reuter1993">Gray &amp; Reuter&#44; 1993</a>).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>durability</em>: the need for a persistent unit of information committal in the record;</p>
+</li>
+<li>
+<p><em>atomicity</em>: the need for a minimal unit of integrity for clinical information, corresponding to a minimal unit for committal, transmission and security;</p>
+</li>
+<li>
+<p><em>consistency</em>: the need for contributions to the record to leave the record in a consistent state;</p>
+</li>
+<li>
+<p><em>isolation</em>: the need for contributions to the record by simultaneous users not to interfere with each other;</p>
+</li>
+<li>
+<p><em>indelibility</em>: the requirement that information committed to the record be indelible in order to support later investigations, for both medico-legal and process improvement purposes, and the consequent requirement to be able to access previous states of the record;</p>
+</li>
+<li>
+<p><em>modification</em>: the need for users to be able to modify EHR contents, in order to correct errors or update previously recorded information (e.g. current medications, family history); and</p>
+</li>
+<li>
+<p><em>traceability</em>: the need to record adequate auditing information at committal, in order to provide clinical and legal traceability.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Composition concept originated from the 'Transaction' concept of the GEHR project (<a href="#GEHR_Del_4">Lloyd&#44; 1992</a>), (<a href="#GEHR_Del_7">Lloyd&#44; 1993</a>), (<a href="#GEHR_Del_8">Heard&#44; Kalra&#44; &amp; Ingram&#44; 1994</a>), (<a href="#GEHR1995">Beale&#44; Lloyd&#44; Heard&#44; Kalra&#44; &amp; Ingram&#44; 1995</a>). In openEHR, it was renamed to 'Composition' (the name of the equivalent concept in <a href="https://www.iso.org/standard/40784.html" target="_blank" rel="noopener">ISO 13606-1</a>), and it has been expanded and more formally defined in openEHR in two ways. Firstly, the idea of a unit of committal has been formalised by the openEHR model of change control (see the <a href="https://specifications.openehr.org/releases/RM/latest/common.html">openEHR Common Information Model</a>); how this applies to the EHR and Compositions is described below.</p>
+</div>
+<div class="paragraph">
+<p>Secondly, the informational purpose of a Composition is not just to capture data from a passing clinical event such as a patient contact, but also to track longitudinal significant patient state, such as problems, allergies and medications. Accordingly, openEHR Compositions are temporally classified using a small number of broad categories recorded in the <code>Composition.<em>category</em></code> attribute. Categories include <em>event</em>, <em>episodic</em> and <em>persistent</em>. From a scientific realist ontological point of view, the kind of information recorded in a persistent Composition approximates a description of some <em>continuant</em> aspect of the patient (see <a href="#BFO_Arp_Smith_Spear">Arp Smith &amp; Spear (2015)</a>, <a href="#Sowa2000">Sowa (2000)</a>). This is in contrast with event Compositions, which record <em>occurrents</em>, i.e. events or states that occurred or were true at some moment in time. The episodic category corresponds to information that is relevant for the period of time of a care episode.</p>
+</div>
+<div id="event_persistent_ehr" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/event_persistent_ehr.svg" alt="event persistent ehr">
+</div>
+<div class="title">Figure 5. An EHR containing Persistent, Episodic and Event Compositions</div>
+</div>
+<div class="sect4">
+<h5 id="_persistent_compositions"><a class="anchor" href="#_persistent_compositions"></a>4.2.4.1. Persistent Compositions</h5>
+<div class="paragraph">
+<p>In an EHR, there is a need to record items that summarise the key aspects of patient state, which are of ongoing relevance in the record. These are often separated by clinicians into well-known categories, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Problem list - list of current problems, issues or concerns;</p>
+</li>
+<li>
+<p>Current medications - list of patient medications that are <em>active</em> or <em>suspended</em>;</p>
+</li>
+<li>
+<p>Therapeutic precautions - list of allergies and interactions relevant to care;</p>
+</li>
+<li>
+<p>Vaccination history - list of vaccinations; acts as a proxy for patient immunity state;</p>
+</li>
+<li>
+<p>Patient preferences - list of proscribed and/or preferred types of treatment;</p>
+</li>
+<li>
+<p>Lifestyle - e.g. substance use, profession-related information;</p>
+</li>
+<li>
+<p>Family history - major problems in biological relatives; acts as a proxy for patient risk;</p>
+</li>
+<li>
+<p>Social situation - picture of patient living situation relevant to care provision;</p>
+</li>
+<li>
+<p>Care plan - Plan(s) produced by clinicians describing planned management of chronic problems.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Persistent Compositions can be thought of as proxies for the state or situation of the patient, which are maintained as a single source-of-truth over an entire patient lifetime. The intent is that any changes or updates are applied to the same logical composition instance as new versions. Together they provide a picture of the patient over time. The total number of Persistent Compositions is normally small for any given patient even with the possibility of more than one instance of some, e.g. multiple condition-specific problem lists. However the number of versions due to updating over time may be significant.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_event_compositions"><a class="anchor" href="#_event_compositions"></a>4.2.4.2. Event Compositions</h5>
+<div class="paragraph">
+<p>Event Compositions record what happens during healthcare system activities performed with and/or for the patient, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>observations, assessments, orders and actions performed during a patient contact;</p>
+</li>
+<li>
+<p>actions performed during an activity in which the patient is not a participant e.g. surgery;</p>
+</li>
+<li>
+<p>actions performed during an activity in which the patient is not present e.g. pathology testing.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An important job of the event Composition is to record not only the data from the healthcare event, such as observations on the patient, but also to record the event context information, i.e. the who, when, where and why of the event.</p>
+</div>
+<div class="paragraph">
+<p>Over time, the number of event Compositions is likely to far outstrip the number of persistent Compositions in a typical EHR, while the average number of versions per Composition (normally only due to corrections) will be far lower.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_episodic_compositions"><a class="anchor" href="#_episodic_compositions"></a>4.2.4.3. Episodic Compositions</h5>
+<div class="paragraph">
+<p>Compositions may be classified as <em>episodic</em> if they contain information relevant to an ongoing care situation spanning sigificant time, such as pregnancy and birth, major surgery and recovery etc. During a specific episode of care, Event Compositions will still be used to record normal clinical events, particularly routine observations. However, assessments, summaries and care plans specific to the condition being treated may be committed in Compositions with <code><em>category</em></code> set to <code>episodic</code> to indicate that they should be treated as having a persistent-like quality i.e updated as as single instance source-of-truth, but only maintained as such for a defined period or set of conditions and not for the entire life of the patient. An example is a Problem list that is maintained as a continuously updated single instance during a hospital admission but only for the duration of that admission. If the patient is re-admitted, a new instance of an Episodic Composition is then created and continually updated for that admission.</p>
+</div>
+<div class="paragraph">
+<p>Since episodic Compositions are typically regarded as no longer relevant once the episode of care is considered complete, it may be useful to mark them as such. This may be done for a Composition whose owning Version is in the lifecycle state <code>completed</code> by setting the owning <code>Original_version.<em>lifecycle_state</em></code> to the <code>inactive</code> state. If the owning Version is in the <code>incomplete</code> state, it may be <code>abandoned</code>. Version lifecycle transitions are described in detail in the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_version_lifecycle" target="_blank" rel="noopener">openEHR Common Information Model</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_folders"><a class="anchor" href="#_folders"></a>4.2.5. Folders</h4>
+<div class="paragraph">
+<p>As Compositions accumulate over time in the EHR, they form a long-term patient history. The <code><em>folders</em></code> structures can be used in the EHR to index Compositions using one or more versioned hierarchies of <code>FOLDER</code> objects. In the openEHR model, <strong>Folder structures do not contain Compositions, only references to them</strong>. <em>More than one Folder can therefore refer to the same Composition</em> or other target object. If <code><em>folders</em></code> is not Void, the <code><em>directory</em></code> attribute always contains a reference to the first member, for backward compatibility with pre-Release 1.1.0 systems.</p>
+</div>
+<div class="paragraph">
+<p>Structurally, each reference in <code><em>folders</em></code> points to a logical tree of <code>FOLDER</code> objects each potentially containing references to <code>Compositions</code>, or possibly just more <code>FOLDERS</code>. <strong>Each such tree is versioned</strong>, i.e. each version of one folder tree contains a modified version of the previous state of the tree. Folder trees consist of <code>FOLDER</code> objects, which inherit from the <code>LOCATABALE</code>, enabling archetypes to be used to define specific folder tree structures. Within a Folder archetype, the <code><em>details</em></code> attribute may be configured to contain meta-data specific to the purpose of the Folder (tree).</p>
+</div>
+<div class="paragraph">
+<p>The <code><em>directory</em></code> reference may be considered <em>by convention</em> as referring to a folder hierarchy that is <em>shared by all users of the EHR</em> to which it is attached, e.g. all medical specialities, departments or settings. It might thus be used to represent episodes. In this case, the other Folder hierarchies referred to by <code><em>folders</em></code> might be created, maintained and used by different departments, specialities etc. However, completely different usage of the folder structures is possible. Use of Folder archetypes should be considered for communicating the intended usage in a particular system.</p>
+</div>
+<div class="paragraph">
+<p>In any Folder hierarchy, regardless of specific use, Folders may be <em>added or removed contemporaneously or subsequently</em> to the committal of the referenced Compositions, including after substantial time has passed. Contemporaneous additions would normally be included in the same Contribution as the referenced Compositions. Similarly, at any time, an entirely new Folder hierarchy may be added, which will be referenced by a new member of the <code>EHR.<em>folders</em></code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>Semantically, Folders may be used to manage a simple classification of Compositions, e.g into Event and Persistent, or they might be used to create categories based on episodes or other groupings of Compositions.</p>
+</div>
+<div class="paragraph">
+<p>A Folder structure containing references to Compositions is shown below, in which the following Folders are used:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Persistent compositions</strong>: compositions containing information which is valid in the long term;</p>
+</li>
+<li>
+<p><strong>Diabetes</strong>: compositions relating to diabetic care, arranged in sub-folders;</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GP Encounters</strong>: GP encounters relating to diabetes;</p>
+</li>
+<li>
+<p><strong>Episode 03-07-2003 - 05-07-2003</strong>: diabetes care episode;</p>
+</li>
+<li>
+<p><strong>Episode xxxx</strong>: other diabetes care episodes;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>(other problem)</strong>: Folders indexing Compositions relating to other problems</p>
+</li>
+</ul>
+</div>
+<div id="folders_for_indexing" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/folders_for_indexing.svg" alt="folders for indexing">
+</div>
+<div class="title">Figure 6. Using Folders to index Compositions in the EHR</div>
+</div>
+<div class="paragraph">
+<p>This structure separates out Compositions on the basis of likely access by applications. Persistent Compositions remain relevant, usually for the patient lifetime,  consequently need to be quickly accessible by numerous applications views. Event Compositions contain information whose relevance may fade quickly (e.g. vital signs measurements) or which are effectively indexed by various persistent compositions (e.g. diagnoses). They are indexed in this example by a Folder structure that makes it easy to find Compositions on the basis of problem type (diabetes etc), and then by type of visit.</p>
+</div>
+<div class="paragraph">
+<p>Neither the Folder names nor the Composition names illustrated above are part of the openEHR EHR reference model: all such details are provided by archetypes; hence, EHR structures based on completely different conceptions of division of information, or even different types of medicine are equally possible.</p>
+</div>
+<div class="paragraph">
+<p>The Folder hierarchy in each member of the <code><em>folders</em></code> attribute is maintained in its own versioned object, ensuring that changes to the indexing structure are versioned over time in the same way as changes to the EHR content itself.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tags"><a class="anchor" href="#tags"></a>4.2.6. Tags</h4>
+<div class="paragraph">
+<p>Items in the EHR may be tagged using openEHR <em>tags</em>, which are lightweight annotations that may be used to thematically classify previously committed data items for convenient subsequent retrieval. They are described in detail in the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_tags_package" target="_blank" rel="noopener">Common IM Tags section</a>.</p>
+</div>
+<div id="tags_example" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/tags_example.svg" alt="tags example">
+</div>
+<div class="title">Figure 7. Tagging in the EHR</div>
+</div>
+<div class="paragraph">
+<p>Tags are associated with an EHR via the <code>EHR.<em>tags</em></code> attribute, but have no direct association with the objects they annotate. This has the following consequences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>they may be added at any time with respect to the commit time of the content they annotate, including much later;</p>
+</li>
+<li>
+<p>they do not constitute part of the content they annotate;</p>
+</li>
+<li>
+<p>accordingly, where they annotate versioned content, they do not cause re-versioning of the content;</p>
+</li>
+<li>
+<p>a distinct tag instance is used to represent each use of the tag.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The last point implies that if there is a tag "clin-proj-27a" and it is used on 13 EHR content items, there will be 13 separate tag instances with <code>key = "clin-proj-27a"</code>. If one is modified or deleted, it has no effect on the others.</p>
+</div>
+<div class="paragraph">
+<p>According to the model, all tags reside within one logical list, i.e.  <code>EHR.<em>tags</em></code>. No grouping is used. In order to achieve efficient access of all tags with the same key, indexing would be required.</p>
+</div>
+<div class="paragraph">
+<p>The primary use of tags post-creation is in querying, and their use is supported directly in the <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html" target="_blank" rel="noopener">openEHR AQL query language</a> such that a query mentioning a tag (either by key, or key/value pair if applicable) will return all items of any RM type annotated by the tag in question.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_change_control_in_the_ehr"><a class="anchor" href="#_change_control_in_the_ehr"></a>4.3. Change Control in the EHR</h3>
+<div class="paragraph">
+<p>Given an EHR in which there is an EHR Access object, EHR Status object, Event and Persistent Compositions, and possibly hierarchical Folders structures, the general model of update of the EHR is that any of these might be created and/or modified during an update. The simplest, most common case is the creation of a single contact Composition. Another common case will be the creation of an Event Composition, and modification of one or more Persistent Compositions, e.g. due to facts learned in the consultation about family history, or due to prescription of new medications. Other types of updates include corrections to existing Compositions, and acquisition of Compositions from another site such as a hospital. Any of these updates might also include a change to the folder structure, or the moving of existing Compositions to other Folders. Naturally these scenarios depend on a structure of the record including event and persistent compositions, and a folder structure. In the extreme, an EHR consisting only of event Compositions and no Folders will experience only the creation of a single Composition for most updates, with acquisitions being the exception. Less often, updates will be made to the EHR Access and EHR Status objects, according to the management and access control needs of the patient and health care providers.</p>
+</div>
+<div class="paragraph">
+<p>In general, the following requirements must always be met, regardless of the particular changes made at any one time:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the record should always be in a consistent informational state;</p>
+</li>
+<li>
+<p>all changes to the record be audit-trailed;</p>
+</li>
+<li>
+<p>all previous states of the record be available for the purposes of medico-legal investigation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These requirements are satisfied in openEHR via the use of the change control and versioning facilities defined in the Common Information Model. A key facet of the approach is the use of change-sets, known as Contributions in openEHR. Applied to the EHR, they can be visualised as shown below:</p>
+</div>
+<div id="ehr_contributions" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/ehr_contributions.svg" alt="ehr contributions">
+</div>
+<div class="title">Figure 8. Contributions to the EHR</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first is due to a patient contact, and causes the creation of a new contact composition; it also causes changes to the problem list, current medications and care plan compositions (once again, in a differently designed record, all this information might have been contained in a single event Composition; likewise, it might be been distributed into even more Compositions).</p>
+</li>
+<li>
+<p>The next Contribution is the acquisition of test results from a pathology laboratory.</p>
+</li>
+<li>
+<p>The third is another contact in which both family history and the folder structure are modified.</p>
+</li>
+<li>
+<p>This fourth is an error correction (e.g. a mispelled name, wrongly entered value), and shows that there can be a Contribution even when there is no healthcare event.</p>
+</li>
+<li>
+<p>The last is an update to the EHR status information in the EHR, due to a software upgrade.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The list of Contributions made to a record is recorded along with changes to the data, so that not only are changes to top-level objects (EHR Acces, Composition etc) captured, but the list of changes forming a change set due to a user commit is always known as well.</p>
+</div>
+<div class="sect3">
+<h4 id="_versioning_of_compositions"><a class="anchor" href="#_versioning_of_compositions"></a>4.3.1. Versioning of Compositions</h4>
+<div class="paragraph">
+<p>Versioning of Compositions is achieved with the <code>Versioned_object&lt;T&gt;</code> type from the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_change_control_package">Common IM <code>change_control package</code></a>, which in the <code>composition</code> package is explicitly bound to the <code>Composition</code> class, via the class <code>Versioned_Composition</code> which inherits from the type <code>VERSIONED&lt;Composition&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>The effect of version control on Compositions is visualised in the figure below. The versions (each version being an <code>Original_version&lt;Composition&gt;</code>) shown here in a <code>Versioned_Composition</code> are the same versions shown along each vertical line in <a href="#ehr_contributions">Figure 8</a>, this time shown with their associated audit items. The set of versions are understood as a set of successive modifications of the same data in time.</p>
+</div>
+<div id="versioned_compositions" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/versioned_compositions.svg" alt="versioned compositions">
+</div>
+<div class="title">Figure 9. Versioned Compositions</div>
+</div>
+<div class="paragraph">
+<p>The <code>Versioned_Composition</code> can be thought of as a smart repository: how it stores successive versions in time is an implementation concern (there are a number of intelligent algorithms available for this), but what is important is that its functional interface enables any version to be retrieved, whether it be the latest, the first, or any in between.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_versioning_scenarios"><a class="anchor" href="#_versioning_scenarios"></a>4.3.2. Versioning Scenarios</h4>
+<div class="paragraph">
+<p>The following scenarios for creating new <code>Composition</code> versions have been identified as follows.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Case 0
+</td>
+<td class="hdlist2">
+<p>information is authored locally, causing the creation of a new <code>Original_version&lt;Composition&gt;</code>. If this is the first version, a new <code>Versioned_Composition</code> will be created first.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Case 1
+</td>
+<td class="hdlist2">
+<p>information is modified locally, such as for the correction of a wrongly entered datum in a composition. This causes the creation of a new <code>Original_version&lt;Composition&gt;</code> in an existing <code>Versioned_Composition</code>, in which the <code>AUDIT_DETAILS.<em>change_type</em></code> is set to <code>"correction"</code>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Case 2
+</td>
+<td class="hdlist2">
+<p>information received from a feeder system, e.g. a test result, which will be converted and used to create a new <code>Imported_version&lt;Composition&gt;</code> and <code>Original_version&lt;Composition&gt;</code> pair. This kind of acquisition could be done automatically. If the receiver system needs to store a copy of the original feeder system audit details, it writes it into the <code>Composition.<em>feeder_audit</em></code>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Case 3
+</td>
+<td class="hdlist2">
+<p>an <code>Original_version&lt;Composition&gt;</code> (such as a family history) received as part of an <code>EHR_EXTRACT</code> from another openEHR system, which will be used by a local author to manually create a new <code>Composition</code> that includes <em>some content chosen from the received item</em>. Consequently, the new version is a locally authored one (i.e. an <code>Original_version&lt;Composition&gt;</code>). If it is the first version, a <code>Versioned_Composition</code> is first created. The <code>AUDIT_DETAILS</code> documents the committal of this content, and the clinician may choose to record some details about it in the audit <code><em>description</em></code>.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In summary, the <code>AUDIT_DETAILS</code> is always used to document the addition of information locally, regardless of where it has come from. If there is a need to record original audit details (via the <code>Composition.<em>feeder_audit</em></code>), they become part of the content of the versioned object.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ehr_creation_semantics"><a class="anchor" href="#_ehr_creation_semantics"></a>4.4. EHR Creation Semantics</h3>
+<div class="sect3">
+<h4 id="_ehr_identifier_allocation"><a class="anchor" href="#_ehr_identifier_allocation"></a>4.4.1. EHR Identifier Allocation</h4>
+<div class="paragraph">
+<p>openEHR EHRs are created due to two types of events. The first is a new patient presenting at the provider institution. An EHR may be created due to this event, without reference to any other openEHR EHRs that may exist in the broader community or jurisdiction. In this case, the EHR will be allocated a new, globally unique EHR id. This establishes the new EHR as an intentional clone of the source EHR (or more correctly, part of the family of EHRs making up the virtual EHR for that patient).</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, an openEHR EHR may be created in an organisation as a logical clone (probably partial) of an EHR for the patient that exists in some other system. This might happen as a normal part of the front-desk registration / admission process, i.e. the local EHR system is able to interrogate an EHR location service and discover if any other EHR exists for this patient, or it may occur due to purely electronic communications between two providers, i.e. the EHR is created because an Extract of an EHR has been sent from elsewhere as part of a referral or similar communication. In this second case, the EHR id should be a copy of the EHR id from the other institution. In all cases, the <code>EHR.<em>system_id</em></code> value should be set to the value that would normally be used for locally created EHRs. In the case of creating a cloned EHR, the <code><em>system_id</em></code> is from the receiving (cloning) system.</p>
+</div>
+<div class="paragraph">
+<p>In theory such a scheme could guarantee one EHR id per patient, but of course in reality, various factors conspire against this, and it can only approximate it. For one thing, it is known that providers routinely create new EHRs for a patient regardless of how many other EHRs already exist for that patient, simply because they have no easy way to find out about those EHRs. Ideally, this situation would be improved in the openEHR world, but due to reliance on such things as distributed services and reliable person identification, there are no guarantees. The best that can be said is that the EHR id allocation scheme can help support an ideal EHR id-per-patient situation if and when it becomes possible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ehr_creation"><a class="anchor" href="#_ehr_creation"></a>4.4.2. EHR Creation</h4>
+<div class="paragraph">
+<p>When an EHR is created, the result should be a root EHR object, an EHR Status object, and an EHR Access object, plus any other house-keeping information the versioning implementation requires. In a normal implementation, the EHR Status and EHR Access objects would be created and committed in a Contribution, just as any Composition would be. The EHR Status object has a special status in the EHR, indicating whether the EHR should be included in querying, whether it is modifiable, and by implication, whether it is active. Flags might be set to indicate that it is test record, or for educational or training purposes. The initial creation operation has to supply sufficient parameters for creation of these two objects, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>system_id</em></code> - identifier of EHR repository of the system;</p>
+</li>
+<li>
+<p><code><em>ehr_id</em></code> - the unique identifier of this EHR;</p>
+</li>
+<li>
+<p><code><em>subject_id</em></code> - optional; the use of <code>Party_self</code> allows completely anonymous EHRs;</p>
+</li>
+<li>
+<p><code><em>is_queryable</em></code> flag;</p>
+</li>
+<li>
+<p><code><em>is_modifiable</em></code> flag - indicates whether the content of the EHR is allowed to be modified (the <code>Ehr_status</code> object itself is always modifiable);</p>
+</li>
+<li>
+<p>any other flags required by the EHR Status object in the local implementation.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+is is strongly recommended that a UUID always be used for the <code><em>ehr_id</em></code> field. This is common practice among implementers.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The EHR id will either be a new globally unique identifier, in the case of first time EHR creation for this patient in the health system, or else the same identifier as an existing EHR for the same subject in another system, in the case of an EHR move or copy. The effect of EHR copying / synchronising between systems is that EHRs with the same identifier can be found within multiple systems. However if the same patient presented at multiple provider locations with no EHR sharing capability, a new EHR with a unique identifier will be created at each place. If a later request for copying occurs (e.g. due to a request for an EHR Extract) between two providers, the requesting institution will perform the merge of the received copy into the existing EHR for the same patient.</p>
+</div>
+<div class="paragraph">
+<p>The main consequences in a distributed environment are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>multiple EHR ids for a given patient indicate a mobile patient, but lack of systematic EHR sharing;</p>
+</li>
+<li>
+<p>one EHR id everywhere for the patient indicates a seamlessly integrated distributed environment, most likely with a global identification service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that the first situation is not a problem, and is not the same as the situation in which two EHRs are identified as being for different patients (i.e. subject id rather than EHR id is different) when in fact they are for the same person.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ehr_active_status"><a class="anchor" href="#_ehr_active_status"></a>4.5. EHR Active Status</h3>
+<div class="paragraph">
+<p>The <code>Ehr_status.<em>is_modifiable</em></code> attribute is used to indicate whether <em>the contents of an EHR</em> are modifiable, and is set to <code>True</code> if the EHR is considered <em>active</em>. An EHR&#8217;s 'contents' consist of everything other than the <code>Ehr_status</code> object, i.e. its Compositions (Versioned objects referred to by the <code><em>compositions</em></code> attribute), its hierarchical Folders (Versioned objects referred to by the <code><em>folders</em></code> attribute) and any other content that may be added in later releases of this specification. An active EHR is used within a given EHR system as the primary patient record for a subject. An EHR may be deactivated in circumstances such as the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the patient has died, and no further updates (typically relating to the death) are required;</p>
+</li>
+<li>
+<p>the EHR is discovered to be a duplicate or additional record for a patient already having a primary EHR;</p>
+</li>
+<li>
+<p>the patient formally opts out of further data recording and/or sharing, with the effect that no further additions can be made by healthcare providers to this EHR;</p>
+</li>
+<li>
+<p>the EHR is to be moved to another system (usually due to patient move), but the original copy will not or cannot be deleted for legal or other administrative reasons.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In any of these situations, the EHR can be deactivated by setting <code><em>is_modifiable</em></code> to <code>False</code>. An inactive EHR is still visible in the system, and will remain queryable, unless the <code><em>is_queryable</em></code> attribute is also set to <code>False</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_time_in_the_ehr"><a class="anchor" href="#_time_in_the_ehr"></a>4.6. Time in the EHR</h3>
+<div class="paragraph">
+<p>There are numerous times recorded in the EHR, at varying levels of granularity. Certain times are a guaranteed by-product of the scientific investigation process, including time of sampling or collection; time of measurement, time of a healthcare business event, time of data committal. The following figures illustrate the relationship between points on the timeline of real-world clinical activity, and the corresponding data elements in the openEHR EHR.</p>
+</div>
+<div class="paragraph">
+<p>The first figure shows the relationships for a physical examination at a GP visit.</p>
+</div>
+<div id="time_in_the_ehr" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/time_in_the_ehr.svg" alt="time in the ehr" width="70%">
+</div>
+<div class="title">Figure 10. Time in the EHR - GP encounter</div>
+</div>
+<div class="paragraph">
+<p>In this scenario, an observation (say, of blood pressure) is instantaneous for all practical purposes. This may be contrasted with lab testing, shown below, where the sample time (moment of specimen collection) is usually different from the time of analysis and reporting of the sample. The time lag may be as long as the specimen is biochemically stable such that the analysis will still accurately reflect the clinical situation in the patient at the time of specimen-taking.</p>
+</div>
+<div id="time_in_the_ehr_lab" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/time_in_the_ehr-lab.svg" alt="time in the ehr lab" width="70%">
+</div>
+<div class="title">Figure 11. Time in the EHR - Lab test</div>
+</div>
+<div class="paragraph">
+<p>The following figure shows the relationships between real world time points and openEHR data for radiology.</p>
+</div>
+<div id="time_in_the_ehr_radiology" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/time_in_the_ehr-radiology.svg" alt="time in the ehr radiology" width="60%">
+</div>
+<div class="title">Figure 12. Time in the EHR - Radiology</div>
+</div>
+<div class="paragraph">
+<p>The last example shown below shows the relationship of time and EHR data for in-patient nursing observations, where the notion of 'encounter' is somewhat artificial.</p>
+</div>
+<div id="time_in_the_ehr_nursing_obs" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/time_in_the_ehr-nursing_obs.svg" alt="time in the ehr nursing obs">
+</div>
+<div class="title">Figure 13. Time in the EHR - Nursing observations</div>
+</div>
+<div class="paragraph">
+<p>Other times to do with diagnoses (time of onset, time of resolution, time of last episode) and medication management (time started taking medication, time stopped, time suspended, etc) are specific to the particular type of information (e.g. diagnosis versus prognosis versus recommendation) and are generally represented as archetyped date/time values within Evaluation objects. Basic timing information is modelled concretely in the Instruction and Action Entry types, while archetyping is used to express timing information that is specific to particular content.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_historical_views_of_the_record"><a class="anchor" href="#_historical_views_of_the_record"></a>4.7. Historical Views of the Record</h3>
+<div class="paragraph">
+<p>It is important to understand that the <code>Composition</code> versions at a previous point in time represent a previously available <em>informational state</em> of the EHR, at a particular EHR node. Such previous state include only those Compositions from other sources as have been acquired by that point in time, <em>regardless of whether the acquired information pertains to clinical information recorded earlier</em>. A previous historical state of the EHR thus corresponds to what users of a system could see at a particular moment of time. It is important to differentiate this from previous clinical states of the patient: previous informational states of the EHR might include acquired information which is significantly older than the point in time when merging occurred. A previous clinical state of the patient would be a derivable view of the EHRs in all locations for the patient - what is sometimes called the virtual EHR - at a given point in time, minus acquired Compositions, since these constitute (usually out-ofdate) copies of Compositions primarily available elsewhere.</p>
+</div>
+<div class="paragraph">
+<p>It is previous informational states with which we are concerned for medico-legal purposes, since they represent the information actually available to clinicians at a health-care facility, at a point in time. But previous clinical views may be useful for reconstructing an actual sequence of events as experienced by the patient.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions"><a class="anchor" href="#_class_descriptions"></a>4.8. Class Descriptions</h3>
+<div class="sect3">
+<h4 id="_ehr_class"><a class="anchor" href="#_ehr_class"></a>4.8.1. Ehr Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Ehr</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>The EHR object is the root object and access point of an EHR for a subject of care.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_id</strong>: <code><a href="/releases/BASE/latest/base_types.html#_uuid_class" target="_blank" rel="noopener">Uuid</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The unique identifier of this EHR.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+is is strongly recommended that a UUID always be used for this field.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code><a href="/releases/BASE/latest/base_types.html#_internet_id_class" target="_blank" rel="noopener">Internet_id</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The identifier of the logical EHR management system in which this EHR was created.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>contributions</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>List of contributions causing changes to this EHR. Each contribution contains a list of versions, which may include references to any number of <code>VERSION</code> instances, i.e. items of type <code>VERSIONED_COMPOSITION</code> and <code>VERSIONED_FOLDER</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_status</strong>: <code><a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reference to <code>EHR_STATUS</code> object for this EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_access</strong>: <code><a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reference to <code>EHR_ACCESS</code> object for this EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Master list of all Versioned Composition references in this EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>directory</strong>: <code><a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional directory structure for this EHR. If present, this is a reference to the first member of <code><em>folders</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time_created</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Time of creation of the EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>folders</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional additional Folder structures for this EHR. If set, the <code><em>directory</em></code> attribute refers to the first member.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tags</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional list of tags associated with this EHR. Tag <code><em>target</em></code> values can only be within the same EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Master list of all Versioned Composition references in this EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Master list of all Versioned Composition references in this EHR.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Contributions_valid</em>: <code>for_all c in contributions &#124; c.type.is_equal("CONTRIBUTION")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Ehr_access_valid</em>: <code>ehr_access.type.is_equal ("VERSIONED_EHR_ACCESS")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Ehr_status_valid</em>: <code>ehr_status.type.is_equal("VERSIONED_EHR_STATUS")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Compositions_valid</em>: <code>for_all c in compositions &#124; c.type.is_equal ("VERSIONED_COMPOSITION")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Directory_valid</em>: <code>directory /= Void implies directory.type.is_equal ("VERSIONED_FOLDER")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Folders_valid</em>: <code>folders /= Void implies for_all f in folders &#124; f.type.is_equal("VERSIONED_FOLDER")</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Directory_in_folders</em>: <code>folders /= Void implies folders.item(1) = directory</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_versioned_ehr_access_class"><a class="anchor" href="#_versioned_ehr_access_class"></a>4.8.2. Versioned_ehr_access Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Versioned_ehr_access</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Version container for <code>EHR_ACCESS</code> instance.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_ehr_access_class"><a class="anchor" href="#_ehr_access_class"></a>4.8.3. Ehr_access Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Ehr_access</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>EHR-wide access control object. All access decisions to data in the EHR must be made in accordance with the policies and rules in this object.</p>
+</div>
+<div class="paragraph">
+<p>TODO: repurpose and rename for consent?</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is strongly recommended that the inherited attribute <code><em>uid</em></code> be populated in <code>EHR_ACCESS</code> objects, using the UID copied from the <code><em>object_id()</em></code> of the <code><em>uid</em></code> field of the enclosing <code>VERSION</code> object.<br>
+For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2</code> would be copied to the <code><em>uid</em></code> field of the <code>EHR_ACCESS</code> object.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>settings</strong>: <code><a href="#_access_control_settings_class">Access_control_settings</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Access control settings for the EHR. Instance is a subtype of the type <code>ACCESS_CONTROL_SETTINGS</code>, allowing for the use of different access control schemes.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scheme</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the access control scheme in use; corresponds to the concrete instance of the settings attribute.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Scheme_valid</em>: <code>not scheme.is_empty</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Is_archetype_root</em>: <code>is_archetype_root</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_access_control_settings_class"><a class="anchor" href="#_access_control_settings_class"></a>4.8.4. Access_control_settings Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Access_control_settings (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Access Control Settings for the EHR and components. Intended to support multiple access control schemes. Currently implementation dependent.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_versioned_ehr_status_class"><a class="anchor" href="#_versioned_ehr_status_class"></a>4.8.5. Versioned_ehr_status Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Versioned_ehr_status</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Version container for <code>EHR_STATUS</code> instance.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_ehr_status_class"><a class="anchor" href="#_ehr_status_class"></a>4.8.6. Ehr_status Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Ehr_status</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Single object per EHR containing various EHR-wide status flags and settings, including whether this EHR can be queried, modified etc. This object is always modifiable, in order to change the status of the EHR as a whole.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is strongly recommended that the inherited attribute <code><em>uid</em></code> be populated in <code>EHR_STATUS</code> objects, using the UID copied from the <code><em>object_id()</em></code> of the <code><em>uid</em></code> field of the enclosing <code>VERSION</code> object.<br>
+For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2</code>  would be copied to the <code><em>uid</em></code> field of the <code>EHR_STATUS</code> object.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/patterns.html#_party_self_class" target="_blank" rel="noopener">Party_self</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The subject of this EHR. The <code><em>external_ref</em></code> attribute can be used to contain a direct reference to the subject in a demographic or identity service. Alternatively, the association between patients and their records may be done elsewhere for security reasons.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_queryable</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if this EHR should be included in population queries, i.e. if this EHR is considered active in the population.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_modifiable</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if the EHR, other than the <code>EHR_STATUS</code> object, is allowed to be written to. The <code>EHR_STATUS</code> object itself can always be written to.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Any other details of the EHR summary object, in the form of an archetyped <code>ITEM_STRUCTURE</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Is_archetype_root</em>: <code>is_archetype_root</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_versioned_composition_class"><a class="anchor" href="#_versioned_composition_class"></a>4.8.7. Versioned_composition Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Versioned_composition</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Version-controlled composition abstraction, defined by inheriting <code>VERSIONED_OBJECT&lt;COMPOSITION&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Indicates whether this composition set is persistent; derived from first version.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Archetype_node_id_valid</em>: <code>for_all v in all_versions &#124; v.archetype_node_id.is_equal (all_versions.first.archetype_node_id)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Persistent_validity</em>: <code>for_all v in all_versions &#124; v.is_persistent = all_versions.first.data.is_persistent</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_folders_2"><a class="anchor" href="#_folders_2"></a>5. Folders</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_3"><a class="anchor" href="#_overview_3"></a>5.1. Overview</h3>
+<div class="paragraph">
+<p>The Folder-related classes provide a simple abstraction of a versioned folder structure and are illustrated below. The <code>Versioned_folder</code> class is the binding of <code>Versioned_object&lt;T&gt;</code> to the class <code>FOLDER</code>, i.e. it is a <code>Versioned_object&lt;FOLDER&gt;</code>. This means that <em>each of its versions is a Folder structure rather than a single Folder</em>. It provides a means of versioning <code>FOLDER</code> structures over time, which is useful in the EHR, Demographics service or anywhere else where Folders are used to group things. A <code>FOLDER</code> instance contains more <code>FOLDERs</code> and/or items, which are <em>references</em> to other (usually versioned) objects. A <code>FOLDER</code> structure is therefore like a directory containing references to objects. Since they are references, multiple references to the same object are possible, allowing the structure to be used to mutiply classify other objects. If it is used with <code>Versioned_Compositions</code> for example, the folders might be used to represent episodes and at the same time problem groups. Any individual Folder may contain meta-data in its <code><em>details</em></code> attribute (type <code>Cluster</code>), which may be archetyped in the same manner as similar attributes throughout the openEHR RM.</p>
+</div>
+<div id="directory_package" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-ehr.directory.svg" alt="CARE ehr.directory">
+</div>
+<div class="title">Figure 14. common.directory Package</div>
+</div>
+<div class="paragraph">
+<p><code>FOLDER</code> structures inside the <code>Versioned_folder</code> are archetypable structures, and <code>FOLDER</code> archetypes can be created in the same fashion as say <code>Section</code> archetypes for the EHR.</p>
+</div>
+<div class="sect3">
+<h4 id="_paths"><a class="anchor" href="#_paths"></a>5.1.1. Paths</h4>
+<div class="paragraph">
+<p>Directory paths are built using the <code><em>name</em></code> attribute values inherited from <code>Locatable</code> into each <code>FOLDER</code> object. In real data, these will usually be derived from the value of the <code><em>archetype_node_id</em></code> attribute, plus a uniqueness modifier if required. Example paths (e.g. within the EHR):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    /folders[hospital episodes]/items[1]
+    /folders[patient entered data]/folders[diabetes monitoring]
+    /folders[homeopathy contacts]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uniqueness modifiers are appended in brackets, and are only needed to differentiate folders at the same node that would otherwise have the same names, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    [hospital episodes]
+    [hospital episodes(car accident Aug 1998)]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_class_descriptions_2"><a class="anchor" href="#_class_descriptions_2"></a>5.2. Class Descriptions</h3>
+<div class="sect3">
+<h4 id="_versioned_folder_class"><a class="anchor" href="#_versioned_folder_class"></a>5.2.1. Versioned_folder Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Versioned_folder</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>A version-controlled hierarchy of <code>FOLDERs</code> giving the effect of a directory.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_folder_class"><a class="anchor" href="#_folder_class"></a>5.2.2. Folder Class</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Folder</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>The concept of a named folder.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is strongly recommended that the inherited attribute <code><em>uid</em></code> be populated in <em>top-level</em> (i.e. tree-root) <code>FOLDER</code> objects, using the UID copied from the <code><em>object_id()</em></code> of the <code><em>uid</em></code> field of the enclosing <code>VERSION</code> object.<br>
+For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2</code>  would be copied to the <code><em>uid</em></code> field of the top <code>FOLDER</code> object.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;<a href="/releases/BASE/latest/base_types.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The list of references to other (usually) versioned objects logically in this folder.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>folders</strong>: <code>List&lt;<a href="#_folder_class">Folder</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Sub-folders of this <code>FOLDER</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code><a href="/releases/BASE/latest/patterns.html#_cluster_class" target="_blank" rel="noopener">Cluster</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Archetypable meta-data for <code>FOLDER</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Folders_valid</em>: <code>not folders.is_empty</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_composition_package"><a class="anchor" href="#_composition_package"></a>6. Composition Package</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>6.1. Overview</h3>
+<div class="paragraph">
+<p>The Composition is the primary 'data container' in the openEHR EHR and is the root point of clinical content. Instances of the <code>Composition</code> class can be considered as self-standing data aggregations, or documents in a document-oriented system. The key information in a <code>Composition</code> is found in its <code><em>content</em></code>, <code><em>context</em></code>, and <code><em>composer</em></code> attributes. The UML diagram below illustrates the <code>composition</code> package.</p>
+</div>
+<div id="care_composition" class="imageblock text-center text-center">
+<div class="content">
+<img src="UML/diagrams/CARE-composition.svg" alt="CARE composition">
+</div>
+<div class="title">Figure 15. rm.composition package</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_composition_context"><a class="anchor" href="#_composition_context"></a>6.2. Composition Context</h3>
+<div class="sect3">
+<h4 id="_overview_5"><a class="anchor" href="#_overview_5"></a>6.2.1. Overview</h4>
+<div class="paragraph">
+<p>The openEHR EHR model takes account of a systematic analysis of "context". Contexts in the real world are mapped to particular levels of the information model in a clear way, according to the scheme shown in FIGURE 12. On the left hand side is depicted the context of a data-entry session in which the information generated by a "healthcare event", containing "clinical statements", is added to the EHR. A healthcare event is defined as any business activity of the health care system for the patient, including encounters, pathology tests, and interventions. A clinical statement is the minimal indivisible unit of information the clinician wants to record. Clinical statements are shown in the diagram has having temporal and spatial structure as well as data values. Each of these three contexts has its own audit information, consisting of who, when, where, why information.</p>
+</div>
+<div id="ehr_recording_model" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/ehr_recording_model.png" alt="ehr recording model" width="70%">
+</div>
+<div class="title">Figure 16. General Model of Recording</div>
+</div>
+<div class="paragraph">
+<p>On the right-hand side of <a href="#ehr_recording_model">Figure 16</a>, the EHR recording environment is represented. The EHR consists of distinct, coarse-grained items known as Compositions added over time and organised by Folders. Each Composition consists of Entries, organised by Sections within the Composition. The audit information for each context is recorded at the corresponding level of the EHR.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_composer"><a class="anchor" href="#_composer"></a>6.2.2. Composer</h4>
+<div class="paragraph">
+<p>The composer is the person who was primarily responsible for the content of the Composition. This is the identifier that should appear on the screen. It could be a junior doctor who did all the work, even if not legally responsible, or it could be a nurse, even if later attested by a more senior clinician; it will be the patient in the case of patient-entered data. It may or may not be the person who entered and committed the data. it may also be a software agent. This attribute is mandatory, since all content must be been created by some person or agent.</p>
+</div>
+<div class="paragraph">
+<p>Since in many cases Compositions will be composed and committed by the same person, it might seem that two identifiers <code>Composition</code>.<code><em>composer</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code> (which are both of type <code>Party_proxy</code>) will be identical. In fact, this will probably not be the case, because the kind of identifier to represent the composer will be a demographic identifier, e.g. "RN Jane Williams", "RN
+12345678", whereas the identifier in the audit details will usually be a computer system user identifier, e.g. "<a href="mailto:jane.williams@westmead.health.au">jane.williams@westmead.health.au</a>". This difference highlights the different purposes of these attributes: the first exists to identify the clinical agent who created the information, while the second exists to identify the logged-in user who committed it to the system.</p>
+</div>
+<div class="paragraph">
+<p>In the situation of patient-entered data, the special "self" <code>Party_proxy</code> instance (see Common IM generic package) is used for both <code>Composition</code>.<code><em>composer</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_event_context"><a class="anchor" href="#_event_context"></a>6.2.3. Event Context</h4>
+<div class="paragraph">
+<p>The optional <code><em>event_context</em></code> attribute in the <code>Composition</code> class is used to document the healthcare event causing new or changed content in the record. Here, 'healthcare event' means 'a (generally billable) business activity of the healthcare system with, for or on behalf of the patient'. Generally this will an encounter involving the subject of care and physician, but is variable in a hospital environment. In this sense, a visit to a GP is a single care event, but so is an episode in a hospital, which may encompass multiple encounters. The information recorded in Event context includes start and (optional) end time of the event, health care facility, setting (e.g. primary care, aged care, hospital), participating healthcare professionals, and optional further details defined by an archetype.</p>
+</div>
+<div class="paragraph">
+<p>Healthcare events that require an <code>Event_context</code> instance in their recorded information include the following.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Scheduled or booked patient encounters leading to changes to the EHR, including with a GP, hospital consultant, or other clinical professional such as mobile nurse. In this case, the Event context documents the time and place of the encounter, and the identity of the clinical professional.</p>
+</li>
+<li>
+<p>Case conferences about a patient, leading to modifications to the health record; here the Event context documents the case conference time, place and participants.</p>
+</li>
+<li>
+<p>Pathology, imaging or other test process. In this case, the Event context documents the place and period during which testing and analysis was carried out, and by whom.</p>
+</li>
+<li>
+<p>Data resulting from care in the home provided by health professional(s) (often allied health care workers). Situations in which Event context is optional include the following.</p>
+</li>
+<li>
+<p>Nurse interactions with patients in hospital, including checking vital signs, adjusting medication or other aspects of bed situation for the patient. Each instance of a nurse&#8217;s observations are generally not considered to be a separate 'care event', rather they are seen as the continuation of the general activities of monitoring. In such situations, the overall context is given by <code>Admin_entry</code> instances in the record indicating date/time and place of admission and discharge.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Situations in which Event context is not used include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Any modification to the EHR which corrects or updates existing content, including by administrative staff, and by clinical professionals adding or changing evaluations, summaries etc.</p>
+</li>
+<li>
+<p>Patient-entered data where no interaction with health professionals took place; typically readings from devices in the home such as weighing scales, blood glucose measuring devices, wearable monitors etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ultimately, the use of Event context will be controlled by Composition-level archetypes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_occurrence_in_data"><a class="anchor" href="#_occurrence_in_data"></a>6.2.4. Occurrence in Data</h4>
+<div class="paragraph">
+<p>For situations requiring an <code>Event_context</code> object to be recorded, it is worth clarifying which Compositions carry such objects. Consider the example shown in <a href="#event_context">Figure 17</a>. In this example, a Contribution is made to the EHR, consisting of one or more Compositions that were each created or modified due to some clinical activity. Within such a set, there will usually be one Composition relating directly to the event, such as the patient contact - this is the Composition containing the doctor&#8217;s observations, nurses' activities etc, during the visit, and is therefore the one which contains the <code>Event_context</code> instance. Other Compositions changed during the same event (e.g. updates to medication list, family history and so on) do not require an Event context, since they are part of the same Contribution, and the event context of the primary Composition can always be retrieved if desired. Contributions A, B and C in the figure illustrate this case.</p>
+</div>
+<div id="event_context" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/event_context.svg" alt="event context">
+</div>
+<div class="title">Figure 17. Use of Event context</div>
+</div>
+<div class="paragraph">
+<p>In cases where Contributions are made to the record with no event context, the Event context of any Compositions from the original commit will remain intact and visible (unless the correction is to the event context itself of course), and will correctly reflect the fact that no new clinical interaction occurred. This is the case with Contribution D in the figure.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Persistent Compositions may optionally have an Event context. In openEHR releases up to 1.0.3, Persistent Compositions had no Event context. This was relaxed in subsequent releases, to allow the inclusion of context information (e.g. encounter data) for changes to Persistent Compositions where no Event Composition was created.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_time"><a class="anchor" href="#_time"></a>6.2.5. Time</h4>
+<div class="paragraph">
+<p>The times recorded in the Event context represent the time of an encounter or other activity undertaken by a health provider to/for/on behalf of the patient. The time is represented as a mandatory start time and optional end time. It is assumed that where there is a clinical session (i.e. an <code>Event_context</code> object does exist), the start time is known or can be reasonably approximated. It is quite common that the end time of a consultation or encounter is not recorded, but rather inferred from e.g. average consult times, or the start time of the next consult for the same physician.</p>
+</div>
+<div class="paragraph">
+<p>Event context is used as described above even if the additions are made to the EHR long after the event took place, such as happens when a doctor writes his/her notes into the record system at night, after all patients have been seen. In such cases, the versioned Composition audit trail records the context of when the data were entered, as distinct from the context of when the clinical interaction took place.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_participations"><a class="anchor" href="#_participations"></a>6.2.6. Participations</h4>
+<div class="paragraph">
+<p>Is part of the Event context, the participations attribute can be used to describe who participated, and how. Each participation object describes the "mode" of participation as well, such as direct presence, video-conference and so on. In many cases such information is of no interest, since the subject of any Entry is known (<code>Entry</code>.<code><em>subject</em></code>) and the clinician will be known (<code>Composition</code>.<code><em>composer</em></code>), and the mode of communication is assumed to be a personal encounter. The participations attribute is therefore used when it is desired to record further details of how the patient and or physician interacted (e.g. over the internet), and/or other participants, such as family, nurses, specialists etc.</p>
+</div>
+<div class="paragraph">
+<p>There are no general rules about who is included as a participant. For example, while there will be a patient participation during a GP visit, there will be no such participation recorded when the clinical event is a tissue test in a laboratory. Conversely, a patient might record some observations and drug self-administration in the record, in which case the composer will be the patient, and there will be no clinician participation. Consequently, the use of participations will mostly be archetype-driven.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_healthcare_facility_location_and_setting"><a class="anchor" href="#_healthcare_facility_location_and_setting"></a>6.2.7. Healthcare Facility, Location and Setting</h4>
+<div class="paragraph">
+<p>The <code><em>health_care_facility</em></code> (HCF) attribute is used to record the health care facility in whose care the event took place. This is the most specific identifiable (i.e. having a provider id within the health system) workgroup or care delivery unit within a care delivery enterprise which was involved in the care event. The identification of the HCF can be used to ensure medico-legal accountability. Often, the HCF is also where the encounter physically took place, but not in the case of patient home visits, internet contacts or emergency care; the HCF should not be thought of as a physical place, but as a care delivery management unit. The physical place of care can be separately recorded in <code>Event_context</code>.<code><em>location</em></code>. The health_care_facility attribute is optional to allow for cases where the clinical event did not involve any care delivery enterprise, e.g. self-care at home by the patient, emergency revival by a non-professional (e.g. CPR by lifeguard on a beach), care by a professional acting in an unofficial capacity (doctor on a plane asked to aid a passenger in difficulty). In all other cases, it is mandatory. Archetypes are used to control this.</p>
+</div>
+<div class="paragraph">
+<p>Two other context attributes complete the predefined notion of event context in the model: <code><em>location</em></code> and <code><em>setting</em></code>. The location attribute records: the physical location where the care delivery took place, and should document a reasonably specific identifiable location. Examples include "bed 5, ward E", "home". This attribute is optional, since the location is not always known, particularly in legacy data.</p>
+</div>
+<div class="paragraph">
+<p>The setting attribute is used to document the "setting" of the care event. In clinical record keeping, this has been found to be a useful coarse-grained classifier of information. The openEHR Terminology "setting" group is used to code this attribute. It is mandatory, on the basis that making it optional will reduce its utility for querying and classification.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_composition_content"><a class="anchor" href="#_composition_content"></a>6.3. Composition Content</h3>
+<div class="paragraph">
+<p>The data in a Composition is stored in the <code><em>content</em></code> attribute. There are four kinds of data structuring possible in the content attribute:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>it may be empty. Although for most situations, there should be content in a Compostion, there are at least two cases where an empty Composition makes sense:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the first is a Composition in 'draft' editing state (<code>Version.<em>lifecycle_state</em></code> = 'incomplete')</p>
+</li>
+<li>
+<p>the second is for systems that are only interested in the fact of an event having taken place, but want no details, such as so-called clinical 'event summary' systems, which might record the fact of visits to the doctor, but contain no further information. This can be achieved using Compositions with event context, and no further content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>it may contain one or more <code>SECTIONs</code> which are defined in the archetype of the Composition;</p>
+</li>
+<li>
+<p>it may contain one or more <code>Section</code> trees, each of which is a separately archetyped structure;</p>
+</li>
+<li>
+<p>it may contain one or more <code>Entries</code> directly, with no intermediate <code>SECTIONs</code>;</p>
+</li>
+<li>
+<p>it may be any combination of the previous three possibilities.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The actual structures used in a Composition at runtime are controlled by a template, which in turn controls the particular combination of archetypes used.</p>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_3"><a class="anchor" href="#_class_descriptions_3"></a>6.3.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_composition_class"><a class="anchor" href="#_composition_class"></a>6.3.1.1. Composition Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Composition</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Content of one version in a <code>VERSIONED_COMPOSITION</code>. A Composition is considered the unit of modification of the record, the unit of transmission in record Extracts, and the unit of attestation by authorising clinicians. In this latter sense, it may be considered equivalent to a signed document.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is strongly recommended that the inherited attribute <code><em>uid</em></code> be populated in Compositions, using the UID copied from the <code><em>object_id()</em></code> of the <code><em>uid</em></code> field of the enclosing <code>VERSION</code> object.<br>
+For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2</code> would be copied to the <code><em>uid</em></code> field of the Composition.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Mandatory indicator of the localised language in which this Composition is written. Coded from openEHR Code Set  <code>languages</code>. The language of an Entry if different from the Composition is indicated in <code>Entry.<em>language</em></code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>territory</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of territory in which this Composition was written. Coded from openEHR  countries  code set, which is an expression of the ISO 3166 standard.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>category</strong>: <code><a href="/releases/BASE/latest/data_types.html#_coded_text_class" target="_blank" rel="noopener">Coded_text</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Temporal category of this Composition, i.e.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>431&#124;persistent&#124;</code> - of potential life-time validity;</p>
+</li>
+<li>
+<p><code>451&#124;episodic&#124;</code> - valid over the life of a care episode;</p>
+</li>
+<li>
+<p><code>433&#124;event&#124;</code> - valid at the time of recording (long-term validity requires subsequent clinical assessment).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>or any other code defined in the openEHR terminology group 'category'.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>context</strong>: <code><a href="#_event_context_class">Event_context</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The clinical session context of this Composition, i.e. the contextual attributes of the clinical session.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>composer</strong>: <code><a href="/releases/BASE/latest/patterns.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The person primarily responsible for the content of the Composition (but not necessarily its committal into the EHR system). This is the identifier which should appear on the screen. It may or may not be the person who entered the data. When it is the patient, the special self  instance of <code>PARTY_PROXY</code> will be used.</p>
+</div>
+<div class="paragraph">
+<p>TODO: could be renamed to more clearly indicate 'person responsible for the content', usually the legally responsible clinician.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>content</strong>: <code>List&lt;<a href="#_content_item_class">Content_item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The content of this Composition.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/BASE/latest/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>True if category is <code>431&#124;persistent&#124;</code>, False otherwise. Useful for finding Compositions in an EHR which are guaranteed to be of interest to most users.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Category_validity</em>: <code>terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_composition_category, category.defining_code)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Territory_valid</em>: <code>code_set(Code_set_id_countries).has_code(territory)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Language_valid</em>: <code>code_set(Code_set_id_languages).has_code(language)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Content_valid</em>: <code>content /= Void implies not content.is_empty</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Is_archetype_root</em>: <code>is_archetype_root</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_event_context_class"><a class="anchor" href="#_event_context_class"></a>6.3.1.2. Event_context Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Event_context</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Documents the context information of a healthcare event involving the subject of care and the health system. The context information recorded here is independent of the attributes recorded in the version audit, which document the  system interaction context, i.e. the context of a user interacting with the health record system. Healthcare events include patient contacts, and any other business activity, such as pathology investigations which take place on behalf of the patient.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Start time of the clinical session or other kind of event during which a provider performs a service of any kind for the patient.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>end_time</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Optional end time of the clinical session.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>setting</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_terminology_term_class" target="_blank" rel="noopener">Terminology_term</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The setting in which the clinical session took place. Coded using the openEHR Terminology,  setting  group.</p>
+</div>
+<div class="paragraph">
+<p>TODO: rarely used in Archetypes - needed in CEMs?</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>location</strong>: <code><a href="/releases/BASE/latest/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The actual location where the session occurred, e.g. 'microbiology lab 2', 'home', 'ward A3'  and so on.</p>
+</div>
+<div class="paragraph">
+<p>TODO: possibly rename? This only refers to a room.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_context</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_item_class" target="_blank" rel="noopener">Item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Other optional context which will be archetyped.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>health_care_facility</strong>: <code><a href="/releases/BASE/latest/patterns.html#_party_identified_class" target="_blank" rel="noopener">Party_identified</a></code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The health care facility under whose care the event took place. This is the most specific workgroup or delivery unit within a care delivery enterprise that has an official identifier in the health system, and can be used to ensure medico-legal accountability.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>participations</strong>: <code>List&lt;<a href="/releases/BASE/latest/patterns.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Parties involved in the healthcare event. These would normally include the physician(s) and often the patient (but not the latter if the clinical session is a pathology test for example).</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Setting_valid</em>: <code>Terminology (Terminology_id_openehr).has_code_for_group_id (Group_id_setting, setting.defining_code)</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Participations_validity</em>: <code>participations /= Void implies not participations.is_empty</code></p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>location_valid</em>: <code>location /= Void implies not location.is_empty</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_content_item_class"><a class="anchor" href="#_content_item_class"></a>6.3.1.3. Content_item Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong><em>Content_item (abstract)</em></strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Abstract ancestor of all concrete content types.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base_types.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sections"><a class="anchor" href="#_sections"></a>6.4. Sections</h3>
+<div class="paragraph">
+<p>The <code>Section</code> class enables a hierarchical heading structure, in which all individual headings are considered to belong to a "tree of headings". Each heading is an instance of the class <code>Section</code>, visible in the lower left side of <a href="#care_composition">Figure 15</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sections provide both a logical structure for the author to arrange Entries, and a navigational structure for readers of the record, whether they be human or machine. Sections are archetyped in trees with each tree containing a root Section, one or more sub-sections, and any number of Entries at each node. Section trees that are separately archetyped, such as the SOAP headings, or the heading structure for a physical examination, can be combined at runtime by type to form one large heading structure, as shown in the figure below.</p>
+</div>
+<div id="ehr_with_sections" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/ehr_with_sections.svg" alt="ehr with sections" width="50%">
+</div>
+<div class="title">Figure 18. Section View of a General Practice Contact Composition</div>
+</div>
+<div class="paragraph">
+<p>In terms of understanding of clinical data, Section structures are not essential in a Composition - they can always be removed or ignored (typically in machine processing such as querying) without losing the meaning of the Entries in the Composition. While Sections are often used to group Entries according to status, e.g. 'family history', 'problems', 'observations', it is the Entries themselves that indicate the definitive category of information contained therein. This principle is explained in more detail in <a href="#Entry and its Subtypes">[Entry and its Subtypes]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Despite the above, Section structures do not have to be regarded as ad hoc or unreliable structures. On the contrary, as they are archetyped, their structures can be relied upon in the same way as any other structure in the record can be relied on to conform to its archetype. Accordingly, solid assumptions can be made about Sections, based on their archetypes, for the purposes of querying. In fact, the main benefit of Sections is that they may provide significant performance benefits to querying, whether by interactive application or by automated systems.</p>
+</div>
+<div class="paragraph">
+<p>One potentially confusing aspect of any Section structure is that while the root Section in a tree is logically a Section, it does not appear in a display or printed form as a visible section. This is due to the fact that humans don’t usually write down top-level headings for anything, since there is always a containing structure acting as a top-level organising context (such as the piece of paper one is writing on). For example, consider the way a clinician writes down the problem/SOAP headings on paper. She writes the name of the first problem, then under that, the S/O/A/P headings, then repeats the process for further problems. But she doesn’t write down a heading above the level of the problems, even though there must be one from a data structure point of view.</p>
+</div>
+<div class="sect3">
+<h4 id="_class_descriptions_4"><a class="anchor" href="#_class_descriptions_4"></a>6.4.1. Class Descriptions</h4>
+<div class="sect4">
+<h5 id="_section_class"><a class="anchor" href="#_section_class"></a>6.4.1.1. Section Class</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 55.5556%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Section</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p>Represents a heading in a heading structure, or  section tree.  Created according to archetyped structures for typical headings such as SOAP,  physical examination, but also pathology result heading structures.  Should not be used instead of <code>Entry</code> hierarchical structures.</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_content_item_class">Content_item</a></code></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;<a href="#_content_item_class">Content_item</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Ordered list of content items under this section, which may include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>more <code>SECTIONs</code>;</p>
+</li>
+<li>
+<p><code>Entrys</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Invariants</strong></p></th>
+<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
+<p><em>Items_valid</em>: <code>items /= Void implies not items.is_empty</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instance_structures"><a class="anchor" href="#_instance_structures"></a>6.4.2. Instance Structures</h4>
+<div class="sect4">
+<h5 id="_problemsoap_headings"><a class="anchor" href="#_problemsoap_headings"></a>6.4.2.1. Problem/SOAP Headings</h5>
+<div class="paragraph">
+<p>An example of an section tree representing the problem/SOAP heading structure is shown below.</p>
+</div>
+<div id="SOAP_section_structure" class="imageblock text-center text-center">
+<div class="content">
+<img src="ehr/diagrams/Composition_with_sections.svg" alt="Composition with sections">
+</div>
+<div class="title">Figure 19. "problem/SOAP" Section Structure</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a id="BFO_Arp_Smith_Spear"></a>Arp, R., Smith, B., &amp; Spear, A. D. (2015). <em>Building Ontologies with Basic Formal Ontology</em>. The MIT Press. Retrieved from <a href="https://mitpress.mit.edu/books/building-ontologies-basic-formal-ontology" class="bare">https://mitpress.mit.edu/books/building-ontologies-basic-formal-ontology</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GEHR1995"></a>Beale, T., Lloyd, D., Heard, S., Kalra, D., &amp; Ingram, D. (1995). <em>Deliverable 19,20,24: GEHR Architecture</em>. Brussels: European Commission AIM. Retrieved from <a href="https://www.openehr.org/resources/related_projects/gehr_deliverable-19_20_24.pdf" class="bare">https://www.openehr.org/resources/related_projects/gehr_deliverable-19_20_24.pdf</a></p>
+</div>
+<div class="paragraph">
+<p><a id="Gray_Reuter1993"></a>Gray, J., &amp; Reuter, A. (1993). <em>Transaction Processing Concepts and Techniques</em>. Morgan Kaufmann.</p>
+</div>
+<div class="paragraph">
+<p><a id="GEHR_Del_8"></a>Heard, S., Kalra, D., &amp; Ingram, D. (1994). <em>Deliverable 8: Ethical and legal Requirements of GEHR Architecture and Systems</em>. Brussels: European Commission AIM. Retrieved from <a href="https://www.openehr.org/resources/related_projects/gehr_deliverable-8.pdf" class="bare">https://www.openehr.org/resources/related_projects/gehr_deliverable-8.pdf</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GEHR_Del_4"></a>Lloyd, D. (1992). <em>Deliverable 4: GEHR Requirements for Clinical Comprehensiveness</em>. Brussels: European Commission AIM. Retrieved from <a href="https://www.openehr.org/resources/related_projects/gehr_deliverable-4.pdf" class="bare">https://www.openehr.org/resources/related_projects/gehr_deliverable-4.pdf</a></p>
+</div>
+<div class="paragraph">
+<p><a id="GEHR_Del_7"></a>Lloyd, D. (1993). <em>Deliverable 7: Clinical Functional Specifications</em>. Brussels: European Commission AIM.</p>
+</div>
+<div class="paragraph">
+<p><a id="Sowa2000"></a>Sowa, J. F. (2000). <em>Knowledge Representation: Logical, philosophical and Computational Foundations</em>. California: Brooks/Cole.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-10-04 21:17:27 -0600
+</div>
+</div>
+</body>
+</html>

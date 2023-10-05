@@ -1,0 +1,41 @@
+=== Questionnaire_response Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Questionnaire_response*
+
+h|*Description*
+2+a|A structured response to a Questionnaire, The inherited attribute `_result_time_` is understood as the most recent modification time. If `_completion_status_` is `completed`, it is understood as completion time.
+
+h|*Inherit*
+2+|`<<_observation_class,Observation>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*questionnaire_identifier*: `String`
+a|Formal identifier of the original questionnaire, if available.o
+
+h|*0..1*
+|*questionnaire_version*: `String`
+a|Version of the questionnaire.
+
+h|*1..1*
+|*questionnaire_title*: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_term_class[Terminology_term^]`
+a|Title of the questionnaire.
+
+h|*0..1*
+|*completion_status*: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+a|TODO see https://build.fhir.org/valueset-questionnaire-answers-status.html
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(effected)*
+|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+a|Result = `_last_update_time_`.
+|===

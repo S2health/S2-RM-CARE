@@ -1,0 +1,52 @@
+=== Action Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Action*
+
+h|*Description*
+2+a|Used to record a clinical action that has been performed, which may have been ad hoc, or due to an Order.
+
+The inherited `_time_` field records the point in time at which this action completed, or the best estimate.
+
+An Action may be clinically fine-grained, e.g. 'clean wound' or summarize a whole procedure e.g. 'intubate patient'.
+
+h|*Inherit*
+2+|`<<_care_act_entry_class,Care_act_entry>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*state_transition*: `<<_state_transition_class,State_transition>>`
+a|Details of transition in the Order state machine caused by this Action. A void transition means that the action doesn't change the current order execution state.
+
+h|*1..1*
+|*activity_id*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+a|Identifier of Activity within Instruction, in the form of its archetype path.
+
+TODO: consider whether we want separate activities on the same order.
+
+h|*0..1*
+|*duration*: `link:/releases/BASE/{base_release}/foundation_types.html#_duration_class[Duration^]`
+a|Duration of the action.
+
+h|*1..1*
+|*description*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+a|Description of the action that has been performed, in the form of an archetyped structure.
+
+h|*1..1 +
+(redefined)*
+|*time*: `link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]`
+a|Point in time at which this action completed, or best estimate.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(effected)*
+|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+a|Moment in subject's timeline for which the observation or result (which may only be completed later) is asserted. Defined in descendants.
+|===

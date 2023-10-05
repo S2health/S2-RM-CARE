@@ -1,0 +1,44 @@
+= Preface
+
+== Purpose
+
+This document describes the S2 Entry Model, part of the S2 Canonical Model.
+
+The intended audience includes:
+
+* The open source healthcare community;
+* Solution vendors;
+* Medical informaticians and clinicians interested in health information.
+
+== Related Documents
+
+Prerequisite documents for reading this document include:
+
+* The {openehr_overview}[openEHR Architecture Overview^].
+
+Related documents include:
+
+* The {s2_base_base_types}[S2 Base Types Information Model^];
+* The {s2_base_data_types}[S2 Data Types Information Model^];
+* The {s2_base_patterns}[S2 Patterns Information Model^];
+
+== Status
+
+This specification is in the {spec_status} state. The development version of this document can be found at {s2_care_latest_entry}[{s2_care_latest_entry}^].
+
+Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:
+[.tbd]
+*TBD*: (example To Be Determined paragraph)
+
+== Feedback
+
+Feedback may be provided on the {s2_rm_forum}[S2 specifications forum^].
+
+Issues may be raised on the {component_prs}[specifications Problem Report tracker^].
+
+To see changes made due to previously reported issues, see the {component_history}[{component} component Change Request tracker^].
+
+== Conformance
+
+Conformance of a data or software artifact to a S2 specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.
+

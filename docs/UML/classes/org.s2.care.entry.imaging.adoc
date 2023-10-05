@@ -1,0 +1,18 @@
+=== Imaging Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Imaging*
+
+h|*Description*
+2+a|Category of observation in which results are determined by an interpretation of raw imaging or EKG data.
+
+The interpretation may be carried out by human, rule-based, generative AI or other means. The intial data capture is considered the 'observation time', i.e. `Observation_single._time_`.
+
+Generally there is a time lag between capture and interpretation, although this may be reduced by technical means.
+
+h|*Inherit*
+2+|`<<_indirect_observation_class,Indirect_observation>>`
+
+|===

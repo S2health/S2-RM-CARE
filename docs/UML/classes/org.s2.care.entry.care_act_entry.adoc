@@ -1,0 +1,33 @@
+=== Care_act_entry Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*__Care_act_entry (abstract)__*
+
+h|*Description*
+2+a|Abstract parent of types representing concrete acts undertaken in the course of care of the subject. Characterised by an `_effective_time_` which is defined in descendants.
+
+Care acts are usually costed and billable, and may be to do with the creation or execution of an order.
+
+h|*Inherit*
+2+|`<<_care_entry_class,Care_entry>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*order_tracking*: `<<_order_tracking_class,Order_tracking>>`
+a|Order tracking data.
+
+TODO: possibly hard-model requestor and filler ids.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1 +
+(abstract)*
+|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+a|Moment in subject's timeline for which the observation or result (which may only be completed later) is asserted. Defined in descendants.
+|===

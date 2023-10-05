@@ -1,0 +1,69 @@
+= Overview
+
+The Entry model is defined by the `gcm.entry` package, shown in the UML diagram below. The concept of 'Entry' corresponds to an entry in a longitudinal record of care, and may also be understood as a 'statement'.
+
+[.text-center]
+.gcm.entry package
+image::{uml_diagrams_uri}/CARE-2-entry-taxonomy.svg[id=entry_taxonomy, align="center"]
+
+The descendants of `Entry` are based on the taxonomy described in cite:[Beale_Heard2007], and are described in the section below.
+
+== The Entry class
+
+All Entries have a number of properties in common. The optional `_language_` attribute indicates how all text data within the Entry are to be interpreted linguistically if different from the enclosing Composition.
+
+The other properties defined in Entry are as follows:
+
+* `_subject_`: records the subject of the Entry as an instance of a subtype of `Party_proxy`. When this is the record subject, (i.e. the patient), the value is an instance of `Party_self`. Otherwise it is typically a fetus (of a pregnant subject), a family member, sexual partner, or organ donor. The latter is expressed in the form of a `Party_identified` or `Related_party` instance, which describes the kind of relationship, and optionally, identifies the demographic entity.
+* `_reporter_`: the agent who provided the information. This is usually the patient or the clinician, but may be the subject, a family member or an autonomous software application or device. If participation details of the reporter (e.g. mode of communication) need to be recorded, the details should be recorded once in the `Event_context._participations_`. The reporter attribute is optional, since it is often implicit in the information that was recorded.
+* `_authorization_actions_`: authorizations for this Entry.
+* `_other_participations_`: other participations for this Entry, e.g. a nurse who administered a drug recorded in an Action.
+
+The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the `_composer_` and `_other_participations_` of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:
+
+* the information reporter is specifically accountable for the Entry data (it is their opinion, their decision, they carried out the test etc.) - they might also need to attest it;
+* the information reporter is an authoritative source, or has provided information from a unique perspective (e.g. the view of a spouse/ carer on the patient's functional health status or mental state);
+* the information reporter's view might not reflect the consensus (e.g. a patient opinion not held by the composer, a difference between father and mother on a description of a child's sleeping pattern);
+* the information reporter is not one of the Composition-level participants (e.g. an outside information reporter such as someone telephoned during the encounter to provide a lab result, or an automated measurement device, or a decision support software component).
+
+The `_authorization_actions_` attribute is used to record any authorization action, generally signing or counter-signing. Each such action is assumed to advance the Entry through a lifecycle, recorded in the Entry attribute `_lifecycle_state_`, and defined by the Entry State Machine, which is illustrated below.
+
+[.text-center]
+.Entry state machine
+image::{uml_diagrams_uri}/CARE-Entry_state_machine.svg[id=Entry_state_machine, align="center"]
+
+The following sections describe Entry sub-types.
+
+== Admin_entry
+
+The `Admin_entry` class defines the structure of administrative statements made in the record. Administrative information has the following characteristics:
+
+* it is created by non-clinical staff, or clinical staff acting in an administrative capacity (e.g. a nurse or doctor who has to fill out an admission form in A&E);
+* it expresses details to do with coordinating the clinical process, by recording e.g. admission information (enables clinical staff to know who is in the hospital and where they can be found), appointments (ensuring patient and physician get together at an agreed time and place), discharge/dismissal (allowing clinical staff to know that a patient has been sent home healthy, or transferred to another institution), billing and insurance information (where such information is required in the EHR; it may well be in its own system);
+* removing administrative information from the EHR would not compromise its clinical integrity, it would simply mean that carers and patients would no longer know when and where they were supposed to meet, or when the patient has entered or left a health care facility.
+
+The data of Admin_entry is a single Cluster and is structured by archetyping.
+
+== Care_entry
+
+The `Care_entry` class is an abstract precursor of classes that express information of any clinical activity in the patient care process. It includes two attributes particular to all clinical entries, namely `_qualifiers_` and `_guideline_ids_`. These attributes enable the 'how' and 'why' aspects of any clinical recording to be expressed. The `_qualifiers_` property is used to record _method__ recorded for Observations, e.g. staining method in microscopy, and Instructions, e.g. Bruce protocol for ECG test.
+
+TODO: review guideline_ids
+
+== Care_act_entry
+
+The `Care_act_entry` class represents the category of _concrete_ acts undertaken in the course of care of the subject. These are usually costed and billable and often relate to an order. Accordingly, the `_order_tracking_` attribute enables both order-related identifiers, and more complex (archetyped) order-related information to be represented.
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/{pkg}entry.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}entry_lifecycle_states.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}care_entry.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}care_act_entry.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}order_tracking.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}admin_entry.adoc[]

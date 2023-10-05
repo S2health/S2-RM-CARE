@@ -1,0 +1,44 @@
+=== Assessment Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Assessment*
+
+h|*Description*
+2+a|Entry type for an assessment or conclusion about the patient. Used for diagnoses, differential diagnoses, hypotheses, risk assessments, goals and plans.
+
+The inherited `_time_` field carries the time at which assertion, e.g. diagnosis was made. This is usually 'now' but may report a historical diagnosis or other assessment.
+
+TODO: do we need other meta-data for historical assertions?
+
+h|*Inherit*
+2+|`<<_care_entry_class,Care_entry>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*data*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+a|The data of this evaluation, in the form of a spatial data structure.
+
+h|*0..1*
+|*certainty*: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_code_class[Terminology_code^]`
+a|TODO:
+
+need to handle differential Dx, evidence strength
+
+h|*0..1*
+|*probability*: `link:/releases/BASE/{base_release}/foundation_types.html#_real_class[Real^]`
+a|Stated probability, reflecting professional opinion of provider.
+
+TODO: Potentially should be two attributes: stated_probability and statistical_probability, i.e. generated e.g. by evidence-based CDS calculation, statistical population analysis.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+a|Result = `_time_`.
+|===

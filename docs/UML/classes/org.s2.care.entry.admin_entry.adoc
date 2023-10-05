@@ -1,0 +1,33 @@
+=== Admin_entry Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Admin_entry*
+
+h|*Description*
+2+a|Entry subtype for administrative information, i.e. information about setting up the clinical process, but not itself clinically relevant. Archetypes will define contained information.
+
+Used for administrative details of admission, episode, ward location, discharge, appointment (if not stored in a practice management or appointments system).
+
+The inherited `_time_` field records the time at which administrative action took place.
+
+h|*Inherit*
+2+|`<<_entry_class,Entry>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*data*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+a|Content of the Admin Entry.
+The data of the Entry; modelled in archetypes.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
+
+h|*1..1*
+|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+a|Reult = `_time_`.
+|===

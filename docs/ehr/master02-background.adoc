@@ -1,0 +1,16 @@
+= Background
+This section describes the inputs to the modelling process that created the openEHR Information Model.
+
+== Requirements
+
+Requirements informing this specification:
+
+* the life-long EHR;
+* priority: Clinician / Patient interaction;
+* medico-legal faithfulness, traceability, audit-trailing;
+* technology & data format independent;
+* facilitate sharing of EHRs;
+* suitable for both primary & acute care;
+* secondary uses: education, research, population medicine;
+* open standard & software deliverables;
+

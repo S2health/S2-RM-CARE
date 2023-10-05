@@ -1,0 +1,170 @@
+= Orders and Actions
+
+== Overview
+
+The `Order` class is used to represent any formal order, i.e. request to perform actions for the care of a subject. It specifies actions in sufficient detail such that a competent performer(s) may execute the order.
+
+Actions actually executed subsequent to an Order are represented by instances of the `Action` class.
+
+The following UML diagram illustrates the `Order` and `Action` classes.
+
+[.text-center]
+.Order and Action
+image::{uml_diagrams_uri}/CARE-entry-order.svg[id=entry_order, align="center"]
+
+The following subsections describe Order and Action in some detail.
+
+== Design Concept
+
+The `Order` and `Action` classes are slightly adjusted from the openEHR `INSTRUCTION` and `ACTION` Reference Model classes, and support the same requirements and design principles described by the {openehr_rm_ehr}#_instruction_and_action[openEHR model^].
+
+== Model Overview
+
+An `Order` instance includes the narrative description of the order, and a list of `Activity` instances. It also includes all the attributes inherited from the `Care_entry` class, including subject, participations and so on.
+
+Most Orders will have only one Activity, describing a single kind of therapy or medication and its timing. Some will have more than one, usually variant forms of the original. Activity instances may be completely absent from an Order, in which case only the narrative will be present. This will typically occur with imported legacy data which itself has no structured representation of medications.
+
+The following figure illustrates the correspondence between Order and Activity structures, and Action objects that are created due to executing the Orders. Each Activity has a standard Order State Machine logically associated with it, indicated in blue. When any step in an Order Activity is executed within an ICT-supported environment, an `Action` instance describing what was done should be created and committed to the EHR. In some cases, ad hoc Actions are created even when there is no Order, such as by self-medicating patients and nurses reacting quickly to patient changes. For such Actions, there is always a notional Activity understood by the health professional.
+
+[.text-center]
+.Correspondence of Actions to Orders
+image::{diagrams_uri}/actions_and_orders.png[id=actions_and_orders, align="center", width=70%]
+
+All `Actions` include the inherited `Care_entry` attributes, along with the time of being performed, a description of what was performed, and an `State_transition` object indicating the state of the Activity (whether explicit in an Order or not). The current state of an Activity is thus found not in the `Activity` instance but in the most recent `Action` instance for that Activity.
+
+If the Action did correspond to an Order, it will also include an `Order_tracking` instance, which indicates which Activity of which Order was executed, including workflow execution details if relevant.
+
+Under this scheme, the state of each intervention happening to the patient can be ascertained by querying, regardless of whether explicit Orders exist. 
+
+Note particularly that Actions are often performed in a different provider location, or the home, rather than the provider organisation responsible for the Order. Action objects for a given Order can thus easily appear in multiple health record systems.
+
+== The Standard Order State Machine (ISM)
+
+When an intervention defined by an Activity is unfolding in a clinical context, EHR users want to know things such as the following:
+
+* what is the current status of an Order for the patient?
+* what is the current step in the Activity for the patient?
+* for a given patient, what Activities are planned, active, suspended, completed?
+* for the populations of patients, what is the state of a particular workflow, such as a recall, for each one?
+
+The approach chosen here to support such functionality is to define a standard Order state machine whose state transitions can be mapped to the steps of a specific care pathway, enabling it to be used as a descriptive device for indicating the state of any Activity. The status of an Order is determined algorithmically from the states of the constituent Activities, as described below. The state machine is illustrated below. 
+
+[.text-center]
+.openEHR standard Order State Machine
+image::{uml_diagrams_uri}/CARE-order_state_machine.svg[id=Order_state_machine, align="center"]
+
+This state machine is the result of long term experience with clinical workflows and act management systems. The states are as follows.
+
+[horizontal]
+INITIAL:: initial state, prior to planning activity (default starting state for computable representation of state machine).
+PLANNED:: the action has been described, but has not as yet been performed.
+POSTPONED:: the action has not been performed and will not without specific conditions being met. Specifically, events and conditions that would normally 'activate' the Order will be ignored, until a restore event occurs.
+SCHEDULED:: the action will be performed at some designated future time, and has been booked in a scheduling system.
+CANCELLED:: the action was defined, but was cancelled before being performed.
+ACTIVE:: the action is being performed according to its definition. The entire course of medication or therapy corresponds to this state.
+SUSPENDED:: the action was begun, but has been stopped temporarily, and will not be restarted until explicitly resumed.
+ABORTED:: the action began but was permanently terminated before normal completion.
+COMPLETED:: the action began and was completed normally.
+EXPIRED:: the time during which the action could have been relevant has expired; the action may have completed, been cancelled, or never occurred.
+
+States `CANCELLED`, `ABORTED` and `COMPLETED` are all terminal states. The `EXPIRED` state is a pseudo-terminal state, from which transitions are allowed to proceed to any of the true terminal states, due to information being received after the fact (such as a patient reporting that they did indeed finish a course of antibiotics). However it is likely in the EHR that Orders for many simple medications will finish in the `EXPIRED` state and remain there.
+
+The transitions are self-explanatory for the most part, however a few deserve comment. The `start` and `finish` events correspond to situations when the administration is not instantaneous, as is the situation with most medications. The `do` event is equivalent to the `finish` event occurring immediately after the `start` event, corresponding to an instantaneous administration, completion of which puts the Activity in the completed state. A single shot vaccination or patient taking a single tablet are typical examples. The states `PLANNED`, `POSTPONED`, `ACTIVE`, `SUSPENDED`, each have a `xxx_step` transition which return the state machine to the same state. Workflow steps that cause no transition are mapped to these events and thus leave the Order in the same state. An example is a medication review, which will leave the medication in the `ACTIVE` state, if the physician chooses to continue.
+
+In the future, if delegation of an Order to another Order is required, nesting of a new Order state machine within the Active state of a previous one might need to be supported.
+
+The state machine states and transition names are defined in the openEHR terminology groups "Order states" and "Order transitions" respectively.
+
+== Order Aggregate State
+
+Each Activity within an Order constitutes a clinically identifiable medication or therapy of some kind, while the Order usually corresponds to a grouping or combination of therapies designed to treat an overall problem. Accordingly, the Order can be seen as having an aggregate state derived from the states of the Activities, as shown in the figure below. The rules for entering each aggregate state are indicated in terms of the states of the constituent Activities.
+
+[.text-center]
+.Aggregate Order state
+image::{diagrams_uri}/aggregate_order_state.png[id=aggregate_order_state, align="center", width=70%]
+
+This state machine is not formally modelled or coded in openEHR, although it may be useful to do so within an application.
+
+== Careflow Process to State Machine Mapping
+
+From a health professional's point of view, a healthcare workflow, or 'careflow', consists of steps and events designed to meet one or more goals. The steps are highly dependent on the particular kind of workflow, and will usually be named in terms familiar to the relevant kinds of clinical professionals, such as "prescribe", "book", "suspend" and so on (note that some of these names may be the same as ISM transitions, but may or may not indicate the same thing). However, the need of users of health information is to know what state the execution of an Order is in, regardless of which particular careflow step might have just been executed. This is achieved by defining the mapping between the steps of a particular careflow to the states of the ISM in an Action archetype. When each Action corresponding to a particular Order Activity is performed, it will be known both which careflow step it corresponds to and which ISM state the Activity is now in. The following table provides an example of the mapping for a UK GP medication order workflow.
+
+[cols="1,2", options="header", width=50, align="center"]
+|===
+|UK GP +
+ Workflow Step
+|State machine transition
+
+|Start      |initiate (initial -> planned)
+|Prescribe  |plan_step (planned -> planned)
+|Dispense   |start (planned -> active)
+|Administer |active_step (active -> active)
+|Request    |Renewal active_step (active -> active)
+|Re-issue   |active_step (active -> active)
+|Review     |active_step (active -> active)
+|Finish     |finish (active -> completed)
+|Cancel     |abort (active -> aborted)
+
+|===
+
+Mappings like this are specified in the `Action` archetypes for the Order. When an `Action` instance is committed to the EHR, the `State_transition` object records the step performed and the ISM state and transition. The careflow step must be one of the steps from the corresponding Order.
+
+An optional `_reason_` property (of type `List<Dv_text>`) is provided in the `State_transition` class in order to enable one or more specific reasons for the step having occurred to be recorded.
+
+The following section provides details of how archetypes are used to represent such mappings.
+
+== Relationship to Archetypes
+
+Much of the semantics of particular Orders and Actions derive from archetypes. Currently, archetypes are used to define two groups of Order semantics. The first is the descriptions of activities that are defined in Orders (`Activity._description_`) and executed in Actions (`Action._description_`). These descriptions are always of the same form for any given Order, and it is highly desirable to have the same archetype component for both. An example is where the description is of a medication, commonly consisting of a tree or list of ten or more elements describing the drug, its name, form, dose, route and so on. The same information structure is needed in the Order, where it defines what is to be administered, and in the Action, where it describes what has been administered. In any particular instance, there may be small differences in what was administered (e.g. dose or route are modified) even though the archetype model will be the same for both.
+
+In terms of archetypes therefore, definition of two `Activities` in an `Order` (see example illustrated below) will actually create separate archetypes of the Activity structures, each of which will be one of the subtypes of `Cluster` (since this is the type of `Activity._description_` and `Action._description_`). The archetypes will then be used by both the `Order` archetype and the `Action` archetype, via the archetype slot mechanism (i.e. the standard way of composing archetypes from other archetypes; see `use_archetype` statements in the figure below).
+
+[.text-center]
+.Order and Action Archetypes
+image::{diagrams_uri}/order_and_action_archetypes.png[id=Order_and_action_archetypes, align="center", width=70%]
+
+The second category of archetypable semantics is the correspondence between steps in a healthcare business process and the standard Order state machine, as described above. This mapping is an archetype of the `_ism_transition_` attribute of an `Action` attribute, and therefore defines part of the `Action` archetype. <<Order_and_action_archetypes>> shows how logical archetype elements in the archetyped editor environment corresponds to the resulting archetypes.
+
+Consequently, the set of archetypes defining the clinical semantics of a specific kind of intervention will normally consists of archetypes of `Order`, `Action` and potentially component archetypes of the `Cluster` classes.
+
+== Class Descriptions
+
+include::{uml_export_dir}/classes/{pkg}order.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}activity.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}action.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}state_transition.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}order_execution_state.adoc[]
+
+include::{uml_export_dir}/classes/{pkg}order_execution_transition.adoc[]
+
+== Instance Examples
+
+=== Chained Medication Order
+
+Often, a medication order for one drug consists of segments in which one or more of the administration details of route, form, frequency, dose etc. is changed. In hospitals, intravenous antibiotics and pain relief drugs may be followed by a tablet form of the same drug to be taken orally. Other examples are common in general practice, such as the following order:
+
+* trade name = Panafcortelone; generic name = Prednisolone; form = tablets; dose = 25mg; route = oral; freq = bd x 3 days; od x 2 days.
+
+The figure below illustrates the instance structure for this Order. Note that the timing attribute of the `Activity` instance is shown in human-readable form; in reality it will be a GTS string or similar (see Timing Specification section of openEHR Data Types IM).
+
+[.text-center]
+.Chained medication order
+image::{diagrams_uri}/chained_medication_order.png[id=chained_medication_order, align="center", width=80%]
+
+=== Multi-drug Therapy
+
+A common regime for treating duodenal ulcer and related complaints is using Losec with other drugs, such as in the following combination:
+
+* Losec 40 mg od x 4w or until no symptoms
+* amoxicillin 500 mg 3td x 7d
+* metronidizole 400 mg 3td x 7d
+
+The Order for this therapy is illustrated below.
+
+[.text-center]
+.Multi-drug therapy Order
+image::{diagrams_uri}/multi_drug_therapy_order.png[id=multi_drug_therapy_order, align="center", width=80%]
