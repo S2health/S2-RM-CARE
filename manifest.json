@@ -6,7 +6,7 @@
     "specifications": [
         {
             "id": "ehr",
-            "title": "EHR Model",
+            "title": "S2 EHR Model",
             "title_short": "EHR",
             "description": "S2 EHR Information Model specification",
             "micro_summary": "Top-level health record model",
@@ -22,7 +22,7 @@
         },
         {
             "id": "entry",
-            "title": "Entry Model",
+            "title": "S2 Entry Model",
             "title_short": "Entry",
             "description": "S2 Entry Model",
             "micro_summary": "Model of clinical statements",

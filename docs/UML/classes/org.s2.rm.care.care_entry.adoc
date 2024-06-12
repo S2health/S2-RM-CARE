@@ -16,7 +16,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*qualifiers*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+|*qualifiers*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
 a|Description of qualifying details that do not change the interpretation of the focal data. These typically include:
 
 * the general method (i.e. how) the information in this entry was arrived at. For Observations, this is a description of the method. For Assertion, how the evaluation was arrived at. For Orders, how to execute;
@@ -24,7 +24,7 @@ a|Description of qualifying details that do not change the interpretation of the
 *
 
 h|*0..1*
-|*guideline_ids*: `List<link:/releases/BASE/{base_release}/foundation_types.html#_uri_class[Uri^]>`
+|*guideline_ids*: `List<link:/releases/BASE/{base_release}/base.html#_uri_class[Uri^]>`
 a|Optional external identifier of guideline creating this Entry if relevant.
 
 TODO: probably should include a relationship term describing significance of the guideline to this Entry.

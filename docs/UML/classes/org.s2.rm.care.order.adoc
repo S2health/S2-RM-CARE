@@ -20,11 +20,11 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*narrative*: `link:/releases/BASE/{base_release}/data_types.html#_text_class[Text^]`
+|*narrative*: `link:/releases/BASE/{base_release}/base.html#_text_class[Text^]`
 a|Mandatory human-readable version of what the Instruction is about.
 
 h|*0..1*
-|*expiry_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]`
+|*expiry_time*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
 a|Optional expiry date/time to assist determination of when an Instruction can be assumed to have expired. This helps prevent false listing of Instructions as Active when they clearly must have been terminated in some way or other.
 
 h|*0..1*

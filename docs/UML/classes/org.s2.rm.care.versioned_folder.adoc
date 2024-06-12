@@ -9,6 +9,6 @@ h|*Description*
 2+a|A version-controlled hierarchy of `FOLDERs` giving the effect of a directory.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/change_control.html#_versioned_object_class[Versioned_object^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_versioned_object_class[Versioned_object^]`
 
 |===

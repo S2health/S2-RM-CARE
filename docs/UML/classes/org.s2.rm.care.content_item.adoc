@@ -9,6 +9,6 @@ h|*Description*
 2+a|Abstract ancestor of all concrete content types.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base_types.html#_locatable_class[Locatable^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
 
 |===

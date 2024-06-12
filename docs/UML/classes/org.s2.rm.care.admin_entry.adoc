@@ -20,7 +20,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*data*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+|*data*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
 a|Content of the Admin Entry.
 The data of the Entry; modelled in archetypes.
 h|*Functions*
@@ -28,6 +28,6 @@ h|*Functions*
 ^h|*Meaning*
 
 h|*1..1*
-|*effective_time* (): `link:/releases/BASE/{base_release}/foundation_types.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]>`
+|*effective_time* (): `link:/releases/BASE/{base_release}/base.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]>`
 a|Reult = `_time_`.
 |===

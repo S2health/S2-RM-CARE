@@ -1,4 +1,4 @@
-:spec_title: EHR Model
+:spec_title: S2 EHR Model
 :copyright_year: 2023
 :spec_status: STABLE
 :keywords: EHR, EMR, reference model, S2

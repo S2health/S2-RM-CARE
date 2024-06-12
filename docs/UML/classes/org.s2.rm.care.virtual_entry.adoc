@@ -9,7 +9,7 @@ h|*Description*
 2+a|
 
 h|*Inherit*
-2+|`link:/releases/CARE/{care_release}/ehr.html#_content_item_class[Content_item^]`
+2+|`<<_content_item_class,Content_item>>`
 
 h|*Attributes*
 ^h|*Signature*

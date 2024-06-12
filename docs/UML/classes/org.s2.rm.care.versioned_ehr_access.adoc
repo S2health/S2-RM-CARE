@@ -9,6 +9,6 @@ h|*Description*
 2+a|Version container for `EHR_ACCESS` instance.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/change_control.html#_versioned_object_class[Versioned_object^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_versioned_object_class[Versioned_object^]`
 
 |===

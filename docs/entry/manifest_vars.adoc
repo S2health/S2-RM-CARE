@@ -1,4 +1,4 @@
-:spec_title: Entry Model
+:spec_title: S2 Entry Model
 :copyright_year: 2023
 :spec_status: TRIAL
 :keywords: EHR, EMR, reference model, S2

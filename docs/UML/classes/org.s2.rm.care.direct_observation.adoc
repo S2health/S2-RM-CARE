@@ -18,18 +18,18 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*state_series*: `List<link:/releases/BASE/{base_release}/patterns.html#_event_class[Event^]>`
+|*state_series*: `List<link:/releases/BASE/{base_release}/base.html#_event_class[Event^]>`
 a|Optional recording of the state of subject of this observation during the observation process, in the form of a separate history of values which may be of any complexity. State may also be recorded within the History of the data attribute.
 
 h|*0..1*
-|*data_series*: `List<link:/releases/BASE/{base_release}/patterns.html#_event_class[Event^]>`
+|*data_series*: `List<link:/releases/BASE/{base_release}/base.html#_event_class[Event^]>`
 a|The data of this observation, in the form of a history of values which may be of any complexity.
 
 h|*0..1*
-|*total_duration*: `link:/releases/BASE/{base_release}/foundation_types.html#_duration_class[Duration^]`
+|*total_duration*: `link:/releases/BASE/{base_release}/base.html#_duration_class[Duration^]`
 a|Duration of the entire History; either corresponds to the duration of all the events, and/or the duration represented by the summary, if it exists.
 
 h|*0..1*
-|*trend*: `link:/releases/BASE/{base_release}/base_types.html#_trend_kind_enumeration[Trend_kind^]`
+|*trend*: `link:/releases/BASE/{base_release}/base.html#_trend_kind_enumeration[Trend_kind^]`
 a|Optional indicator of this value with respect to previous, in a series.
 |===

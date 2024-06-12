@@ -9,42 +9,42 @@ h|*Description*
 2+a|Documents the context information of a healthcare event involving the subject of care and the health system. The context information recorded here is independent of the attributes recorded in the version audit, which document the  system interaction context, i.e. the context of a user interacting with the health record system. Healthcare events include patient contacts, and any other business activity, such as pathology investigations which take place on behalf of the patient.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base_types.html#_locatable_class[Locatable^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*1..1*
-|*start_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]`
+|*start_time*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
 a|Start time of the clinical session or other kind of event during which a provider performs a service of any kind for the patient.
 
 h|*0..1*
-|*end_time*: `link:/releases/BASE/{base_release}/foundation_types.html#_date_time_class[Date_time^]`
+|*end_time*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
 a|Optional end time of the clinical session.
 
-h|*1..1*
-|*setting*: `link:/releases/BASE/{base_release}/foundation_types.html#_terminology_term_class[Terminology_term^]`
+h|*0..1*
+|*setting*: `link:/releases/BASE/{base_release}/base.html#_terminology_term_class[Terminology_term^]`
 a|The setting in which the clinical session took place. Coded using the openEHR Terminology,  setting  group.
 
 TODO: rarely used in Archetypes - needed in CEMs?
 
 h|*0..1*
-|*location*: `link:/releases/BASE/{base_release}/foundation_types.html#_string_class[String^]`
+|*location*: `link:/releases/BASE/{base_release}/base.html#_string_class[String^]`
 a|The actual location where the session occurred, e.g. 'microbiology lab 2', 'home', 'ward A3'  and so on.
 
 TODO: possibly rename? This only refers to a room.
 
 h|*0..1*
-|*other_context*: `List<link:/releases/BASE/{base_release}/patterns.html#_item_class[Item^]>`
+|*other_context*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
 a|Other optional context which will be archetyped.
 
 h|*0..1*
-|*health_care_facility*: `link:/releases/BASE/{base_release}/patterns.html#_party_identified_class[Party_identified^]`
+|*health_care_facility*: `link:/releases/BASE/{base_release}/base.html#_party_identified_class[Party_identified^]`
 a|The health care facility under whose care the event took place. This is the most specific workgroup or delivery unit within a care delivery enterprise that has an official identifier in the health system, and can be used to ensure medico-legal accountability.
 
 h|*0..1*
-|*participations*: `List<link:/releases/BASE/{base_release}/patterns.html#_participation_class[Participation^]>`
+|*participations*: `List<link:/releases/BASE/{base_release}/base.html#_participation_class[Participation^]>`
 a|Parties involved in the healthcare event. These would normally include the physician(s) and often the patient (but not the latter if the clinical session is a pathology test for example).
 
 h|*Invariants*

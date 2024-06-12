@@ -12,14 +12,14 @@ NOTE: It is strongly recommended that the inherited attribute `_uid_` be populat
 For example, the `ORIGINAL_VERSION.uid` `87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2`  would be copied to the `_uid_` field of the top `FOLDER` object.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base_types.html#_locatable_class[Locatable^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*items*: `List<link:/releases/BASE/{base_release}/base_types.html#_object_ref_class[Object_ref^]>`
+|*items*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
 a|The list of references to other (usually) versioned objects logically in this folder.
 
 h|*0..1*
@@ -27,7 +27,7 @@ h|*0..1*
 a|Sub-folders of this `FOLDER`.
 
 h|*0..1*
-|*details*: `link:/releases/BASE/{base_release}/patterns.html#_cluster_class[Cluster^]`
+|*details*: `link:/releases/BASE/{base_release}/base.html#_node_class[Node^]`
 a|Archetypable meta-data for `FOLDER`.
 
 h|*Invariants*
