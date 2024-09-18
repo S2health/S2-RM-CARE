@@ -1422,7 +1422,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/base.html#_party_self_class" target="_blank" rel="noopener">Party_self</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The subject of this EHR. The <code><em>external_ref</em></code> attribute can be used to contain a direct reference to the subject in a demographic or identity service. Alternatively, the association between patients and their records may be done elsewhere for security reasons.</p>
 </div></div></td>
@@ -1658,7 +1658,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 <div class="sect2">
 <h3 id="_overview_4"><a class="anchor" href="#_overview_4"></a>6.1. Overview</h3>
 <div class="paragraph">
-<p>The Composition is the primary 'data container' in the openEHR EHR and is the root point of clinical content. Instances of the <code>Composition</code> class can be considered as self-standing data aggregations, or documents in a document-oriented system. The key information in a <code>Composition</code> is found in its <code><em>content</em></code>, <code><em>context</em></code>, and <code><em>composer</em></code> attributes. The UML diagram below illustrates the <code>composition</code> package.</p>
+<p>The Composition is the primary 'data container' in the openEHR EHR and is the root point of clinical content. Instances of the <code>Composition</code> class can be considered as self-standing data aggregations, or documents in a document-oriented system. The key information in a <code>Composition</code> is found in its <code><em>content</em></code>, <code><em>context</em></code>, and <code><em>author</em></code> attributes. The UML diagram below illustrates the <code>composition</code> package.</p>
 </div>
 <div id="care_composition" class="imageblock text-center text-center">
 <div class="content">
@@ -1687,14 +1687,14 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 <div class="sect3">
 <h4 id="_composer"><a class="anchor" href="#_composer"></a>6.2.2. Composer</h4>
 <div class="paragraph">
-<p>The composer is the person who was primarily responsible for the content of the Composition. This is the identifier that should appear on the screen. It could be a junior doctor who did all the work, even if not legally responsible, or it could be a nurse, even if later attested by a more senior clinician; it will be the patient in the case of patient-entered data. It may or may not be the person who entered and committed the data. it may also be a software agent. This attribute is mandatory, since all content must be been created by some person or agent.</p>
+<p>The author is the person who was responsible for the content of the Composition. This is the identifier that should appear on the screen. It could be a junior doctor who did all the work, even if not legally responsible, or it could be a nurse, even if later attested by a more senior clinician; it will be the patient in the case of patient-entered data. It may or may not be the person who entered and committed the data. it may also be a software agent. This attribute is mandatory, since all content must be been created by some person or agent.</p>
 </div>
 <div class="paragraph">
-<p>Since in many cases Compositions will be composed and committed by the same person, it might seem that two identifiers <code>Composition</code>.<code><em>composer</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code> (which are both of type <code>Party_proxy</code>) will be identical. In fact, this will probably not be the case, because the kind of identifier to represent the composer will be a demographic identifier, e.g. "RN Jane Williams", "RN
+<p>Since in many cases Compositions will be composed and committed by the same person, it might seem that two identifiers <code>Composition</code>.<code><em>author</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code> (which are both of type <code>Party_proxy</code>) will be identical. In fact, this will probably not be the case, because the kind of identifier to represent the composer will be a demographic identifier, e.g. "RN Jane Williams", "RN
 12345678", whereas the identifier in the audit details will usually be a computer system user identifier, e.g. "<a href="mailto:jane.williams@westmead.health.au">jane.williams@westmead.health.au</a>". This difference highlights the different purposes of these attributes: the first exists to identify the clinical agent who created the information, while the second exists to identify the logged-in user who committed it to the system.</p>
 </div>
 <div class="paragraph">
-<p>In the situation of patient-entered data, the special "self" <code>Party_proxy</code> instance (see Common IM generic package) is used for both <code>Composition</code>.<code><em>composer</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code>.</p>
+<p>In the situation of patient-entered data, the special "self" <code>Party_proxy</code> instance (see Common IM generic package) is used for both <code>Composition.<em>author</em></code> and <code>Version</code>.<code><em>audit</em></code>.<code><em>committer</em></code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1780,10 +1780,10 @@ Persistent Compositions may optionally have an Event context. In openEHR release
 <div class="sect3">
 <h4 id="_participations"><a class="anchor" href="#_participations"></a>6.2.6. Participations</h4>
 <div class="paragraph">
-<p>Is part of the Event context, the participations attribute can be used to describe who participated, and how. Each participation object describes the "mode" of participation as well, such as direct presence, video-conference and so on. In many cases such information is of no interest, since the subject of any Entry is known (<code>Entry</code>.<code><em>subject</em></code>) and the clinician will be known (<code>Composition</code>.<code><em>composer</em></code>), and the mode of communication is assumed to be a personal encounter. The participations attribute is therefore used when it is desired to record further details of how the patient and or physician interacted (e.g. over the internet), and/or other participants, such as family, nurses, specialists etc.</p>
+<p>Is part of the Event context, the participations attribute can be used to describe who participated, and how. Each participation object describes the "mode" of participation as well, such as direct presence, video-conference and so on. In many cases such information is of no interest, since the subject of any Entry is known (<code>Entry.<em>subject</em></code>) and the clinician will be known (<code>Composition.<em>author</em></code>), and the mode of communication is assumed to be a personal encounter. The participations attribute is therefore used when it is desired to record further details of how the patient and or physician interacted (e.g. over the internet), and/or other participants, such as family, nurses, specialists etc.</p>
 </div>
 <div class="paragraph">
-<p>There are no general rules about who is included as a participant. For example, while there will be a patient participation during a GP visit, there will be no such participation recorded when the clinical event is a tissue test in a laboratory. Conversely, a patient might record some observations and drug self-administration in the record, in which case the composer will be the patient, and there will be no clinician participation. Consequently, the use of participations will mostly be archetype-driven.</p>
+<p>There are no general rules about who is included as a participant. For example, while there will be a patient participation during a GP visit, there will be no such participation recorded when the clinical event is a tissue test in a laboratory. Conversely, a patient might record some observations and drug self-administration in the record, in which case the author will be the patient, and there will be no clinician participation. Consequently, the use of participations will mostly be archetype-driven.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1872,7 +1872,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1925,7 +1925,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>composer</strong>: <code><a href="/releases/BASE/latest/base.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The person primarily responsible for the content of the Composition (but not necessarily its committal into the EHR system). This is the identifier which should appear on the screen. It may or may not be the person who entered the data. When it is the patient, the special self  instance of <code>PARTY_PROXY</code> will be used.</p>
 </div>
@@ -2049,14 +2049,14 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_context</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>encounter</strong>: <code><a href="/releases/BASE/latest/base.html#_rwe_id_ref_class" target="_blank" rel="noopener">Rwe_id_ref</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Other optional context which will be archetyped.</p>
+<p>Reference to encounter for which this Composition was created.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>health_care_facility</strong>: <code><a href="/releases/BASE/latest/base.html#_party_identified_class" target="_blank" rel="noopener">Party_identified</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>health_care_facility</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The health care facility under whose care the event took place. This is the most specific workgroup or delivery unit within a care delivery enterprise that has an official identifier in the health system, and can be used to ensure medico-legal accountability.</p>
 </div></div></td>
@@ -2066,6 +2066,13 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>participations</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Parties involved in the healthcare event. These would normally include the physician(s) and often the patient (but not the latter if the clinical session is a pathology test for example).</p>
+</div></div></td>
+</tr>
+<tr>
+<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_context</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Other optional context which will be archetyped.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2110,7 +2117,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
 </tr>
 </tbody>
 </table>

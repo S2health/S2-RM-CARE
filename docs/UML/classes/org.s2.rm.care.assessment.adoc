@@ -30,7 +30,7 @@ a|TODO:
 need to handle differential Dx, evidence strength
 
 h|*0..1*
-|*probability*: `link:/releases/BASE/{base_release}/base.html#_real_class[Real^]`
+|*probability*: `link:/releases/BASE/{base_release}/base.html#_decimal_class[Decimal^]`
 a|Stated probability, reflecting professional opinion of provider.
 
 TODO: Potentially should be two attributes: stated_probability and statistical_probability, i.e. generated e.g. by evidence-based CDS calculation, statistical population analysis.

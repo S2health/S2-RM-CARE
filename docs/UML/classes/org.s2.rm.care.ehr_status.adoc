@@ -19,7 +19,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*subject*: `link:/releases/BASE/{base_release}/base.html#_party_self_class[Party_self^]`
+|*subject*: `link:/releases/BASE/{base_release}/base.html#_entity_ref_node_class[Entity_ref_node^]`
 a|The subject of this EHR. The `_external_ref_` attribute can be used to contain a direct reference to the subject in a demographic or identity service. Alternatively, the association between patients and their records may be done elsewhere for security reasons.
 
 h|*1..1*

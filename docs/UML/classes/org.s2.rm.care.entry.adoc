@@ -34,7 +34,7 @@ h|*1..1*
 a|Mandatory indicator of the localised language in which this Entry is written. Coded from openEHR Code Set  languages .
 
 h|*1..1*
-|*subject*: `link:/releases/BASE/{base_release}/base.html#_party_proxy_class[Party_proxy^]`
+|*subject*: `link:/releases/BASE/{base_release}/base.html#_entity_ref_node_class[Entity_ref_node^]`
 a|Id of human subject of this `Entry`, e.g.:
 
 * organ donor
@@ -43,7 +43,7 @@ a|Id of human subject of this `Entry`, e.g.:
 * another clinically relevant person.
 
 h|*0..1*
-|*reporter*: `link:/releases/BASE/{base_release}/base.html#_party_proxy_class[Party_proxy^]`
+|*reporter*: `link:/releases/BASE/{base_release}/base.html#_participation_class[Participation^]`
 a|Optional identification of reporter of the information in this `Entry`, which might be:
 
 * the patient

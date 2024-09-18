@@ -19,11 +19,11 @@ The other properties defined in Entry are as follows:
 * `_authorization_actions_`: authorizations for this Entry.
 * `_other_participations_`: other participations for this Entry, e.g. a nurse who administered a drug recorded in an Action.
 
-The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the `_composer_` and `_other_participations_` of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:
+The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the `_author_` and `_other_participations_` of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:
 
 * the information reporter is specifically accountable for the Entry data (it is their opinion, their decision, they carried out the test etc.) - they might also need to attest it;
 * the information reporter is an authoritative source, or has provided information from a unique perspective (e.g. the view of a spouse/ carer on the patient's functional health status or mental state);
-* the information reporter's view might not reflect the consensus (e.g. a patient opinion not held by the composer, a difference between father and mother on a description of a child's sleeping pattern);
+* the information reporter's view might not reflect the consensus (e.g. a patient opinion not held by the author, a difference between father and mother on a description of a child's sleeping pattern);
 * the information reporter is not one of the Composition-level participants (e.g. an outside information reporter such as someone telephoned during the encounter to provide a lab result, or an automated measurement device, or a decision support software component).
 
 The `_authorization_actions_` attribute is used to record any authorization action, generally signing or counter-signing. Each such action is assumed to advance the Entry through a lifecycle, recorded in the Entry attribute `_lifecycle_state_`, and defined by the Entry State Machine, which is illustrated below.

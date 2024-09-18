@@ -2,7 +2,7 @@
 
 == Overview
 
-The Composition is the primary 'data container' in the openEHR EHR and is the root point of clinical content. Instances of the `Composition` class can be considered as self-standing data aggregations, or documents in a document-oriented system. The key information in a `Composition` is found in its `_content_`, `_context_`, and `_composer_` attributes. The UML diagram below illustrates the `composition` package.
+The Composition is the primary 'data container' in the openEHR EHR and is the root point of clinical content. Instances of the `Composition` class can be considered as self-standing data aggregations, or documents in a document-oriented system. The key information in a `Composition` is found in its `_content_`, `_context_`, and `_author_` attributes. The UML diagram below illustrates the `composition` package.
 
 [.text-center]
 .rm.composition package
@@ -22,12 +22,12 @@ On the right-hand side of <<ehr_recording_model>>, the EHR recording environment
 
 === Composer
 
-The composer is the person who was primarily responsible for the content of the Composition. This is the identifier that should appear on the screen. It could be a junior doctor who did all the work, even if not legally responsible, or it could be a nurse, even if later attested by a more senior clinician; it will be the patient in the case of patient-entered data. It may or may not be the person who entered and committed the data. it may also be a software agent. This attribute is mandatory, since all content must be been created by some person or agent.
+The author is the person who was responsible for the content of the Composition. This is the identifier that should appear on the screen. It could be a junior doctor who did all the work, even if not legally responsible, or it could be a nurse, even if later attested by a more senior clinician; it will be the patient in the case of patient-entered data. It may or may not be the person who entered and committed the data. it may also be a software agent. This attribute is mandatory, since all content must be been created by some person or agent.
 
-Since in many cases Compositions will be composed and committed by the same person, it might seem that two identifiers `Composition`.`_composer_` and `Version`.`_audit_`.`_committer_` (which are both of type `Party_proxy`) will be identical. In fact, this will probably not be the case, because the kind of identifier to represent the composer will be a demographic identifier, e.g. "RN Jane Williams", "RN
+Since in many cases Compositions will be composed and committed by the same person, it might seem that two identifiers `Composition`.`_author_` and `Version`.`_audit_`.`_committer_` (which are both of type `Party_proxy`) will be identical. In fact, this will probably not be the case, because the kind of identifier to represent the composer will be a demographic identifier, e.g. "RN Jane Williams", "RN
 12345678", whereas the identifier in the audit details will usually be a computer system user identifier, e.g. "jane.williams@westmead.health.au". This difference highlights the different purposes of these attributes: the first exists to identify the clinical agent who created the information, while the second exists to identify the logged-in user who committed it to the system.
 
-In the situation of patient-entered data, the special "self" `Party_proxy` instance (see Common IM generic package) is used for both `Composition`.`_composer_` and `Version`.`_audit_`.`_committer_`.
+In the situation of patient-entered data, the special "self" `Party_proxy` instance (see Common IM generic package) is used for both `Composition._author_` and `Version`.`_audit_`.`_committer_`.
 
 === Event Context
 
@@ -68,9 +68,9 @@ Event context is used as described above even if the additions are made to the E
 
 === Participations
 
-Is part of the Event context, the participations attribute can be used to describe who participated, and how. Each participation object describes the "mode" of participation as well, such as direct presence, video-conference and so on. In many cases such information is of no interest, since the subject of any Entry is known (`Entry`.`_subject_`) and the clinician will be known (`Composition`.`_composer_`), and the mode of communication is assumed to be a personal encounter. The participations attribute is therefore used when it is desired to record further details of how the patient and or physician interacted (e.g. over the internet), and/or other participants, such as family, nurses, specialists etc.
+Is part of the Event context, the participations attribute can be used to describe who participated, and how. Each participation object describes the "mode" of participation as well, such as direct presence, video-conference and so on. In many cases such information is of no interest, since the subject of any Entry is known (`Entry._subject_`) and the clinician will be known (`Composition._author_`), and the mode of communication is assumed to be a personal encounter. The participations attribute is therefore used when it is desired to record further details of how the patient and or physician interacted (e.g. over the internet), and/or other participants, such as family, nurses, specialists etc.
 
-There are no general rules about who is included as a participant. For example, while there will be a patient participation during a GP visit, there will be no such participation recorded when the clinical event is a tissue test in a laboratory. Conversely, a patient might record some observations and drug self-administration in the record, in which case the composer will be the patient, and there will be no clinician participation. Consequently, the use of participations will mostly be archetype-driven.
+There are no general rules about who is included as a participant. For example, while there will be a patient participation during a GP visit, there will be no such participation recorded when the clinical event is a tissue test in a laboratory. Conversely, a patient might record some observations and drug self-administration in the record, in which case the author will be the patient, and there will be no clinician participation. Consequently, the use of participations will mostly be archetype-driven.
 
 === Healthcare Facility, Location and Setting
 

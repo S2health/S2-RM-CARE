@@ -12,7 +12,7 @@ NOTE: It is strongly recommended that the inherited attribute `_uid_` be populat
 For example, the `ORIGINAL_VERSION.uid` `87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2` would be copied to the `_uid_` field of the Composition.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
+2+|`link:/releases/BASE/{base_release}/base.html#_info_item_class[Info_item^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -41,7 +41,7 @@ h|*0..1*
 a|The clinical session context of this Composition, i.e. the contextual attributes of the clinical session.
 
 h|*1..1*
-|*composer*: `link:/releases/BASE/{base_release}/base.html#_party_proxy_class[Party_proxy^]`
+|*author*: `link:/releases/BASE/{base_release}/base.html#_entity_ref_node_class[Entity_ref_node^]`
 a|The person primarily responsible for the content of the Composition (but not necessarily its committal into the EHR system). This is the identifier which should appear on the screen. It may or may not be the person who entered the data. When it is the patient, the special self  instance of `PARTY_PROXY` will be used.
 
 TODO: could be renamed to more clearly indicate 'person responsible for the content', usually the legally responsible clinician.

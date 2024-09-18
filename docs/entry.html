@@ -414,7 +414,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the <code><em>composer</em></code> and <code><em>other_participations</em></code> of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:</p>
+<p>The information reporter is optional, and in many cases will not be recorded, since it will be obvious from the <code><em>author</em></code> and <code><em>other_participations</em></code> of the enclosing Composition. It is expected to be used only when the composer of the Composition really needs to specify the origin of specific statements, such as in the following circumstances:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -425,7 +425,7 @@
 <p>the information reporter is an authoritative source, or has provided information from a unique perspective (e.g. the view of a spouse/ carer on the patient&#8217;s functional health status or mental state);</p>
 </li>
 <li>
-<p>the information reporter&#8217;s view might not reflect the consensus (e.g. a patient opinion not held by the composer, a difference between father and mother on a description of a child&#8217;s sleeping pattern);</p>
+<p>the information reporter&#8217;s view might not reflect the consensus (e.g. a patient opinion not held by the author, a difference between father and mother on a description of a child&#8217;s sleeping pattern);</p>
 </li>
 <li>
 <p>the information reporter is not one of the Composition-level participants (e.g. an outside information reporter such as someone telephoned during the encounter to provide a lab result, or an automated measurement device, or a decision support software component).</p>
@@ -551,7 +551,7 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/base.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Id of human subject of this <code>Entry</code>, e.g.:</p>
 </div>
@@ -574,7 +574,7 @@
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reporter</strong>: <code><a href="/releases/BASE/latest/base.html#_party_proxy_class" target="_blank" rel="noopener">Party_proxy</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>reporter</strong>: <code><a href="/releases/BASE/latest/base.html#_participation_class" target="_blank" rel="noopener">Participation</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional identification of reporter of the information in this <code>Entry</code>, which might be:</p>
 </div>
@@ -1564,7 +1564,7 @@ The data of the Entry; modelled in archetypes.</p>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>probability</strong>: <code><a href="/releases/BASE/latest/base.html#_real_class" target="_blank" rel="noopener">Real</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>probability</strong>: <code><a href="/releases/BASE/latest/base.html#_decimal_class" target="_blank" rel="noopener">Decimal</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Stated probability, reflecting professional opinion of provider.</p>
 </div>
