@@ -8,16 +8,16 @@
 
 |[[latest_issue]]0.8.5
 |{spec_tickets}/SBASE-1[SBASE-1^]. Add encounter ref to `Event_context`; +
-{spec_tickets}/SBASE-23[SBASE-23^]. Change Event_context health_care_facility and author type to Entity_ref_node
+{spec_tickets}/SBASE-23[SBASE-23^]. Change `Event_context.health_care_facility` and author type to `Entity_ref_node`
 |J Coyle, +
 N Davis, +
 S Huff, +
 T Beale
 |[[latest_issue_date]]23 Sep 2024
 
-|[[latest_issue]]0.1.0
+|0.1.0
 |Initial Writing: based on openEHR EHR Information Model
 |T Beale
-|[[latest_issue_date]]10 Apr 2023
+|10 Apr 2023
 
 |===
