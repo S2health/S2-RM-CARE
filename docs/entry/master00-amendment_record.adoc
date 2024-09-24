@@ -4,6 +4,8 @@
 |===
 |Issue|Details|Raiser|Completed
 
+4+^h|*BASE Release 0.8.5*
+
 |[[latest_issue]]0.1.0
 |Initial Writing: based on openEHR EHR Information Model
 |T Beale
