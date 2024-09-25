@@ -36,7 +36,7 @@ a|The actual location where the session occurred, e.g. 'microbiology lab 2', 'ho
 TODO: possibly rename? This only refers to a room.
 
 h|*0..1*
-|*encounter*: `link:/releases/BASE/{base_release}/base.html#_rwe_id_ref_class[Rwe_id_ref^]`
+|*encounter*: `link:/releases/BASE/{base_release}/base.html#_entity_ref_node_class[Entity_ref_node^]`
 a|Reference to encounter for which this Composition was created.
 
 h|*0..1*
