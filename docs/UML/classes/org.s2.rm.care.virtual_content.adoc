@@ -20,18 +20,18 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*commit_context*: `link:/releases/BASE/{base_release}/base.html#_locatable_ref_class[Locatable_ref^]`
+|*commit_context*: `@@`
 a|Reference to target's commit context - a Version.
 
 h|*1..1*
-|*event_context*: `link:/releases/BASE/{base_release}/base.html#_locatable_ref_class[Locatable_ref^]`
+|*event_context*: `@@`
 a|Reference to target's event context object - normally a Composition.
 
 h|*0..1*
-|*entry_context*: `link:/releases/BASE/{base_release}/base.html#_locatable_ref_class[Locatable_ref^]`
+|*entry_context*: `@@`
 a|Reference to target's clinical statement context object - normally an Entry subtype.
 
 h|*0..1*
-|*entry_content_item*: `link:/releases/BASE/{base_release}/base.html#_locatable_ref_class[Locatable_ref^]`
+|*entry_content_item*: `@@`
 a|Reference to original object.
 |===
