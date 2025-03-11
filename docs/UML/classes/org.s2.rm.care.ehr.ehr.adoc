@@ -13,53 +13,53 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*ehr_id*: `link:/releases/BASE/{base_release}/base.html#_uuid_class[Uuid^]`
+|*ehr_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_uuid_class[Uuid^]`
 a|The unique identifier of this EHR.
 
 NOTE: is is strongly recommended that a UUID always be used for this field.
 
 h|*1..1*
-|*system_id*: `link:/releases/BASE/{base_release}/base.html#_internet_id_class[Internet_id^]`
+|*system_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_internet_id_class[Internet_id^]`
 a|The identifier of the logical EHR management system in which this EHR was created.
 
 h|*0..1*
-|*contributions*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*contributions*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|List of contributions causing changes to this EHR. Each contribution contains a list of versions, which may include references to any number of `VERSION` instances, i.e. items of type `VERSIONED_COMPOSITION` and `VERSIONED_FOLDER`.
 
 h|*1..1*
-|*ehr_status*: `link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]`
+|*ehr_status*: `link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]`
 a|Reference to `EHR_STATUS` object for this EHR.
 
 h|*1..1*
-|*ehr_access*: `link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]`
+|*ehr_access*: `link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]`
 a|Reference to `EHR_ACCESS` object for this EHR.
 
 h|*0..1*
-|*state*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*state*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|Master list of all Versioned Composition references in this EHR.
 
 h|*0..1*
-|*directory*: `link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]`
+|*directory*: `link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]`
 a|Optional directory structure for this EHR. If present, this is a reference to the first member of `_folders_`.
 
 h|*1..1*
-|*time_created*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
+|*time_created*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]`
 a|Time of creation of the EHR.
 
 h|*0..1*
-|*folders*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*folders*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|Optional additional Folder structures for this EHR. If set, the `_directory_` attribute refers to the first member.
 
 h|*0..1*
-|*tags*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*tags*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|Optional list of tags associated with this EHR. Tag `_target_` values can only be within the same EHR.
 
 h|*0..1*
-|*events*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*events*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|Master list of all Versioned Composition references in this EHR.
 
 h|*0..1*
-|*plans*: `List<link:/releases/BASE/{base_release}/base.html#_object_ref_class[Object_ref^]>`
+|*plans*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/model_support.html#_object_ref_class[Object_ref^]>`
 a|Master list of all Versioned Composition references in this EHR.
 
 h|*Invariants*

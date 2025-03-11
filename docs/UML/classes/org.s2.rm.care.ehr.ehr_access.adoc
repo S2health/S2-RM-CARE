@@ -14,7 +14,7 @@ NOTE: It is strongly recommended that the inherited attribute `_uid_` be populat
 For example, the `ORIGINAL_VERSION.uid` `87284370-2D4B-4e3d-A3F3-F303D2F4F34B::uk.nhs.ehr1::2` would be copied to the `_uid_` field of the `EHR_ACCESS` object.
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
+2+|`link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_locatable_class[Locatable^]`
 
 h|*Attributes*
 ^h|*Signature*
@@ -28,7 +28,7 @@ h|*Functions*
 ^h|*Meaning*
 
 h|*1..1*
-|*scheme* (): `link:/releases/BASE/{base_release}/base.html#_string_class[String^]`
+|*scheme* (): `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
 a|The name of the access control scheme in use; corresponds to the concrete instance of the settings attribute.
 
 h|*Invariants*

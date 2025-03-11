@@ -1,23 +1,28 @@
-= Amendment Record
+= Revision History
 
 [cols="1,6,2,2", options="header"]
 |===
-|Issue|Details|Raiser|Completed
+|Issue|Details|Contributor|Completed
 
-4+^h|*BASE Release 0.8.7*
+4+^h|*CARE Release 0.8.7*
 
-4+^h|*BASE Release 0.8.6*
+|[[latest_issue,0.8.7]]0.8.7
+|(no changes)
+|T Beale
+|[[latest_issue_date,04 Nov 2024]]04 Nov 2024
 
-4+^h|*BASE Release 0.8.5*
+4+^h|*CARE Release 0.8.6*
 
-|[[latest_issue]]0.8.5
-|{spec_tickets}/SBASE-1[SBASE-1^]. Add encounter ref to `Event_context`; +
-{spec_tickets}/SBASE-23[SBASE-23^]. Change `Event_context.health_care_facility` and author type to `Entity_ref_node`
+4+^h|*CARE Release 0.8.5*
+
+|0.8.5
+|{spec_tickets}/S2CARE-1[S2CARE-1^]. Add encounter ref to `Event_context`; +
+{spec_tickets}/S2CARE-23[S2CARE-23^]. Change `Event_context.health_care_facility` and author type to `Entity_ref_node`
 |J Coyle, +
 N Davis, +
 S Huff, +
 T Beale
-|[[latest_issue_date]]23 Sep 2024
+|23 Sep 2024
 
 |0.1.0
 |Initial Writing: based on openEHR EHR Information Model

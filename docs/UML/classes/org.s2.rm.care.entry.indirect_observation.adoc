@@ -18,7 +18,7 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*0..1*
-|*result_time*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
+|*result_time*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]`
 a|Time at which result was generated. For most observations other than laboratory, the result time is the same as the observation time, for instruments and manual processes where that are effectively instant.
 
 If not populated, value is assumed to be the same as `_time_`.

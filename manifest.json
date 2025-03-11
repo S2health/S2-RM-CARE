@@ -17,7 +17,7 @@
                 "Section"
             ],
             "copyright_year": "2023",
-            "spec_status": "STABLE",
+            "spec_status": "DEVELOPMENT",
             "keywords": "EHR, EMR, reference model, S2"
         },
         {
@@ -36,36 +36,35 @@
                 "Admin_entry"
             ],
             "copyright_year": "2023",
-            "spec_status": "TRIAL",
+            "spec_status": "DEVELOPMENT",
             "keywords": "EHR, EMR, reference model, S2"
         }
     ],
     "expressions": [
         {
-            "id": "S2_UML-CARE.mdzip",
+            "id": "S2-RM-CARE.mdzip",
             "type": "uml",
-            "title": "S2 UML",
-            "description": "UML file for MagicDraw 19 for RM CARE component. Contains UML 2.5 standard XMI file."
+            "title": "CARE UML",
+            "description": "UML file for S2 CARE classes, as MagicDraw 2024x. Contains UML 2.51 standard XMI file."
         },
         {
-            "id": "S2_UML-BASE.mdzip",
-            "dependency": {
-                "component": "BASE",
-                "release": "latest"
-            }
+            "id": "S2-RM-BASE.mdzip",
+            "type": "uml",
+            "title": "BASE UML",
+            "description": "UML file for S2 BASE classes, as MagicDraw 2024x. Contains UML 2.51 standard XMI file."
         }
     ],
-    "jira": {
-        "open_issues": "11103",
-        "roadmap": "SPECRM"
+    "github": {
+        "open_issues": "https://github.com/S2health/S2-RM-CARE/issues?q=is%3Aissue%20state%3Aopen",
+        "roadmap": "https://github.com/S2health/S2-RM-CARE/milestones"
     },
     "releases": [
         {
-            "id": "0.0.6",
-            "date": "2023-09-29",
-            "jira": {
-                "crs": "SPECRM/versions/12516",
-                "prs": "SPECPR/versions/10061"
+            "id": "0.8.7",
+            "date": "2024-11-04",
+            "github": {
+                "crs": "https://github.com/S2health/S2-RM-CARE/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3Av0.8.7%20label%3Achange",
+                "prs": "https://github.com/S2health/S2-RM-CARE/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3Av0.9.0%20label%3Adocumentation%20label%3Aenhancement%20label%3Aerror"
             }
         }
     ]

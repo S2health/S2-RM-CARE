@@ -11,14 +11,14 @@ h|*Description*
 TODO: probably remove possibility of multiple ACTIVITY
 
 h|*Inherit*
-2+|`link:/releases/BASE/{base_release}/base.html#_locatable_class[Locatable^]`
+2+|`link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_locatable_class[Locatable^]`
 
 h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
 h|*0..1*
-|*timing*: `link:/releases/BASE/{base_release}/base.html#_timing_class[Timing^]`
+|*timing*: `link:/releases/S2-RM-BASE/{base_release}/docs/data_types.html#_timing_class[Timing^]`
 a|Timing of the activity, in the form of a parsable string. If used, the preferred syntax is ISO8601 'R' format, but other formats may be used including HL7 GTS.
 
 May be omitted if:
@@ -29,7 +29,7 @@ May be omitted if:
 TODO - review - current approach is via separate fields in CEMs.
 
 h|*1..1*
-|*description*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
+|*description*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
 a|Description of the activity, in the form of an archetyped structure.
 
 h|*Invariants*

@@ -18,10 +18,10 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*data*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
+|*data*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
 a|Result.
 
 h|*0..1*
-|*state*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
+|*state*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
 a|Patient state at effective (clinically relevant) time.
 |===

@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="description" content="S2 EHR Information Model specification">
 <meta name="keywords" content="EHR, EMR, reference model, S2">
 <title>S2 EHR Model</title>
-<link rel="stylesheet" href="https://specifications.openehr.org/styles/openehr.css">
+<link rel="stylesheet" href="https://platform.s2health.org/css/s2.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -17,7 +17,7 @@
 <ul class="sectlevel0">
 <li><a href="#_s2_ehr_model">S2 EHR Model</a>
 <ul class="sectlevel1">
-<li><a href="#_amendment_record">Amendment Record</a></li>
+<li><a href="#_revision_history">Revision History</a></li>
 <li><a href="#_acknowledgements">Acknowledgements</a>
 <ul class="sectlevel2">
 <li><a href="#_editor">Editor</a></li>
@@ -159,7 +159,7 @@
 <div class="sectionbody">
 <div class="imageblock text-center">
 <div class="content">
-<img src="https://studious-adventure-evrqgo5.pages.github.io/resources/logos/S2-logo.svg" alt="S2 logo">
+<img src="http://s2health.org/resources/logos/s2logo.svg" alt="S2 logo">
 </div>
 </div>
 </div>
@@ -174,17 +174,17 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="http://s2health.org" target="_blank" rel="noopener">S2 Health</a></th>
+<th class="tableblock halign-center valign-top" colspan="2"><strong>Issuer</strong>: <a href="http://www.s2health.org" target="_blank" rel="noopener">S2 Health</a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: CARE Release-0.8.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: STABLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Release</strong>: S2-RM-CARE Release-0.8.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Status</strong>: DEVELOPMENT</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">[latest_issue]</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">[latest_issue_date]</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Revision</strong>: <a href="#latest_issue">0.8.7</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Date</strong>: <a href="#latest_issue_date">04 Nov 2024</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Keywords</strong>: EHR, EMR, reference model, S2</p></td>
@@ -198,28 +198,28 @@
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2024 S2 Health</th>
+<th class="tableblock halign-center valign-top" colspan="2">&#169; 2023 - 2025 S2 Health</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://s2health.org" target="_blank" rel="noopener">S2 Health</a> is an independent, non-profit foundation.</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><a href="http://www.s2health.org" target="_blank" rel="noopener">S2 Health</a> is an independent, non-profit foundation.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Licence</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 3.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/3.0/" class="bare">https://creativecommons.org/licenses/by-nd/3.0/</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="https://specifications.openehr.org/images/cc-by-nd-88x31.png" alt="image"></span> Creative Commons Attribution-NoDerivs 4.0 Unported. <a href="https://creativecommons.org/licenses/by-nd/4.0/" class="bare">https://creativecommons.org/licenses/by-nd/4.0/</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Support</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://specifications.s2health.org/components/CARE/open_issues" target="_blank" rel="noopener">Report an Issue</a><br>
- Web: <a href="https://specifications.s2health.org" target="_blank" rel="noopener">https://specifications.s2health.org</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issues: <a href="https://github.com/S2health/S2-RM-CARE/issues?q=is%3Aissue%20state%3Aopen%20label%3Adocumentation%20label%3Aenhancement%20label%3Aerror" target="_blank" rel="noopener">Report an Issue</a><br>
+ Web: <a href="https://platform.s2health.org" target="_blank" rel="noopener">https://platform.s2health.org</a></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_amendment_record"><a class="anchor" href="#_amendment_record"></a>Amendment Record</h2>
+<h2 id="_revision_history"><a class="anchor" href="#_revision_history"></a>Revision History</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -232,29 +232,35 @@
 <tr>
 <th class="tableblock halign-left valign-top">Issue</th>
 <th class="tableblock halign-left valign-top">Details</th>
-<th class="tableblock halign-left valign-top">Raiser</th>
+<th class="tableblock halign-left valign-top">Contributor</th>
 <th class="tableblock halign-left valign-top">Completed</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>BASE Release 0.8.7</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>CARE Release 0.8.7</strong></p></th>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>BASE Release 0.8.6</strong></p></th>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.8.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(no changes)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T Beale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>04 Nov 2024</p></td>
 </tr>
 <tr>
-<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>BASE Release 0.8.5</strong></p></th>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>CARE Release 0.8.6</strong></p></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue"></a>0.8.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://specifications.s2health.org/tickets/SBASE-1" target="_blank" rel="noopener">SBASE-1</a>. Add encounter ref to <code>Event_context</code>;<br>
-<a href="https://specifications.s2health.org/tickets/SBASE-23" target="_blank" rel="noopener">SBASE-23</a>. Change <code>Event_context.health_care_facility</code> and author type to <code>Entity_ref_node</code></p></td>
+<th class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>CARE Release 0.8.5</strong></p></th>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.8.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/S2health/S2-RM-CARE/S2CARE-1" target="_blank" rel="noopener">S2CARE-1</a>. Add encounter ref to <code>Event_context</code>;<br>
+<a href="https://github.com/S2health/S2-RM-CARE/S2CARE-23" target="_blank" rel="noopener">S2CARE-23</a>. Change <code>Event_context.health_care_facility</code> and author type to <code>Entity_ref_node</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">J Coyle,<br>
 N Davis,<br>
 S Huff,<br>
 T Beale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a id="latest_issue_date"></a>23 Sep 2024</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">23 Sep 2024</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
@@ -329,7 +335,7 @@ T Beale</p></td>
 <div class="sect2">
 <h3 id="_purpose"><a class="anchor" href="#_purpose"></a>1.1. Purpose</h3>
 <div class="paragraph">
-<p>This document describes the S2 Canonical Model, which is a model of an interoperable EHR in the ISO RM/ODP information viewpoint. This model defines a logical EHR information architecture rather than just an architecture for communication of EHR extracts or documents between EHR systems. The openEHR definition of the EHR Extract is given in the openEHR EHR_EXTRACT Information Model.</p>
+<p>This document describes the S2 CARE component EHR Model, which is a formal abstract model of an interoperable EHR in the ISO RM/ODP information viewpoint.</p>
 </div>
 <div class="paragraph">
 <p>The intended audience includes:</p>
@@ -338,9 +344,6 @@ T Beale</p></td>
 <ul>
 <li>
 <p>Standards bodies producing health informatics standards;</p>
-</li>
-<li>
-<p>Academic groups using openEHR;</p>
 </li>
 <li>
 <p>The open source healthcare community;</p>
@@ -362,7 +365,7 @@ T Beale</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://specifications.s2health.org/releases/RM/latest/architecture_overview.html" target="_blank" rel="noopener">S2 Architecture Overview</a>.</p>
+<p>The <a href="https://platform.s2health.org/releases/RM/dev/docs/architecture_overview.html" target="_blank" rel="noopener">S2 Architecture Overview</a>.</p>
 </li>
 </ul>
 </div>
@@ -372,13 +375,13 @@ T Beale</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://specifications.s2health.org/releases/BASE/latest/model_support.html" target="_blank" rel="noopener">S2 Base Types Information Model</a>;</p>
+<p>The <a href="https://platform.s2health.org/releases/S2-RM-BASE/dev/docs/model_support.html" target="_blank" rel="noopener">S2 Base Types Information Model</a>;</p>
 </li>
 <li>
-<p>The <a href="https://specifications.s2health.org/releases/BASE/latest/data_types.html" target="_blank" rel="noopener">S2 Data Types Information Model</a>;</p>
+<p>The <a href="https://platform.s2health.org/releases/S2-RM-BASE/dev/docs/data_types.html" target="_blank" rel="noopener">S2 Data Types Information Model</a>;</p>
 </li>
 <li>
-<p>The <a href="https://specifications.s2health.org/releases/BASE/latest/patterns.html" target="_blank" rel="noopener">S2 Patterns Information Model</a>;</p>
+<p>The <a href="https://platform.s2health.org/releases/S2-RM-BASE/dev/docs/patterns.html" target="_blank" rel="noopener">S2 Patterns Information Model</a>;</p>
 </li>
 </ul>
 </div>
@@ -386,7 +389,7 @@ T Beale</p></td>
 <div class="sect2">
 <h3 id="_status"><a class="anchor" href="#_status"></a>1.3. Status</h3>
 <div class="paragraph">
-<p>This specification is in the STABLE state. The development version of this document can be found at <a href="https://specifications.s2health.org/releases/CARE/latest/ehr.html" target="_blank" rel="noopener">https://specifications.s2health.org/releases/CARE/latest/ehr.html</a>.</p>
+<p>This specification is in the DEVELOPMENT state. The development version of this document can be found at <a href="https://platform.s2health.org/releases/S2-RM-CARE/dev/docs/ehr.html" target="_blank" rel="noopener">https://platform.s2health.org/releases/S2-RM-CARE/dev/docs/ehr.html</a>.</p>
 </div>
 <div class="paragraph">
 <p>Known omissions or questions are indicated in the text with a 'to be determined' paragraph, as follows:</p>
@@ -398,19 +401,19 @@ T Beale</p></td>
 <div class="sect2">
 <h3 id="_feedback"><a class="anchor" href="#_feedback"></a>1.4. Feedback</h3>
 <div class="paragraph">
-<p>Feedback may be provided on the <a href="http://S2.io" target="_blank" rel="noopener">S2 specifications forum</a>.</p>
+<p>Feedback may be provided on the <a href="http://discourse.s2health.org" target="_blank" rel="noopener">S2 specifications forum</a>.</p>
 </div>
 <div class="paragraph">
-<p>Issues may be raised on the <a href="https://specifications.s2health.org/components/CARE/open_issues" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
+<p>Issues may be raised on the <a href="https://github.com/S2health/S2-RM-CARE/issues?q=is%3Aissue%20state%3Aopen%20label%3Adocumentation%20label%3Aenhancement%20label%3Aerror" target="_blank" rel="noopener">specifications Problem Report tracker</a>.</p>
 </div>
 <div class="paragraph">
-<p>To see changes made due to previously reported issues, see the <a href="https://specifications.s2health.org/components/CARE/history" target="_blank" rel="noopener">CARE component Change Request tracker</a>.</p>
+<p>To see changes made due to previously reported issues, see the <a href="https://github.com/S2health/S2-RM-CARE/milestones?state=closed" target="_blank" rel="noopener">S2-RM-CARE component Change Request tracker</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_conformance"><a class="anchor" href="#_conformance"></a>1.5. Conformance</h3>
 <div class="paragraph">
-<p>Conformance of a data or software artifact to a S2 specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.</p>
+<p>Conformance of a data or software artifact to an S2 specification is determined by a formal test of that artifact against the relevant S2 Implementation Technology Specification(s) (ITSs), such as a JSON-schema or OpenAPI specification. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.</p>
 </div>
 </div>
 </div>
@@ -566,7 +569,7 @@ T Beale</p></td>
 <p>The root EHR object records three pieces of information that are immutable after creation: the identifier of the system in which the EHR was created, the identifier of the EHR (distinct from any identifier for the subject of care), and the time of creation of the EHR. Otherwise, it simply acts as an access point for the component parts of the EHR.</p>
 </div>
 <div class="paragraph">
-<p>The <code><em>system_id</em></code> attribute is used to record the identifier of the logical EHR repository to which the data containing the audit are committed. What constitutes a 'system' in this context is described in more detail in the <a href="https://specifications.openehr.org/releases/BASE/latest/architecture_overview.html#_the_ehr_system">Architecture Overview</a>.</p>
+<p>The <code><em>system_id</em></code> attribute is used to record the identifier of the logical EHR repository to which the data containing the audit are committed. What constitutes a 'system' in this context is described in more detail in the <a href="https://specifications.openehr.org/releases/BASE/dev/architecture_overview.html#_the_ehr_system">Architecture Overview</a>.</p>
 </div>
 <div class="paragraph">
 <p>References rather than containment by value are used for the relationship between the EHR and <code>Versioned_X</code> objects, reflecting the vast majority of retrieval scenarios in which only selected (usually recent) items are needed. Containment by value would lead to systems which retrieved all <code>Versioned_X</code> objects every time the EHR object was accessed.</p>
@@ -593,7 +596,7 @@ T Beale</p></td>
 <div class="sect3">
 <h4 id="_compositions"><a class="anchor" href="#_compositions"></a>4.2.4. Compositions</h4>
 <div class="paragraph">
-<p>The main data of the EHR is found in its Compositions, i.e. instances of the <code>Composition</code> class in the RM. Composition is based on the notion of a unit of information resulting from the interaction of a healthcare agent (subject or healthcare professional) with the EHR. It is designed to satisfy the following needs, which include the well-known ACID characteristics of transactions (<a href="#Gray_Reuter1993">Gray &amp; Reuter&#44; 1993</a>).</p>
+<p>The main data of the EHR is found in its Compositions, i.e. instances of the <code>Composition</code> class in the RM. Composition is based on the notion of a unit of information resulting from the interaction of a healthcare agent (subject or healthcare professional) with the EHR. It is designed to satisfy the following needs, which include the well-known ACID characteristics of transactions <span class="citation">(<a href="#Gray_Reuter1993">Gray &amp; Reuter&#44; 1993</a>)</span>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -621,10 +624,10 @@ T Beale</p></td>
 </ul>
 </div>
 <div class="paragraph">
-<p>The Composition concept originated from the 'Transaction' concept of the GEHR project (<a href="#GEHR_Del_4">Lloyd&#44; 1992</a>), (<a href="#GEHR_Del_7">Lloyd&#44; 1993</a>), (<a href="#GEHR_Del_8">Heard&#44; Kalra&#44; &amp; Ingram&#44; 1994</a>), (<a href="#GEHR1995">Beale&#44; Lloyd&#44; Heard&#44; Kalra&#44; &amp; Ingram&#44; 1995</a>). In openEHR, it was renamed to 'Composition' (the name of the equivalent concept in <a href="https://www.iso.org/standard/40784.html" target="_blank" rel="noopener">ISO 13606-1</a>), and it has been expanded and more formally defined in openEHR in two ways. Firstly, the idea of a unit of committal has been formalised by the openEHR model of change control (see the <a href="https://specifications.openehr.org/releases/RM/latest/common.html">openEHR Common Information Model</a>); how this applies to the EHR and Compositions is described below.</p>
+<p>The Composition concept originated from the 'Transaction' concept of the GEHR project <span class="citation">(<a href="#GEHR_Del_4">Lloyd&#44; 1992</a>)</span>, <span class="citation">(<a href="#GEHR_Del_7">Lloyd&#44; 1993</a>)</span>, <span class="citation">(<a href="#GEHR_Del_8">Heard&#44; Kalra&#44; &amp; Ingram&#44; 1994</a>)</span>, <span class="citation">(<a href="#GEHR1995">Beale&#44; Lloyd&#44; Heard&#44; Kalra&#44; &amp; Ingram&#44; 1995</a>)</span>. In openEHR, it was renamed to 'Composition' (the name of the equivalent concept in <a href="https://www.iso.org/standard/40784.html" target="_blank" rel="noopener">ISO 13606-1</a>), and it has been expanded and more formally defined in openEHR in two ways. Firstly, the idea of a unit of committal has been formalised by the openEHR model of change control (see the <a href="https://specifications.openehr.org/releases/RM/dev/common.html">openEHR Common Information Model</a>); how this applies to the EHR and Compositions is described below.</p>
 </div>
 <div class="paragraph">
-<p>Secondly, the informational purpose of a Composition is not just to capture data from a passing clinical event such as a patient contact, but also to track longitudinal significant patient state, such as problems, allergies and medications. Accordingly, openEHR Compositions are temporally classified using a small number of broad categories recorded in the <code>Composition.<em>category</em></code> attribute. Categories include <em>event</em>, <em>episodic</em> and <em>persistent</em>. From a scientific realist ontological point of view, the kind of information recorded in a persistent Composition approximates a description of some <em>continuant</em> aspect of the patient (see <a href="#BFO_Arp_Smith_Spear">Arp Smith &amp; Spear (2015)</a>, <a href="#Sowa2000">Sowa (2000)</a>). This is in contrast with event Compositions, which record <em>occurrents</em>, i.e. events or states that occurred or were true at some moment in time. The episodic category corresponds to information that is relevant for the period of time of a care episode.</p>
+<p>Secondly, the informational purpose of a Composition is not just to capture data from a passing clinical event such as a patient contact, but also to track longitudinal significant patient state, such as problems, allergies and medications. Accordingly, openEHR Compositions are temporally classified using a small number of broad categories recorded in the <code>Composition.<em>category</em></code> attribute. Categories include <em>event</em>, <em>episodic</em> and <em>persistent</em>. From a scientific realist ontological point of view, the kind of information recorded in a persistent Composition approximates a description of some <em>continuant</em> aspect of the patient (see <span class="citation"><a href="#BFO_Arp_Smith_Spear">Arp Smith &amp; Spear (2015)</a></span>, <span class="citation"><a href="#Sowa2000">Sowa (2000)</a></span>). This is in contrast with event Compositions, which record <em>occurrents</em>, i.e. events or states that occurred or were true at some moment in time. The episodic category corresponds to information that is relevant for the period of time of a care episode.</p>
 </div>
 <div id="event_persistent_ehr" class="imageblock text-center text-center">
 <div class="content">
@@ -703,7 +706,7 @@ T Beale</p></td>
 <p>Compositions may be classified as <em>episodic</em> if they contain information relevant to an ongoing care situation spanning sigificant time, such as pregnancy and birth, major surgery and recovery etc. During a specific episode of care, Event Compositions will still be used to record normal clinical events, particularly routine observations. However, assessments, summaries and care plans specific to the condition being treated may be committed in Compositions with <code><em>category</em></code> set to <code>episodic</code> to indicate that they should be treated as having a persistent-like quality i.e updated as as single instance source-of-truth, but only maintained as such for a defined period or set of conditions and not for the entire life of the patient. An example is a Problem list that is maintained as a continuously updated single instance during a hospital admission but only for the duration of that admission. If the patient is re-admitted, a new instance of an Episodic Composition is then created and continually updated for that admission.</p>
 </div>
 <div class="paragraph">
-<p>Since episodic Compositions are typically regarded as no longer relevant once the episode of care is considered complete, it may be useful to mark them as such. This may be done for a Composition whose owning Version is in the lifecycle state <code>completed</code> by setting the owning <code>Original_version.<em>lifecycle_state</em></code> to the <code>inactive</code> state. If the owning Version is in the <code>incomplete</code> state, it may be <code>abandoned</code>. Version lifecycle transitions are described in detail in the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_version_lifecycle" target="_blank" rel="noopener">openEHR Common Information Model</a>.</p>
+<p>Since episodic Compositions are typically regarded as no longer relevant once the episode of care is considered complete, it may be useful to mark them as such. This may be done for a Composition whose owning Version is in the lifecycle state <code>completed</code> by setting the owning <code>Original_version.<em>lifecycle_state</em></code> to the <code>inactive</code> state. If the owning Version is in the <code>incomplete</code> state, it may be <code>abandoned</code>. Version lifecycle transitions are described in detail in the <a href="https://specifications.openehr.org/releases/RM/dev/common.html#_version_lifecycle" target="_blank" rel="noopener">openEHR Common Information Model</a>.</p>
 </div>
 </div>
 </div>
@@ -772,7 +775,7 @@ T Beale</p></td>
 <div class="sect3">
 <h4 id="tags"><a class="anchor" href="#tags"></a>4.2.6. Tags</h4>
 <div class="paragraph">
-<p>Items in the EHR may be tagged using openEHR <em>tags</em>, which are lightweight annotations that may be used to thematically classify previously committed data items for convenient subsequent retrieval. They are described in detail in the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_tags_package" target="_blank" rel="noopener">Common IM Tags section</a>.</p>
+<p>Items in the EHR may be tagged using openEHR <em>tags</em>, which are lightweight annotations that may be used to thematically classify previously committed data items for convenient subsequent retrieval. They are described in detail in the <a href="https://specifications.openehr.org/releases/RM/dev/common.html#_tags_package" target="_blank" rel="noopener">Common IM Tags section</a>.</p>
 </div>
 <div id="tags_example" class="imageblock text-center text-center">
 <div class="content">
@@ -806,7 +809,7 @@ T Beale</p></td>
 <p>According to the model, all tags reside within one logical list, i.e.  <code>EHR.<em>tags</em></code>. No grouping is used. In order to achieve efficient access of all tags with the same key, indexing would be required.</p>
 </div>
 <div class="paragraph">
-<p>The primary use of tags post-creation is in querying, and their use is supported directly in the <a href="https://specifications.openehr.org/releases/QUERY/latest/AQL.html" target="_blank" rel="noopener">openEHR AQL query language</a> such that a query mentioning a tag (either by key, or key/value pair if applicable) will return all items of any RM type annotated by the tag in question.</p>
+<p>The primary use of tags post-creation is in querying, and their use is supported directly in the <a href="https://specifications.openehr.org/releases/QUERY/dev/AQL.html" target="_blank" rel="noopener">openEHR AQL query language</a> such that a query mentioning a tag (either by key, or key/value pair if applicable) will return all items of any RM type annotated by the tag in question.</p>
 </div>
 </div>
 </div>
@@ -865,7 +868,7 @@ T Beale</p></td>
 <div class="sect3">
 <h4 id="_versioning_of_compositions"><a class="anchor" href="#_versioning_of_compositions"></a>4.3.1. Versioning of Compositions</h4>
 <div class="paragraph">
-<p>Versioning of Compositions is achieved with the <code>Versioned_object&lt;T&gt;</code> type from the <a href="https://specifications.openehr.org/releases/RM/latest/common.html#_change_control_package">Common IM <code>change_control package</code></a>, which in the <code>composition</code> package is explicitly bound to the <code>Composition</code> class, via the class <code>Versioned_Composition</code> which inherits from the type <code>VERSIONED&lt;Composition&gt;</code>.</p>
+<p>Versioning of Compositions is achieved with the <code>Versioned_object&lt;T&gt;</code> type from the <a href="https://specifications.openehr.org/releases/RM/dev/common.html#_change_control_package">Common IM <code>change_control package</code></a>, which in the <code>composition</code> package is explicitly bound to the <code>Composition</code> class, via the class <code>Versioned_Composition</code> which inherits from the type <code>VERSIONED&lt;Composition&gt;</code>.</p>
 </div>
 <div class="paragraph">
 <p>The effect of version control on Compositions is visualised in the figure below. The versions (each version being an <code>Original_version&lt;Composition&gt;</code>) shown here in a <code>Versioned_Composition</code> are the same versions shown along each vertical line in <a href="#ehr_contributions">Figure 8</a>, this time shown with their associated audit items. The set of versions are understood as a set of successive modifications of the same data in time.</p>
@@ -1107,7 +1110,7 @@ is is strongly recommended that a UUID always be used for the <code><em>ehr_id</
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_id</strong>: <code><a href="/releases/BASE/latest/base.html#_uuid_class" target="_blank" rel="noopener">Uuid</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_id</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_uuid_class" target="_blank" rel="noopener">Uuid</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The unique identifier of this EHR.</p>
 </div>
@@ -1126,77 +1129,77 @@ is is strongly recommended that a UUID always be used for this field.
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code><a href="/releases/BASE/latest/base.html#_internet_id_class" target="_blank" rel="noopener">Internet_id</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>system_id</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_internet_id_class" target="_blank" rel="noopener">Internet_id</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The identifier of the logical EHR management system in which this EHR was created.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>contributions</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>contributions</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>List of contributions causing changes to this EHR. Each contribution contains a list of versions, which may include references to any number of <code>VERSION</code> instances, i.e. items of type <code>VERSIONED_COMPOSITION</code> and <code>VERSIONED_FOLDER</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_status</strong>: <code><a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_status</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to <code>EHR_STATUS</code> object for this EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_access</strong>: <code><a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ehr_access</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to <code>EHR_ACCESS</code> object for this EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Master list of all Versioned Composition references in this EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>directory</strong>: <code><a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>directory</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional directory structure for this EHR. If present, this is a reference to the first member of <code><em>folders</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time_created</strong>: <code><a href="/releases/BASE/latest/base.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>time_created</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Time of creation of the EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>folders</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>folders</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional additional Folder structures for this EHR. If set, the <code><em>directory</em></code> attribute refers to the first member.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tags</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>tags</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional list of tags associated with this EHR. Tag <code><em>target</em></code> values can only be within the same EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>events</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Master list of all Versioned Composition references in this EHR.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>plans</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Master list of all Versioned Composition references in this EHR.</p>
 </div></div></td>
@@ -1267,7 +1270,7 @@ is is strongly recommended that a UUID always be used for this field.
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1309,7 +1312,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1330,7 +1333,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scheme</strong> (): <code><a href="/releases/BASE/latest/base.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>scheme</strong> (): <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The name of the access control scheme in use; corresponds to the concrete instance of the settings attribute.</p>
 </div></div></td>
@@ -1393,7 +1396,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1432,7 +1435,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1441,28 +1444,28 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>subject</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The subject of this EHR. The <code><em>external_ref</em></code> attribute can be used to contain a direct reference to the subject in a demographic or identity service. Alternatively, the association between patients and their records may be done elsewhere for security reasons.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_queryable</strong>: <code><a href="/releases/BASE/latest/base.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_queryable</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if this EHR should be included in population queries, i.e. if this EHR is considered active in the population.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_modifiable</strong>: <code><a href="/releases/BASE/latest/base.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_modifiable</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if the EHR, other than the <code>EHR_STATUS</code> object, is allowed to be written to. The <code>EHR_STATUS</code> object itself can always be written to.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_details</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Any other details of the EHR summary object, in the form of an archetyped <code>ITEM_STRUCTURE</code>.</p>
 </div></div></td>
@@ -1497,7 +1500,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Functions</strong></p></th>
@@ -1506,7 +1509,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/BASE/latest/base.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Indicates whether this composition set is persistent; derived from first version.</p>
 </div></div></td>
@@ -1592,7 +1595,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/change_control.html#_versioned_object_class" target="_blank" rel="noopener">Versioned_object</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -1631,7 +1634,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1640,7 +1643,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>items</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/model_support.html#_object_ref_class" target="_blank" rel="noopener">Object_ref</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The list of references to other (usually) versioned objects logically in this folder.</p>
 </div></div></td>
@@ -1654,7 +1657,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code><a href="/releases/BASE/latest/base.html#_node_class" target="_blank" rel="noopener">Node</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>details</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_node_class" target="_blank" rel="noopener">Node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Archetypable meta-data for <code>FOLDER</code>.</p>
 </div></div></td>
@@ -1891,7 +1894,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -1900,21 +1903,21 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code><a href="/releases/BASE/latest/base.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>language</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Mandatory indicator of the localised language in which this Composition is written. Coded from openEHR Code Set  <code>languages</code>. The language of an Entry if different from the Composition is indicated in <code>Entry.<em>language</em></code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>territory</strong>: <code><a href="/releases/BASE/latest/base.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>territory</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_terminology_code_class" target="_blank" rel="noopener">Terminology_code</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Name of territory in which this Composition was written. Coded from openEHR  countries  code set, which is an expression of the ISO 3166 standard.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>category</strong>: <code><a href="/releases/BASE/latest/base.html#_coded_text_class" target="_blank" rel="noopener">Coded_text</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>category</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/data_types.html#_coded_text_class" target="_blank" rel="noopener">Coded_text</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Temporal category of this Composition, i.e.</p>
 </div>
@@ -1944,7 +1947,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>author</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The person primarily responsible for the content of the Composition (but not necessarily its committal into the EHR system). This is the identifier which should appear on the screen. It may or may not be the person who entered the data. When it is the patient, the special self  instance of <code>PARTY_PROXY</code> will be used.</p>
 </div>
@@ -1966,7 +1969,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/BASE/latest/base.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>is_persistent</strong> (): <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_boolean_class" target="_blank" rel="noopener">Boolean</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>True if category is <code>431&#124;persistent&#124;</code>, False otherwise. Useful for finding Compositions in an EHR which are guaranteed to be of interest to most users.</p>
 </div></div></td>
@@ -2025,7 +2028,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_locatable_class" target="_blank" rel="noopener">Locatable</a></code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
@@ -2034,21 +2037,21 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>1..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code><a href="/releases/BASE/latest/base.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>start_time</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Start time of the clinical session or other kind of event during which a provider performs a service of any kind for the patient.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>end_time</strong>: <code><a href="/releases/BASE/latest/base.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>end_time</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_date_time_class" target="_blank" rel="noopener">Date_time</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Optional end time of the clinical session.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>setting</strong>: <code><a href="/releases/BASE/latest/base.html#_terminology_term_class" target="_blank" rel="noopener">Terminology_term</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>setting</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_terminology_term_class" target="_blank" rel="noopener">Terminology_term</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The setting in which the clinical session took place. Coded using the openEHR Terminology,  setting  group.</p>
 </div>
@@ -2058,7 +2061,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>location</strong>: <code><a href="/releases/BASE/latest/base.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>location</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_string_class" target="_blank" rel="noopener">String</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The actual location where the session occurred, e.g. 'microbiology lab 2', 'home', 'ward A3'  and so on.</p>
 </div>
@@ -2068,28 +2071,28 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>encounter</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>encounter</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Reference to encounter for which this Composition was created.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>health_care_facility</strong>: <code><a href="/releases/BASE/latest/base.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>health_care_facility</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_entity_ref_node_class" target="_blank" rel="noopener">Entity_ref_node</a></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The health care facility under whose care the event took place. This is the most specific workgroup or delivery unit within a care delivery enterprise that has an official identifier in the health system, and can be used to ensure medico-legal accountability.</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>participations</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>participations</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_participation_class" target="_blank" rel="noopener">Participation</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Parties involved in the healthcare event. These would normally include the physician(s) and often the patient (but not the latter if the clinical session is a pathology test for example).</p>
 </div></div></td>
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_context</strong>: <code>List&lt;<a href="/releases/BASE/latest/base.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>other_context</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_node_class" target="_blank" rel="noopener">Node</a>&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Other optional context which will be archetyped.</p>
 </div></div></td>
@@ -2136,7 +2139,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </tr>
 <tr>
 <th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/BASE/latest/base.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_info_item_class" target="_blank" rel="noopener">Info_item</a></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2270,7 +2273,7 @@ For example, the <code>ORIGINAL_VERSION.uid</code> <code>87284370-2D4B-4e3d-A3F3
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-06-10 12:59:50 -0600
+Last updated 2025-03-11 15:01:41 -0600
 </div>
 </div>
 </body>

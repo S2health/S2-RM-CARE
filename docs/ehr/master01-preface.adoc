@@ -2,12 +2,11 @@
 
 == Purpose
 
-This document describes the {product_name} Canonical Model, which is a model of an interoperable EHR in the ISO RM/ODP information viewpoint. This model defines a logical EHR information architecture rather than just an architecture for communication of EHR extracts or documents between EHR systems. The openEHR definition of the EHR Extract is given in the openEHR EHR_EXTRACT Information Model.
+This document describes the {product_name} CARE component EHR Model, which is a formal abstract model of an interoperable EHR in the ISO RM/ODP information viewpoint.
 
 The intended audience includes:
 
 * Standards bodies producing health informatics standards;
-* Academic groups using openEHR;
 * The open source healthcare community;
 * Solution vendors;
 * Medical informaticians and clinicians interested in health information.
@@ -42,5 +41,4 @@ To see changes made due to previously reported issues, see the {component_histor
 
 == Conformance
 
-Conformance of a data or software artifact to a {product_name} specification is determined by a formal test of that artifact against the relevant openEHR Implementation Technology Specification(s) (ITSs), such as an IDL interface or an XML-schema. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.
-
+Conformance of a data or software artifact to an {product_name} specification is determined by a formal test of that artifact against the relevant {product_name} Implementation Technology Specification(s) (ITSs), such as a JSON-schema or OpenAPI specification. Since ITSs are formal derivations from underlying models, ITS conformance indicates model conformance.

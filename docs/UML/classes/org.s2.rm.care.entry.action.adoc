@@ -24,22 +24,22 @@ h|*0..1*
 a|Details of transition in the Order state machine caused by this Action. A void transition means that the action doesn't change the current order execution state.
 
 h|*1..1*
-|*activity_id*: `link:/releases/BASE/{base_release}/base.html#_string_class[String^]`
+|*activity_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
 a|Identifier of Activity within Instruction, in the form of its archetype path.
 
 TODO: consider whether we want separate activities on the same order.
 
 h|*0..1*
-|*duration*: `link:/releases/BASE/{base_release}/base.html#_duration_class[Duration^]`
+|*duration*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_duration_class[Duration^]`
 a|Duration of the action.
 
 h|*1..1*
-|*description*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
+|*description*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
 a|Description of the action that has been performed, in the form of an archetyped structure.
 
 h|*1..1 +
 (redefined)*
-|*time*: `link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]`
+|*time*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]`
 a|Point in time at which this action completed, or best estimate.
 h|*Functions*
 ^h|*Signature*
@@ -47,6 +47,6 @@ h|*Functions*
 
 h|*1..1 +
 (effected)*
-|*effective_time* (): `link:/releases/BASE/{base_release}/base.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]>`
+|*effective_time* (): `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_interval_class[Interval^]<link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]>`
 a|Moment in subject's timeline for which the observation or result (which may only be completed later) is asserted. Defined in descendants.
 |===

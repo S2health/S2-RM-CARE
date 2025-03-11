@@ -20,17 +20,17 @@ h|*Attributes*
 ^h|*Meaning*
 
 h|*1..1*
-|*data*: `List<link:/releases/BASE/{base_release}/base.html#_node_class[Node^]>`
+|*data*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
 a|The data of this evaluation, in the form of a spatial data structure.
 
 h|*0..1*
-|*certainty*: `link:/releases/BASE/{base_release}/base.html#_terminology_code_class[Terminology_code^]`
+|*certainty*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_terminology_code_class[Terminology_code^]`
 a|TODO:
 
 need to handle differential Dx, evidence strength
 
 h|*0..1*
-|*probability*: `link:/releases/BASE/{base_release}/base.html#_decimal_class[Decimal^]`
+|*probability*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_decimal_class[Decimal^]`
 a|Stated probability, reflecting professional opinion of provider.
 
 TODO: Potentially should be two attributes: stated_probability and statistical_probability, i.e. generated e.g. by evidence-based CDS calculation, statistical population analysis.
@@ -39,6 +39,6 @@ h|*Functions*
 ^h|*Meaning*
 
 h|*1..1*
-|*effective_time* (): `link:/releases/BASE/{base_release}/base.html#_interval_class[Interval^]<link:/releases/BASE/{base_release}/base.html#_date_time_class[Date_time^]>`
+|*effective_time* (): `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_interval_class[Interval^]<link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]>`
 a|Result = `_time_`.
 |===

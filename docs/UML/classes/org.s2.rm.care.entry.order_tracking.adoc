@@ -1,0 +1,38 @@
+=== Order_tracking Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Order_tracking*
+
+h|*Description*
+2+a|Order-related tracking data.
+
+TODO: exact names, any refs needed to actual demographic entities?
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*requestor_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
+a|Requestor identifier for the order.
+
+h|*1..1*
+|*requestor_order_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
+a|Platform identifier for the order.
+
+TODO - probably a GUID; do initial matching on requestor / filler ids.
+
+h|*0..1*
+|*filler_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
+a|Id of the facility filling the order.
+
+h|*0..1*
+|*filler_order_id*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_string_class[String^]`
+a|Order id created by the filler organization.
+
+h|*0..1*
+|*details*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
+a|
+|===
