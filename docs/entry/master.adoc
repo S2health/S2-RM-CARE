@@ -27,21 +27,18 @@ include::master00-amendment_record.adoc[leveloffset=+1]
 //
 == Acknowledgements
 
-=== Editor
+=== Editors
 
-* Graphite Informatics group.
-
-=== Contributors
-
-This specification benefited from input from the wider health informatics community. The openEHR Foundation would like to recognise the following people for their contributions.
-
-* xxx
+* Thomas Beale, Graphite Health; openEHR Foundation Board.
+* Joey Coyle MD, PhD, Graphite health;
+* Nathan Davis, MSHI, Graphite health;
+* Stan Huff MD, PhD, Graphite health; University of Utah.
 
 === Support
 
-The work reported in this paper has been funded in part by the following organisations:
+The work reported in this paper has been funded by the following organisations:
 
-* xxx
+* Graphite Health <www.graphitehealth.io>.
 
 === Trademarks
 
