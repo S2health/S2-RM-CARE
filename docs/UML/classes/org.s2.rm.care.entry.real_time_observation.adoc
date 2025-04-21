@@ -1,0 +1,29 @@
+=== Real_time_observation Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Real_time_observation*
+
+h|*Description*
+2+a|Time-series measurement of time-varying continuant.
+
+h|*Inherit*
+2+|`<<_measured_observation_class,Measured_observation>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*total_duration*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_duration_class[Duration^]`
+a|Duration of the entire History; either corresponds to the duration of all the events, and/or the duration represented by the summary, if it exists.
+
+h|*0..1*
+|*data*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_event_class[Event^]>`
+a|
+
+h|*0..1*
+|*state*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_event_class[Event^]>`
+a|
+|===

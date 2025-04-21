@@ -8,12 +8,25 @@
 |===
 |Issue|Details|Contributor|Completed
 
+4+^h|*BASE Release 0.9.0*
+
+|[[latest_issue,0.9.0]]0.9.0
+|{spec_tickets}/25[#25^]. Add inputs, totals properties to Score class; +
+ {spec_tickets}/23[#23^]. Refactor time series properties to be in dedicated Real time Observation class; +
+ {spec_tickets}/18[#18^]. Terminology for Assessment.certainty; +
+{spec_tickets}/17[#17^]. Terminology for Event_context.setting.
+|J Coyle, +
+N Davis, +
+S Huff, +
+T Beale
+|[[latest_issue_date,15 Apr 2025]]15 Apr 2025
+
 4+^h|*CARE Release 0.8.7*
 
-|[[latest_issue,0.8.7]]0.8.7
+|0.8.7
 |(no changes)
 |T Beale
-|[[latest_issue_date,04 Nov 2024]]04 Nov 2024
+|[04 Nov 2024
 
 4+^h|*CARE Release 0.8.6*
 

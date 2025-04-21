@@ -1,7 +1,7 @@
 {
-    "id": "S2",
-    "title": "CARE Model",
-    "description": "S2 CARE Model Component",
+    "id": "S2-RM-CARE",
+    "title": "S2 RM CARE Component",
+    "description": "S2 RM CARE Component, including Ehr, Composition, Section, Entry, Observation, Assessment, Order etc.",
     "keywords": "reference model, S2, EHR",
     "specifications": [
         {

@@ -20,8 +20,8 @@
 4+^h|*CARE Release 0.8.5*
 
 |0.8.5
-|{spec_tickets}/S2CARE-1[S2CARE-1^]. Add encounter ref to `Event_context`; +
-{spec_tickets}/S2CARE-23[S2CARE-23^]. Change `Event_context.health_care_facility` and author type to `Entity_ref_node`
+|{spec_tickets}/4[#4^]. Add encounter ref to `Event_context`; +
+{spec_tickets}/22[#22^]. Change `Event_context.health_care_facility` and author type to `Entity_ref_node`
 |J Coyle, +
 N Davis, +
 S Huff, +

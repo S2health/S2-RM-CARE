@@ -10,6 +10,8 @@ h|*Description*
 
 The inherited `_time_` property records the time of original observation. For observations based on specimens  (tissue, excreta etc) or images taken from the patient, this is the time at which the specimen or image was taken.
 
+The `_result_time_` property records when the result was available, while the inherited `_time_` property records the sample time, which is the time at which the reported result values were true.
+
 h|*Inherit*
 2+|`<<_care_act_entry_class,Care_act_entry>>`
 
@@ -17,11 +19,16 @@ h|*Attributes*
 ^h|*Signature*
 ^h|*Meaning*
 
-h|*1..1*
-|*data*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
-a|Result.
+h|*0..1*
+|*result_time*: `link:/releases/S2-RM-BASE/{base_release}/docs/foundation_types.html#_date_time_class[Date_time^]`
+a|Time at which result was reported. For observations like imaging and laboratory, the result time delayed with respect to the moment when sampling or imaging occurred..
+
+If not populated, value is assumed to be the same as `_time_`.
+h|*Functions*
+^h|*Signature*
+^h|*Meaning*
 
 h|*0..1*
-|*state*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
-a|Patient state at effective (clinically relevant) time.
+|*state* (): `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_locatable_class[Locatable^]>`
+a|
 |===

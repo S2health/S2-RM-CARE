@@ -6,7 +6,7 @@ h|*Class*
 2+^h|*Questionnaire_response*
 
 h|*Description*
-2+a|A structured response to a Questionnaire, The inherited attribute `_result_time_` is understood as the most recent modification time. If `_completion_status_` is `completed`, it is understood as completion time.
+2+a|A structured response to a Questionnaire, generally created by the subject. The inherited attribute `_result_time_` is understood as the most recent modification time. If `_completion_status_` is `completed`, it is understood as completion time.
 
 h|*Inherit*
 2+|`<<_observation_class,Observation>>`

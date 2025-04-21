@@ -1,18 +1,18 @@
-= Assertion
+= Assessment
 
 == Overview
 
-The `Assertion` class is used to represent clinical assertions about the patient, beyond pure observable phenomena. Assertions incorporate professional opinion, and generally represent some kind of inference drawn from a comparison of evidence (i.e. prior observations) and knowledge.
+The `Assessment` class is used to represent clinical assertions about the patient, beyond pure observable phenomena. Assessments incorporate professional opinion, and generally represent some kind of inference drawn from a comparison of evidence (i.e. prior observations) and knowledge.
 
-The following UML diagram shows the `Assertion` class and related sub-structure.
+The following UML diagram shows the `Assessment` class and related sub-structure.
 
 [.text-center]
-.Assertion
+.Assessment
 image::{uml_diagrams_uri}/CARE-entry-assessment.svg[id=entry_assessment, align="center"]
 
 == Semantics
 
-Following the openEHR `EVALUATION` Reference Model class, the `Assertion` class is intended to cover a number of concrete types of clinical information, as follows:
+The `Assessment` class is intended to cover a number of concrete types of clinical information, as follows:
 
 * _problem/diagnosis_: the assignment of a known diagnosis or problem label to a set of observed signs and symptoms in the patient, for the purpose of determining and managing treatment. The physician will usually include a date of initial onset, date clinically recognised, date of last occurrence, date of resolution of last occurrence and possibly other timing information.
 * _risk assessment_: an evaluation of the likelihood and timing of a certain event occurring or condition appearing.
@@ -20,7 +20,7 @@ Following the openEHR `EVALUATION` Reference Model class, the `Assertion` class 
 * _goal_: statement of a target, and a time at which it should be reached. 
 * _recommendation_: a description in general terms of a suggested care approach for the patient, based on diagnosis; includes various times or time-periods for activities, such as monitoring, taking of medications, and review.
 
-The design of the `Assertion` class is very simple. In addition to the attributes inherited from `Entry` and `Care_entry`, it has only one attribute, `_data_:Cluster` which may be archetyped so as to model the details of any particular clinical assertion. No timing attributes are included, since there is no time associated with creation or capturing of Evaluation information as such, only times included in the information. The only times of generic significance are (potentially) the time of a patient consultation during which the Assertion was created (recorded in `Composition._event_context_._start_time_` and `_end_time_`) and the time of committal to the EHR system (recorded in `Version._commit_audit_` attribute).
+The design of the `Assessment` class is very simple. In addition to the attributes inherited from `Entry` and `Care_entry`, it has only one attribute, `_data_:Cluster` which may be archetyped so as to model the details of any particular clinical assertion. No timing attributes are included, since there is no time associated with creation or capturing of Evaluation information as such, only times included in the information. The only times of generic significance are (potentially) the time of a patient consultation during which the Assertion was created (recorded in `Composition._event_context_._start_time_` and `_end_time_`) and the time of committal to the EHR system (recorded in `Version._commit_audit_` attribute).
 
 == Class Descriptions
 
@@ -30,7 +30,7 @@ include::{uml_export_dir}/classes/{pkg}assessment.adoc[]
 
 === Partial Asthma Management Plan
 
-The following figure illustrates a partial asthma management plan in which monitoring (peak flow) with dependent actions (review and admission to ER) and therapy (bronchodilator) are shown. In a complete plan, symptom monitoring and other medications might be shown. The parts of the plan are linked to the root `Assertion` node via the `_links_:Set<Link>` attribute inherited from the `Locatable` class.
+The following figure illustrates a partial asthma management plan in which monitoring (peak flow) with dependent actions (review and admission to ER) and therapy (bronchodilator) are shown. In a complete plan, symptom monitoring and other medications might be shown. The parts of the plan are linked to the root `Assessment` node via the `_links_:Set<Link>` attribute inherited from the `Locatable` class.
 
 [.text-center]
 .Partial Asthma Management Plan

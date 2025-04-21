@@ -1,0 +1,25 @@
+=== Adhoc_observation Class
+
+[cols="^1,3,5"]
+|===
+h|*Class*
+2+^h|*Adhoc_observation*
+
+h|*Description*
+2+a|Ad hoc measurement
+
+h|*Inherit*
+2+|`<<_measured_observation_class,Measured_observation>>`
+
+h|*Attributes*
+^h|*Signature*
+^h|*Meaning*
+
+h|*0..1*
+|*state*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
+a|Patient state at effective (clinically relevant) time.
+
+h|*0..1*
+|*data*: `List<link:/releases/S2-RM-BASE/{base_release}/docs/patterns.html#_node_class[Node^]>`
+a|
+|===

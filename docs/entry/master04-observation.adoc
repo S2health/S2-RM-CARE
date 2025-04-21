@@ -10,6 +10,8 @@ The following UML diagram illustrates the classes representing various kinds of 
 .Observation
 image::{uml_diagrams_uri}/CARE-entry-observation.svg[id=entry_observation, align="center"]
 
+=== Taxonomy
+
 Observations are formally modelled by the `Observation` class and its descendants. The `Observation` class provides the following properties common to all varieties of Observation:
 
 * `_data_`: the focal data being recorded;
@@ -19,19 +21,21 @@ Both the `_data_` and `_state_` properties are of type `List<Item>`.
 
 Observations are further differentiated on _modality_ of interaction with the subject used to obtain the intended data. The detailed semantics of Observation data are described in the following subsections.
 
-== Direct Observations
+== Design
+
+=== Direct Observations
 
 Direct observations, represented by the `Direct_observation` class, are those for which the focal datum is directly provided by the observational activity. Examples include manual physical examination, e.g. palpation, auscultation, evaluation of skin color etc; machine observations such as heart-rate, oxygen and blood pressure. Note that some machines do not directly measure the reported data but compute it instead from related measurables. For example mean arterial pressure is usually machine-calculated from measured diastolic and systolic blood pressures. Such devices are treated for practical purposes as if they directly measure the target datum.
 
-== Indirect Observations
+=== Indirect Observations
 
 Indirect observations are those obtained by some process that produces an artefact that can subsequently be analyzed to provide the focal data item. Examples include lab test results, imaging and genetic testing. In general, the analysis process takes some time. They are represented by the `Indirect_observation` class, which includes the property `_result_time_`, used to capture the time the result became available. The clinically relevant time is corresponds to the time of sampling, imaging etc, and is captured in the inherited `_time_` property.
 
-== Scores
+=== Scores
 
 Scores are a kind of Observation
 
-== Questionnaire Response
+=== Questionnaire Response
 
 Another common kind of observational information is the response to a _questionnaire_, which is assumed to be a controlled document published by some provider authority or jurisdiction. This is represented by the `Questionnaire_response` class. This class does not attempt to represent any conditional or other logic relating fields together, or any other computational logic of the original questionnaire, which typically takes the form of an interactive UI form - it only represents the responses.
 
@@ -41,15 +45,15 @@ The interior structure of a `Questionnaire_response` consists of `Clusters` and 
 
 include::{uml_export_dir}/classes/{pkg}observation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/{pkg}direct_observation.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/{pkg}measured_observation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/{pkg}indirect_observation.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/{pkg}adhoc_observation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/{pkg}imaging.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/{pkg}real_time_observation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/{pkg}lab_result.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/{pkg}interpreted_observation.adoc[leveloffset=+1]
 
-include::{uml_export_dir}/classes/{pkg}score.adoc[leveloffset=+1]
+include::{uml_export_dir}/classes/{pkg}scored_observation.adoc[leveloffset=+1]
 
 include::{uml_export_dir}/classes/{pkg}questionnaire_response.adoc[leveloffset=+1]
 
