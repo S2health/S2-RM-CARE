@@ -72,10 +72,9 @@
 <li><a href="#_observation_class">3.2.5.1. Observation Class</a></li>
 <li><a href="#_measured_observation_class">3.2.5.2. Measured_observation Class</a></li>
 <li><a href="#_adhoc_observation_class">3.2.5.3. Adhoc_observation Class</a></li>
-<li><a href="#_real_time_observation_class">3.2.5.4. Real_time_observation Class</a></li>
-<li><a href="#_interpreted_observation_class">3.2.5.5. Interpreted_observation Class</a></li>
-<li><a href="#_scored_observation_class">3.2.5.6. Scored_observation Class</a></li>
-<li><a href="#_questionnaire_response_class">3.2.5.7. Questionnaire_response Class</a></li>
+<li><a href="#_interpreted_observation_class">3.2.5.4. Interpreted_observation Class</a></li>
+<li><a href="#_scored_observation_class">3.2.5.5. Scored_observation Class</a></li>
+<li><a href="#_questionnaire_response_class">3.2.5.6. Questionnaire_response Class</a></li>
 </ul>
 </li>
 </ul>
@@ -1213,57 +1212,12 @@ The data of the Entry; modelled in archetypes.</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Unresolved directive in master04-observation.adoc - include::../UML/classes/org.s2.rm.care.entry.real_time_observation.adoc[leveloffset=+1]</p>
+</div>
 </div>
 <div class="sect4">
-<h5 id="_real_time_observation_class"><a class="anchor" href="#_real_time_observation_class"></a>3.2.5.4. Real_time_observation Class</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 33.3333%;">
-<col style="width: 55.5556%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Class</strong></p></th>
-<th class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Real_time_observation</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Description</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><div class="content"><div class="paragraph">
-<p>Time-series measurement of time-varying continuant.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Inherit</strong></p></th>
-<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock"><code><a href="#_measured_observation_class">Measured_observation</a></code></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Attributes</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Signature</strong></p></th>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>Meaning</strong></p></th>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>total_duration</strong>: <code><a href="/releases/S2-RM-BASE/dev/docs/foundation_types.html#_duration_class" target="_blank" rel="noopener">Duration</a></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Duration of the entire History; either corresponds to the duration of all the events, and/or the duration represented by the summary, if it exists.</p>
-</div></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_event_class" target="_blank" rel="noopener">Event</a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-<tr>
-<th class="tableblock halign-center valign-top"><p class="tableblock"><strong>0..1</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>state</strong>: <code>List&lt;<a href="/releases/S2-RM-BASE/dev/docs/patterns.html#_event_class" target="_blank" rel="noopener">Event</a>&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_interpreted_observation_class"><a class="anchor" href="#_interpreted_observation_class"></a>3.2.5.5. Interpreted_observation Class</h5>
+<h5 id="_interpreted_observation_class"><a class="anchor" href="#_interpreted_observation_class"></a>3.2.5.4. Interpreted_observation Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1316,7 +1270,7 @@ The data of the Entry; modelled in archetypes.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_scored_observation_class"><a class="anchor" href="#_scored_observation_class"></a>3.2.5.6. Scored_observation Class</h5>
+<h5 id="_scored_observation_class"><a class="anchor" href="#_scored_observation_class"></a>3.2.5.5. Scored_observation Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1368,7 +1322,7 @@ The data of the Entry; modelled in archetypes.</p>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_questionnaire_response_class"><a class="anchor" href="#_questionnaire_response_class"></a>3.2.5.7. Questionnaire_response Class</h5>
+<h5 id="_questionnaire_response_class"><a class="anchor" href="#_questionnaire_response_class"></a>3.2.5.6. Questionnaire_response Class</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 11.1111%;">

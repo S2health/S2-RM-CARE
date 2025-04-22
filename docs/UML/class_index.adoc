@@ -76,11 +76,11 @@
 [.xcode]
 * link:/releases/S2-RM-CARE/{care_release}/docs/entry.html#_questionnaire_response_class[Questionnaire_response^]
 [.xcode]
-* link:/releases/S2-RM-CARE/{care_release}/docs/entry.html#_real_time_observation_class[Real_time_observation^]
-[.xcode]
 * link:/releases/S2-RM-CARE/{care_release}/docs/entry.html#_scored_observation_class[Scored_observation^]
 [.xcode]
 * link:/releases/S2-RM-CARE/{care_release}/docs/entry.html#_state_transition_class[State_transition^]
+[.xcode]
+* link:/releases/S2-RM-CARE/{care_release}/docs/entry.html#_time_series_observation_class[Time_series_observation^]
 
 ==== Package view
 
